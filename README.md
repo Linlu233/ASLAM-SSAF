@@ -8,6 +8,10 @@ ASLAM-SSAF enhances the structural branch through residual graph convolution, a 
 
 Under the retained five-dataset local evaluation protocol, ASLAM-SSAF improves the average AUC from 0.9469 to 0.9525 and the average AP from 0.9505 to 0.9573 compared with the local ASLAM baseline. It also ranks first in the corresponding 13-model local comparison. Ablation studies, training dynamics, t-SNE visualizations, and a supplementary NF-BoT-IoT communication-graph case study further demonstrate the effectiveness of multi-scale structural enhancement and selective state-space attention fusion within the bounded evaluation setting.
 
+## Model Architecture
+
+![ASLAM-SSAF Framework](./model_architecture.png)
+
 ## Citation
 
 If you find this project useful in your research, please cite our paper:
