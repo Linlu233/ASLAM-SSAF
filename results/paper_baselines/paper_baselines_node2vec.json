@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "node2vec",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_node2vec.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.787121152791918,
+              "AP": 0.8450384153243178
+            },
+            "test": {
+              "AUC": 0.7745176868460935,
+              "AP": 0.8037781269282236
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.792289920902185,
+              "AP": 0.8487153499569347
+            },
+            "test": {
+              "AUC": 0.8094576748583151,
+              "AP": 0.8455448574370028
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7619625655885348,
+              "AP": 0.7945454362586302
+            },
+            "test": {
+              "AUC": 0.7961103070528095,
+              "AP": 0.8450029891383104
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7935233769284986,
+              "AP": 0.8426187726838841
+            },
+            "test": {
+              "AUC": 0.7912128610343601,
+              "AP": 0.8343514514580974
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7925248649071971,
+              "AP": 0.8299755055699791
+            },
+            "test": {
+              "AUC": 0.7852579565223747,
+              "AP": 0.8257334657221247
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7559519147936409,
+              "AP": 0.8212996352980727
+            },
+            "test": {
+              "AUC": 0.7681485704818015,
+              "AP": 0.811156006516968
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7844192967342785,
+              "AP": 0.828819858194753
+            },
+            "test": {
+              "AUC": 0.7806090376153093,
+              "AP": 0.8216764752731265
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7801903046440599,
+              "AP": 0.8259687831479451
+            },
+            "test": {
+              "AUC": 0.7921436194318963,
+              "AP": 0.8308026268477668
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8316234630746339,
+              "AP": 0.8583339997777377
+            },
+            "test": {
+              "AUC": 0.7950674678011198,
+              "AP": 0.8172709891052315
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7762354138930221,
+              "AP": 0.8191624360801268
+            },
+            "test": {
+              "AUC": 0.7348069529114221,
+              "AP": 0.7747681261013508
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Citeseer",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7827332134555501,
+          "std": 0.01947756928566596
+        },
+        "test_ap": {
+          "mean": 0.8210085114528202,
+          "std": 0.020051428033057338
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.7855842274257968,
+          "std": 0.019575624812581797
+        },
+        "val_ap": {
+          "mean": 0.8314478192292383,
+          "std": 0.017278092178955103
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    },
+    "DBLP": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8384878615702479,
+              "AP": 0.8835844649365578
+            },
+            "test": {
+              "AUC": 0.7692164901859504,
+              "AP": 0.8410365841585206
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7536157024793388,
+              "AP": 0.827522297171384
+            },
+            "test": {
+              "AUC": 0.7823395532024793,
+              "AP": 0.8360148156212109
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7477724690082644,
+              "AP": 0.8165230895765149
+            },
+            "test": {
+              "AUC": 0.7719201962809918,
+              "AP": 0.8404053608563589
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7692729855371901,
+              "AP": 0.8370404967642326
+            },
+            "test": {
+              "AUC": 0.7616299715909092,
+              "AP": 0.8228141917535561
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8080126549586776,
+              "AP": 0.8583990575200394
+            },
+            "test": {
+              "AUC": 0.7523728047520661,
+              "AP": 0.8166187409886181
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7404119318181819,
+              "AP": 0.8045218330039963
+            },
+            "test": {
+              "AUC": 0.7772388300619835,
+              "AP": 0.8332044024856116
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7682722107438017,
+              "AP": 0.8253515236331166
+            },
+            "test": {
+              "AUC": 0.7760040030991735,
+              "AP": 0.8407780507639196
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7274018595041322,
+              "AP": 0.8017174233421603
+            },
+            "test": {
+              "AUC": 0.7918872675619835,
+              "AP": 0.8502070714309431
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.7774405991735537,
+              "AP": 0.8180715450837557
+            },
+            "test": {
+              "AUC": 0.7839133522727273,
+              "AP": 0.8368879126495092
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.789482179752066,
+              "AP": 0.8565032882663061
+            },
+            "test": {
+              "AUC": 0.7617752453512396,
+              "AP": 0.8275306529856463
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "DBLP",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7728297714359504,
+          "std": 0.011340167963535415
+        },
+        "test_ap": {
+          "mean": 0.8345497783693894,
+          "std": 0.009371478842179884
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.7720170454545454,
+          "std": 0.031600410973884316
+        },
+        "val_ap": {
+          "mean": 0.8329235019298065,
+          "std": 0.024789169469380628
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    },
+    "PubMed": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8099168420675364,
+              "AP": 0.8814122252889653
+            },
+            "test": {
+              "AUC": 0.807091099437631,
+              "AP": 0.8784830423095822
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8133224970350194,
+              "AP": 0.8830303474694149
+            },
+            "test": {
+              "AUC": 0.8107823577949667,
+              "AP": 0.8819136965231764
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8178968349646157,
+              "AP": 0.8855322516871464
+            },
+            "test": {
+              "AUC": 0.8029365119446363,
+              "AP": 0.8761595280547089
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8137552294438869,
+              "AP": 0.8819632073360332
+            },
+            "test": {
+              "AUC": 0.8091669422578165,
+              "AP": 0.8785145611708536
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.807646676940922,
+              "AP": 0.8786017634203788
+            },
+            "test": {
+              "AUC": 0.8130968652660664,
+              "AP": 0.8809445611824722
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8212784605559829,
+              "AP": 0.8872415307637715
+            },
+            "test": {
+              "AUC": 0.8197768281875171,
+              "AP": 0.8858540180260315
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8100235487885936,
+              "AP": 0.8784465257833779
+            },
+            "test": {
+              "AUC": 0.8125363495223448,
+              "AP": 0.8805489539665143
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8124507194150843,
+              "AP": 0.8796125988933772
+            },
+            "test": {
+              "AUC": 0.8099898465703971,
+              "AP": 0.8795161626353163
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8194239221806618,
+              "AP": 0.8841027429342798
+            },
+            "test": {
+              "AUC": 0.8105837081644489,
+              "AP": 0.8793905447693255
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.811585865513691,
+              "AP": 0.8808377627878461
+            },
+            "test": {
+              "AUC": 0.809804688009097,
+              "AP": 0.8793348385736766
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "PubMed",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8105765197154922,
+          "std": 0.004102753501719593
+        },
+        "test_ap": {
+          "mean": 0.8800659907211659,
+          "std": 0.002436937583789445
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.8137300596905994,
+          "std": 0.004224308941052503
+        },
+        "val_ap": {
+          "mean": 0.8820780956364592,
+          "std": 0.0027738980560127473
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    },
+    "amz_Photo": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9643717652269851,
+              "AP": 0.9721981712562363
+            },
+            "test": {
+              "AUC": 0.9665982057992756,
+              "AP": 0.9745374305718737
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9670378016943785,
+              "AP": 0.974396504297616
+            },
+            "test": {
+              "AUC": 0.9634700687168083,
+              "AP": 0.9713828246639977
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.963380227573374,
+              "AP": 0.9722338590970908
+            },
+            "test": {
+              "AUC": 0.9650204181434039,
+              "AP": 0.9731896953593826
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9693972305438702,
+              "AP": 0.9761373883835467
+            },
+            "test": {
+              "AUC": 0.9641267818576221,
+              "AP": 0.9731223892177179
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.964426714753369,
+              "AP": 0.973543706286023
+            },
+            "test": {
+              "AUC": 0.9620208082881824,
+              "AP": 0.9712618659918693
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.964364367027993,
+              "AP": 0.9732021486099323
+            },
+            "test": {
+              "AUC": 0.9654161996886327,
+              "AP": 0.9734478079164411
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.965989763279111,
+              "AP": 0.9731112650386267
+            },
+            "test": {
+              "AUC": 0.9633643718857703,
+              "AP": 0.9727182502241545
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9608645416016243,
+              "AP": 0.969311674802154
+            },
+            "test": {
+              "AUC": 0.9635662814642488,
+              "AP": 0.9710415845837176
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9632025514717762,
+              "AP": 0.9721317866551832
+            },
+            "test": {
+              "AUC": 0.9651545374010727,
+              "AP": 0.9722178770971581
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9673157711226337,
+              "AP": 0.9744961924945074
+            },
+            "test": {
+              "AUC": 0.9645054667018373,
+              "AP": 0.9721271035155451
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "amz_Photo",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9643243139946854,
+          "std": 0.0012304649995356484
+        },
+        "test_ap": {
+          "mean": 0.9725046829141858,
+          "std": 0.0010529293553030454
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.9650350734295114,
+          "std": 0.0023216860739036244
+        },
+        "val_ap": {
+          "mean": 0.9730762696920916,
+          "std": 0.0017294551261358496
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    },
+    "CoRA": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9227810884949037,
+              "AP": 0.9489805877795641
+            },
+            "test": {
+              "AUC": 0.9381402685636511,
+              "AP": 0.9563140812852984
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9308982206083934,
+              "AP": 0.9520082487009869
+            },
+            "test": {
+              "AUC": 0.9356248052453384,
+              "AP": 0.9549246388315558
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9260174467885864,
+              "AP": 0.9490451713278486
+            },
+            "test": {
+              "AUC": 0.9404505835778026,
+              "AP": 0.9582196903348319
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9342229753184288,
+              "AP": 0.9504592464683164
+            },
+            "test": {
+              "AUC": 0.9344595063685783,
+              "AP": 0.9539052762193821
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9315755228304936,
+              "AP": 0.9516573992591936
+            },
+            "test": {
+              "AUC": 0.9322792632501788,
+              "AP": 0.9519577579820655
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.928202331727936,
+              "AP": 0.9496470271040821
+            },
+            "test": {
+              "AUC": 0.9311922698746627,
+              "AP": 0.9520459687087123
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9317224465544773,
+              "AP": 0.955048552893257
+            },
+            "test": {
+              "AUC": 0.9330213491472773,
+              "AP": 0.9535882134337896
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.942083798188156,
+              "AP": 0.9592598609970812
+            },
+            "test": {
+              "AUC": 0.9324805770065987,
+              "AP": 0.954540927170238
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9391525891673622,
+              "AP": 0.9582197812282398
+            },
+            "test": {
+              "AUC": 0.9363772847849989,
+              "AP": 0.956438580349098
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.9357672889666742,
+              "AP": 0.9557945579759463
+            },
+            "test": {
+              "AUC": 0.9390959791336021,
+              "AP": 0.9578277067889384
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "CoRA",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9353121886952691,
+          "std": 0.003001928915945892
+        },
+        "test_ap": {
+          "mean": 0.9549762841103911,
+          "std": 0.002086685317581725
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.9322423708645413,
+          "std": 0.005550332043604833
+        },
+        "val_ap": {
+          "mean": 0.9530120433734515,
+          "std": 0.0036154805509656606
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    },
+    "Twitch_EN": {
+      "node2vec": {
+        "runs": [
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8568294537950387,
+              "AP": 0.8963492571316654
+            },
+            "test": {
+              "AUC": 0.8544300996935957,
+              "AP": 0.8946644180112053
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8599815118592158,
+              "AP": 0.8959160202673802
+            },
+            "test": {
+              "AUC": 0.8499637355407091,
+              "AP": 0.8854068431458978
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8583403126118234,
+              "AP": 0.8974232659851754
+            },
+            "test": {
+              "AUC": 0.8559683732872978,
+              "AP": 0.894258137945339
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8393224734477465,
+              "AP": 0.8796826107811467
+            },
+            "test": {
+              "AUC": 0.8565178712281435,
+              "AP": 0.8930636820376605
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8537407222623379,
+              "AP": 0.8923670446933055
+            },
+            "test": {
+              "AUC": 0.8536786782935247,
+              "AP": 0.8919681081149853
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8665333229018237,
+              "AP": 0.9002068100384247
+            },
+            "test": {
+              "AUC": 0.8558359086122801,
+              "AP": 0.8887658701656378
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8481541999438238,
+              "AP": 0.8839209128209209
+            },
+            "test": {
+              "AUC": 0.8503308691029372,
+              "AP": 0.8897161322635673
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8455262290477357,
+              "AP": 0.8858276297487554
+            },
+            "test": {
+              "AUC": 0.8587718147876909,
+              "AP": 0.8942822610795107
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.85793181640372,
+              "AP": 0.893387432847512
+            },
+            "test": {
+              "AUC": 0.8580817960751017,
+              "AP": 0.8933750037410094
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8605081641526301,
+              "AP": 0.8948591630566691
+            },
+            "test": {
+              "AUC": 0.8591373451465905,
+              "AP": 0.895328165607193
+            },
+            "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding.",
+            "dataset": "Twitch_EN",
+            "model": "node2vec",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8552716491767871,
+          "std": 0.003054170746644784
+        },
+        "test_ap": {
+          "mean": 0.8920828622112007,
+          "std": 0.003009709082042692
+        },
+        "best_epoch": {
+          "mean": 30.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.8546868206425897,
+          "std": 0.007708956657257734
+        },
+        "val_ap": {
+          "mean": 0.8919940147370955,
+          "std": 0.006295528774321473
+        },
+        "notes": "Unsupervised Node2Vec embeddings with dot-product edge decoding."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 1847.7957217693329
+}

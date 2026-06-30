@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "aa",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_aa.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6792035398230089,
+              "AP": 0.679203539823009
+            },
+            "test": {
+              "AUC": 0.6592863860746849,
+              "AP": 0.6599987904079349
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6548672566371682,
+              "AP": 0.6548672566371682
+            },
+            "test": {
+              "AUC": 0.6868826415995399,
+              "AP": 0.6871688723341638
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.661504424778761,
+              "AP": 0.6615044247787611
+            },
+            "test": {
+              "AUC": 0.6788079470198676,
+              "AP": 0.6788079470198676
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6820326572166967,
+              "AP": 0.6830725274398133
+            },
+            "test": {
+              "AUC": 0.66183988031714,
+              "AP": 0.6632504698497045
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6460176991150443,
+              "AP": 0.6460176991150443
+            },
+            "test": {
+              "AUC": 0.6655141831011311,
+              "AP": 0.6646427891752793
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6747787610619469,
+              "AP": 0.674778761061947
+            },
+            "test": {
+              "AUC": 0.6534216335540839,
+              "AP": 0.6534216335540839
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6570796460176991,
+              "AP": 0.6570796460176992
+            },
+            "test": {
+              "AUC": 0.6688741721854304,
+              "AP": 0.6688741721854305
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6924778761061947,
+              "AP": 0.6924778761061947
+            },
+            "test": {
+              "AUC": 0.6828988981964728,
+              "AP": 0.6842210274754513
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6969026548672567,
+              "AP": 0.6969026548672567
+            },
+            "test": {
+              "AUC": 0.6597688210556066,
+              "AP": 0.661189249193288
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.668141592920354,
+              "AP": 0.668141592920354
+            },
+            "test": {
+              "AUC": 0.6513944320180889,
+              "AP": 0.6517495152515853
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.6668688995122045,
+          "std": 0.011659299827836513
+        },
+        "test_ap": {
+          "mean": 0.6673324466446788,
+          "std": 0.011681303974052723
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.6713006108544131,
+          "std": 0.015846555174941518
+        },
+        "val_ap": {
+          "mean": 0.6714045978767248,
+          "std": 0.015919881209003974
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    },
+    "DBLP": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7556818181818181,
+              "AP": 0.7556818181818182
+            },
+            "test": {
+              "AUC": 0.7521387525826447,
+              "AP": 0.7528409090909091
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7471590909090909,
+              "AP": 0.7471590909090912
+            },
+            "test": {
+              "AUC": 0.7505649535123968,
+              "AP": 0.750326190006666
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.71875,
+              "AP": 0.7187500000000001
+            },
+            "test": {
+              "AUC": 0.746392368285124,
+              "AP": 0.7470603613686538
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7559562241735537,
+              "AP": 0.7553605496864231
+            },
+            "test": {
+              "AUC": 0.7443181818181819,
+              "AP": 0.7443181818181818
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7727272727272727,
+              "AP": 0.7727272727272728
+            },
+            "test": {
+              "AUC": 0.7378777117768596,
+              "AP": 0.7386026433502393
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7020758006198348,
+              "AP": 0.6985589885115255
+            },
+            "test": {
+              "AUC": 0.7545075219524794,
+              "AP": 0.7544445856650213
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7386363636363636,
+              "AP": 0.7386363636363638
+            },
+            "test": {
+              "AUC": 0.75,
+              "AP": 0.75
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7130681818181819,
+              "AP": 0.7130681818181819
+            },
+            "test": {
+              "AUC": 0.7556818181818181,
+              "AP": 0.7556818181818178
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7301136363636364,
+              "AP": 0.7301136363636365
+            },
+            "test": {
+              "AUC": 0.7528409090909092,
+              "AP": 0.7528409090909091
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7784090909090908,
+              "AP": 0.7784090909090908
+            },
+            "test": {
+              "AUC": 0.73779296875,
+              "AP": 0.7383746884691059
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "DBLP",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7482115185950413,
+          "std": 0.006122400691991892
+        },
+        "test_ap": {
+          "mean": 0.7484490287041503,
+          "std": 0.00591778969507914
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.7412577479338844,
+          "std": 0.024076993913843974
+        },
+        "val_ap": {
+          "mean": 0.7408464992743403,
+          "std": 0.024629510711875375
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    },
+    "PubMed": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6539553982197083,
+              "AP": 0.6536959507401543
+            },
+            "test": {
+              "AUC": 0.6467163450260006,
+              "AP": 0.6467976345655527
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6517577284990029,
+              "AP": 0.6519167554737764
+            },
+            "test": {
+              "AUC": 0.6435333690651514,
+              "AP": 0.6437906768663814
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6507189670789401,
+              "AP": 0.6510245486382991
+            },
+            "test": {
+              "AUC": 0.6382923432225754,
+              "AP": 0.6380189026841775
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6469237511240861,
+              "AP": 0.6472440037308532
+            },
+            "test": {
+              "AUC": 0.6520388263808338,
+              "AP": 0.6523955180938981
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6479735090383036,
+              "AP": 0.6479890481556478
+            },
+            "test": {
+              "AUC": 0.6430491669544761,
+              "AP": 0.6435681436439596
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6507686549414171,
+              "AP": 0.6513141402179108
+            },
+            "test": {
+              "AUC": 0.6427592107856873,
+              "AP": 0.6428834373689276
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6334076343364308,
+              "AP": 0.6335694309800083
+            },
+            "test": {
+              "AUC": 0.6442236790766855,
+              "AP": 0.6442842297160849
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6436108536211863,
+              "AP": 0.6437146960791144
+            },
+            "test": {
+              "AUC": 0.6446732625946512,
+              "AP": 0.6440240660248716
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6465496666840439,
+              "AP": 0.6463995078175253
+            },
+            "test": {
+              "AUC": 0.6412320981147936,
+              "AP": 0.64129073779667
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6496610636134968,
+              "AP": 0.6498174567655274
+            },
+            "test": {
+              "AUC": 0.6467448290004431,
+              "AP": 0.6468409987663625
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "PubMed",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.6443263130221298,
+          "std": 0.003491043849751976
+        },
+        "test_ap": {
+          "mean": 0.6443894345526885,
+          "std": 0.0035991413586848576
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.6475327227156616,
+          "std": 0.005483478795867733
+        },
+        "val_ap": {
+          "mean": 0.6476685538598816,
+          "std": 0.005475940186349039
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    },
+    "amz_Photo": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.9002014279001357,
+              "AP": 0.9005845619341146
+            },
+            "test": {
+              "AUC": 0.8982547735323861,
+              "AP": 0.8982910563308306
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.9046221501123215,
+              "AP": 0.9049167324395383
+            },
+            "test": {
+              "AUC": 0.8956851684485831,
+              "AP": 0.8959389575715249
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8968658245925204,
+              "AP": 0.8969685630284192
+            },
+            "test": {
+              "AUC": 0.9006759288485557,
+              "AP": 0.9008277957380164
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.898494591797211,
+              "AP": 0.8986289147730446
+            },
+            "test": {
+              "AUC": 0.895121163716145,
+              "AP": 0.8953136084467171
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.89955733711612,
+              "AP": 0.8997875549071762
+            },
+            "test": {
+              "AUC": 0.8960587682731336,
+              "AP": 0.8963790009280097
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8934324039683939,
+              "AP": 0.8936311294942134
+            },
+            "test": {
+              "AUC": 0.9017732268823486,
+              "AP": 0.9021548136442102
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.901510372155661,
+              "AP": 0.9015685329807512
+            },
+            "test": {
+              "AUC": 0.8978602073217692,
+              "AP": 0.8980267486261393
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.897696630406741,
+              "AP": 0.8977096474705888
+            },
+            "test": {
+              "AUC": 0.8978987252273238,
+              "AP": 0.8981051636429791
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8928528087739777,
+              "AP": 0.893153616651913
+            },
+            "test": {
+              "AUC": 0.8962744938947778,
+              "AP": 0.8964637347490333
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8972362118452802,
+              "AP": 0.8974870065885486
+            },
+            "test": {
+              "AUC": 0.896160543226835,
+              "AP": 0.8963778569757156
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "amz_Photo",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8975762999371858,
+          "std": 0.0020850137558003083
+        },
+        "test_ap": {
+          "mean": 0.8977878736653178,
+          "std": 0.0020973581090839746
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.8982469758668362,
+          "std": 0.003352612251178104
+        },
+        "val_ap": {
+          "mean": 0.8984436260268309,
+          "std": 0.0033595269250010613
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    },
+    "CoRA": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8019407655210383,
+              "AP": 0.80240633687177
+            },
+            "test": {
+              "AUC": 0.8065611937310392,
+              "AP": 0.8071154381063488
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8093077390053425,
+              "AP": 0.8091195549997043
+            },
+            "test": {
+              "AUC": 0.7986061721687718,
+              "AP": 0.7989831909448558
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8051670328996123,
+              "AP": 0.8053371932989258
+            },
+            "test": {
+              "AUC": 0.8082688792948952,
+              "AP": 0.8082255403095078
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7921396614941981,
+              "AP": 0.7926606065883417
+            },
+            "test": {
+              "AUC": 0.8050742973897629,
+              "AP": 0.8048782499303435
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8025980877312233,
+              "AP": 0.8030952073476416
+            },
+            "test": {
+              "AUC": 0.8083961257344168,
+              "AP": 0.8088384923942299
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7996485132449316,
+              "AP": 0.8004571002065171
+            },
+            "test": {
+              "AUC": 0.8073300205531758,
+              "AP": 0.8080058823305392
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8108207708167505,
+              "AP": 0.8110495319118852
+            },
+            "test": {
+              "AUC": 0.8012085182661709,
+              "AP": 0.8014985872348077
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8125529773043211,
+              "AP": 0.8128559248596587
+            },
+            "test": {
+              "AUC": 0.8130977353564676,
+              "AP": 0.8132018262619392
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.8070542358432533,
+              "AP": 0.8076809682546398
+            },
+            "test": {
+              "AUC": 0.8095564800627736,
+              "AP": 0.810223296544811
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7942111245477252,
+              "AP": 0.7944713118345529
+            },
+            "test": {
+              "AUC": 0.8074269437927954,
+              "AP": 0.8076318624006108
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "CoRA",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.806552636635027,
+          "std": 0.003917467691035151
+        },
+        "test_ap": {
+          "mean": 0.8068602366457993,
+          "std": 0.0039242823992611375
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.8035440908408397,
+          "std": 0.0064659970084528316
+        },
+        "val_ap": {
+          "mean": 0.8039133736173637,
+          "std": 0.00636304968199741
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    },
+    "Twitch_EN": {
+      "aa": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7660394080203774,
+              "AP": 0.7718523042212557
+            },
+            "test": {
+              "AUC": 0.7639133199262784,
+              "AP": 0.7703147803342794
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7734867684422891,
+              "AP": 0.7784067946348225
+            },
+            "test": {
+              "AUC": 0.7651477864892283,
+              "AP": 0.7692825145655612
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.771643725895838,
+              "AP": 0.7788114869423324
+            },
+            "test": {
+              "AUC": 0.7598549710204966,
+              "AP": 0.7655398910635424
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7572690842117817,
+              "AP": 0.7642024462275707
+            },
+            "test": {
+              "AUC": 0.7617576126506851,
+              "AP": 0.7678525226153803
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7768756196380865,
+              "AP": 0.7820931065780036
+            },
+            "test": {
+              "AUC": 0.7668644966133934,
+              "AP": 0.7720050193587318
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7757331769461926,
+              "AP": 0.7807193394854721
+            },
+            "test": {
+              "AUC": 0.7660220132642631,
+              "AP": 0.7710969334555668
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7604030260783466,
+              "AP": 0.7694283000375934
+            },
+            "test": {
+              "AUC": 0.7693634497216196,
+              "AP": 0.7743660901012104
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7671570010606794,
+              "AP": 0.7728733067965141
+            },
+            "test": {
+              "AUC": 0.7704992391197003,
+              "AP": 0.7771255509468085
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7707072948316572,
+              "AP": 0.7736259205020355
+            },
+            "test": {
+              "AUC": 0.7655888277249007,
+              "AP": 0.7720722406459345
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.7775539349663777,
+              "AP": 0.7842773109261932
+            },
+            "test": {
+              "AUC": 0.7670031336212259,
+              "AP": 0.7724968914673982
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Twitch_EN",
+            "model": "aa",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7656014850151791,
+          "std": 0.0030451718607268394
+        },
+        "test_ap": {
+          "mean": 0.7712152434554413,
+          "std": 0.0030973887274119067
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.7696869040091626,
+          "std": 0.006553867696351395
+        },
+        "val_ap": {
+          "mean": 0.7756290316351794,
+          "std": 0.00596001923333064
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 46.31804966926575
+}

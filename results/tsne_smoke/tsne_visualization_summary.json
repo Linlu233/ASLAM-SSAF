@@ -1,0 +1,22 @@
+{
+  "model": "aslam_ssmattn",
+  "device": "cuda:0",
+  "sample_ratio": 0.15,
+  "datasets": {
+    "Citeseer": {
+      "best_epoch": 43,
+      "best_val": {
+        "AUC": 0.8737567546401441,
+        "AP": 0.8657802647478575
+      },
+      "best_test": {
+        "AUC": 0.8668723106686353,
+        "AP": 0.87019642235528
+      },
+      "sample_count": 136,
+      "figure_path": "results\\tsne_smoke\\Citeseer_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne_smoke\\Citeseer_aslam_ssmattn_edge_tsne_coords.npz"
+    }
+  },
+  "grid_path": "results\\tsne_smoke\\aslam_ssmattn_edge_tsne_grid.png"
+}

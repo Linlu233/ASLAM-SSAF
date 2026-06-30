@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "gcn",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_gcn.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.749941263998747,
+              "AP": 0.7449198811876698
+            },
+            "test": {
+              "AUC": 0.7452889493150885,
+              "AP": 0.7544112957329809
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7479246612890594,
+              "AP": 0.7538957694720387
+            },
+            "test": {
+              "AUC": 0.6924745016056801,
+              "AP": 0.7175175762356389
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8076591745633956,
+              "AP": 0.8057303516092151
+            },
+            "test": {
+              "AUC": 0.7272244394739023,
+              "AP": 0.705278119450514
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7591823948625578,
+              "AP": 0.7645409701391046
+            },
+            "test": {
+              "AUC": 0.7401088646209474,
+              "AP": 0.7624720646267367
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7405043464640928,
+              "AP": 0.7535744055145728
+            },
+            "test": {
+              "AUC": 0.7573059661125974,
+              "AP": 0.7616334538854591
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7451836478972511,
+              "AP": 0.7531328157270117
+            },
+            "test": {
+              "AUC": 0.6965873816450545,
+              "AP": 0.7123850870694959
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7422664265016836,
+              "AP": 0.7502739686278117
+            },
+            "test": {
+              "AUC": 0.736663596625879,
+              "AP": 0.7265762877883113
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 36,
+            "val": {
+              "AUC": 0.7996514997258987,
+              "AP": 0.803475524725614
+            },
+            "test": {
+              "AUC": 0.7957253336841951,
+              "AP": 0.8133381719882486
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8033518678048397,
+              "AP": 0.8138035965848611
+            },
+            "test": {
+              "AUC": 0.7551666837224487,
+              "AP": 0.7853960520654656
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7901558461899915,
+              "AP": 0.7862995019893335
+            },
+            "test": {
+              "AUC": 0.7353624841015745,
+              "AP": 0.7404900532863908
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7381908200907368,
+          "std": 0.028229900119136318
+        },
+        "test_ap": {
+          "mean": 0.7479498162129242,
+          "std": 0.03262218061528042
+        },
+        "best_epoch": {
+          "mean": 5.1,
+          "std": 10.309704166463748
+        },
+        "val_auc": {
+          "mean": 0.7685821129297518,
+          "std": 0.02656617418320208
+        },
+        "val_ap": {
+          "mean": 0.7729646785577232,
+          "std": 0.025209883799597925
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    },
+    "DBLP": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7792807334710743,
+              "AP": 0.7977821202043607
+            },
+            "test": {
+              "AUC": 0.8163658961776861,
+              "AP": 0.8005834664219524
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 39,
+            "val": {
+              "AUC": 0.8635395144628099,
+              "AP": 0.8749335046962536
+            },
+            "test": {
+              "AUC": 0.8100706998966942,
+              "AP": 0.8159886637079141
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 33,
+            "val": {
+              "AUC": 0.8262525826446282,
+              "AP": 0.8319856350261963
+            },
+            "test": {
+              "AUC": 0.8441616089876032,
+              "AP": 0.8682713045197832
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8649922520661157,
+              "AP": 0.8770975119903135
+            },
+            "test": {
+              "AUC": 0.8116848527892562,
+              "AP": 0.8287257419674109
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.8511428202479339,
+              "AP": 0.8572460250987756
+            },
+            "test": {
+              "AUC": 0.8062290160123967,
+              "AP": 0.8151764806711955
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8546939566115703,
+              "AP": 0.8709440618449896
+            },
+            "test": {
+              "AUC": 0.8555333161157025,
+              "AP": 0.8662214823542551
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 78,
+            "val": {
+              "AUC": 0.8598269628099173,
+              "AP": 0.8678167062113765
+            },
+            "test": {
+              "AUC": 0.8622239798553719,
+              "AP": 0.8708033920803822
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8270919421487604,
+              "AP": 0.8251055752462486
+            },
+            "test": {
+              "AUC": 0.806511492768595,
+              "AP": 0.7913453438977253
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8207644628099173,
+              "AP": 0.8253693961801338
+            },
+            "test": {
+              "AUC": 0.8194812112603307,
+              "AP": 0.8156273578211088
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.841328770661157,
+              "AP": 0.8215528578497017
+            },
+            "test": {
+              "AUC": 0.8106840779958678,
+              "AP": 0.8188384845509716
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8242946151859505,
+          "std": 0.02020990335962134
+        },
+        "test_ap": {
+          "mean": 0.8291581717992699,
+          "std": 0.027464274524599014
+        },
+        "best_epoch": {
+          "mean": 16.6,
+          "std": 24.446676665755614
+        },
+        "val_auc": {
+          "mean": 0.8388913997933883,
+          "std": 0.025127325783401384
+        },
+        "val_ap": {
+          "mean": 0.844983339434835,
+          "std": 0.026457027133439857
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    },
+    "PubMed": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 154,
+            "val": {
+              "AUC": 0.9199662937090278,
+              "AP": 0.9399413919346776
+            },
+            "test": {
+              "AUC": 0.9158506521328311,
+              "AP": 0.9349291468825884
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 38,
+            "val": {
+              "AUC": 0.8845620625838992,
+              "AP": 0.8586519913758447
+            },
+            "test": {
+              "AUC": 0.8857361928833949,
+              "AP": 0.8548213134135842
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8843421327008041,
+              "AP": 0.8506818496516946
+            },
+            "test": {
+              "AUC": 0.8843137250909043,
+              "AP": 0.8524800011221179
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 38,
+            "val": {
+              "AUC": 0.8886934861655957,
+              "AP": 0.8583477579274399
+            },
+            "test": {
+              "AUC": 0.8882569355295912,
+              "AP": 0.8554649974522748
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 9,
+            "val": {
+              "AUC": 0.8801131661431791,
+              "AP": 0.8508047342643745
+            },
+            "test": {
+              "AUC": 0.8783093847339337,
+              "AP": 0.8460483437027478
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.8912805132348915,
+              "AP": 0.861399845679945
+            },
+            "test": {
+              "AUC": 0.8829384251309804,
+              "AP": 0.8483473498427346
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8779448204068866,
+              "AP": 0.8585410569839793
+            },
+            "test": {
+              "AUC": 0.8797049722073791,
+              "AP": 0.8402198975842454
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 160,
+            "val": {
+              "AUC": 0.9153304568676772,
+              "AP": 0.9354176802859204
+            },
+            "test": {
+              "AUC": 0.9108014794764691,
+              "AP": 0.9299027348067288
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 186,
+            "val": {
+              "AUC": 0.9159531842588851,
+              "AP": 0.9311562829926584
+            },
+            "test": {
+              "AUC": 0.9135665886594377,
+              "AP": 0.9319247262673169
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.8897369312776133,
+              "AP": 0.8564538578818228
+            },
+            "test": {
+              "AUC": 0.8842986558211366,
+              "AP": 0.8524019205749516
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8923777011666058,
+          "std": 0.014065520010341009
+        },
+        "test_ap": {
+          "mean": 0.874654043164929,
+          "std": 0.03796034441557097
+        },
+        "best_epoch": {
+          "mean": 63.7,
+          "std": 68.96093096819388
+        },
+        "val_auc": {
+          "mean": 0.8947923047348461,
+          "std": 0.015138005457749713
+        },
+        "val_ap": {
+          "mean": 0.8801396448978357,
+          "std": 0.03643927464006196
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    },
+    "amz_Photo": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 65,
+            "val": {
+              "AUC": 0.9512179464079238,
+              "AP": 0.9531091866174138
+            },
+            "test": {
+              "AUC": 0.9515531834676139,
+              "AP": 0.9543260867561493
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 72,
+            "val": {
+              "AUC": 0.9472998840869273,
+              "AP": 0.9484589700114454
+            },
+            "test": {
+              "AUC": 0.948104421728805,
+              "AP": 0.9491586540983167
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 83,
+            "val": {
+              "AUC": 0.9479590397519551,
+              "AP": 0.9492564038904063
+            },
+            "test": {
+              "AUC": 0.9500887872766427,
+              "AP": 0.9517241899481772
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 76,
+            "val": {
+              "AUC": 0.9515010468451573,
+              "AP": 0.9515043667296508
+            },
+            "test": {
+              "AUC": 0.9500328222361676,
+              "AP": 0.9519657129706836
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 74,
+            "val": {
+              "AUC": 0.9477113790744089,
+              "AP": 0.948681464284494
+            },
+            "test": {
+              "AUC": 0.9472524647097771,
+              "AP": 0.9502433803030591
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 78,
+            "val": {
+              "AUC": 0.9492818854620377,
+              "AP": 0.9498905770451376
+            },
+            "test": {
+              "AUC": 0.9486172332867296,
+              "AP": 0.9486725144691612
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 109,
+            "val": {
+              "AUC": 0.9503335633139063,
+              "AP": 0.9511866583265464
+            },
+            "test": {
+              "AUC": 0.9532748876184557,
+              "AP": 0.9564352140788688
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 68,
+            "val": {
+              "AUC": 0.943833708533393,
+              "AP": 0.9433658740337305
+            },
+            "test": {
+              "AUC": 0.9471894164307662,
+              "AP": 0.9486680974885097
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 55,
+            "val": {
+              "AUC": 0.9476137705780309,
+              "AP": 0.9499942311810993
+            },
+            "test": {
+              "AUC": 0.9492441222652864,
+              "AP": 0.9516339457974198
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 74,
+            "val": {
+              "AUC": 0.9531040098477188,
+              "AP": 0.955415007774621
+            },
+            "test": {
+              "AUC": 0.9506550288212502,
+              "AP": 0.9539707137682117
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9496012367841494,
+          "std": 0.0018305767423638902
+        },
+        "test_ap": {
+          "mean": 0.9516798509678559,
+          "std": 0.0024796067896326155
+        },
+        "best_epoch": {
+          "mean": 75.4,
+          "std": 13.373107342723307
+        },
+        "val_auc": {
+          "mean": 0.9489856233901459,
+          "std": 0.0025321914985066917
+        },
+        "val_ap": {
+          "mean": 0.9500862739894543,
+          "std": 0.0030211930570775286
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    },
+    "CoRA": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6925338530020069,
+              "AP": 0.7203016640451771
+            },
+            "test": {
+              "AUC": 0.7106773183675645,
+              "AP": 0.7341037953859201
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7026473717606145,
+              "AP": 0.7303263577262484
+            },
+            "test": {
+              "AUC": 0.7145710997805831,
+              "AP": 0.7379570104953068
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7064116867327878,
+              "AP": 0.7411642223318131
+            },
+            "test": {
+              "AUC": 0.7013910023749979,
+              "AP": 0.7272781526316333
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7136860256163935,
+              "AP": 0.7408417427260487
+            },
+            "test": {
+              "AUC": 0.706037162418526,
+              "AP": 0.7326319633480078
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.694294515870184,
+              "AP": 0.724271730222275
+            },
+            "test": {
+              "AUC": 0.7022737051741369,
+              "AP": 0.7315864755050946
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7130757270706154,
+              "AP": 0.7374059644524409
+            },
+            "test": {
+              "AUC": 0.7124706253461184,
+              "AP": 0.7369196170798551
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7085949571257198,
+              "AP": 0.7345312431276603
+            },
+            "test": {
+              "AUC": 0.7047721148459158,
+              "AP": 0.7311213656401396
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.708749348126884,
+              "AP": 0.7318762098136169
+            },
+            "test": {
+              "AUC": 0.6988161540212701,
+              "AP": 0.7256380585076265
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7104220182153127,
+              "AP": 0.7342260550332247
+            },
+            "test": {
+              "AUC": 0.705505825283474,
+              "AP": 0.7327728751052545
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7031337538688567,
+              "AP": 0.7266299441667223
+            },
+            "test": {
+              "AUC": 0.7079078162613887,
+              "AP": 0.7319905184965205
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7064422823873975,
+          "std": 0.004768466668074385
+        },
+        "test_ap": {
+          "mean": 0.7321999832195359,
+          "std": 0.003583637465867063
+        },
+        "best_epoch": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.7053549257389374,
+          "std": 0.006905122016888852
+        },
+        "val_ap": {
+          "mean": 0.7321575133645228,
+          "std": 0.006562997525645457
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    },
+    "Twitch_EN": {
+      "gcn": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8183968223227467,
+              "AP": 0.8065824278424855
+            },
+            "test": {
+              "AUC": 0.8258081908299335,
+              "AP": 0.817565832941813
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8203023897990096,
+              "AP": 0.8073328715596484
+            },
+            "test": {
+              "AUC": 0.8103368779090124,
+              "AP": 0.7826199261841047
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.805797247364013,
+              "AP": 0.7730698091530537
+            },
+            "test": {
+              "AUC": 0.7994743336766327,
+              "AP": 0.7817826595274878
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.816314902480348,
+              "AP": 0.8033276991544944
+            },
+            "test": {
+              "AUC": 0.8141840849364297,
+              "AP": 0.7999350137041088
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 139,
+            "val": {
+              "AUC": 0.8530099821852046,
+              "AP": 0.8802105647663958
+            },
+            "test": {
+              "AUC": 0.8561808778884914,
+              "AP": 0.8820426934665989
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8269794110215739,
+              "AP": 0.8137087645317078
+            },
+            "test": {
+              "AUC": 0.8335062521723406,
+              "AP": 0.8234828524619544
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8018562529418781,
+              "AP": 0.7907922814257256
+            },
+            "test": {
+              "AUC": 0.8052298737060546,
+              "AP": 0.7981930559048158
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8278451408189675,
+              "AP": 0.8213045330858049
+            },
+            "test": {
+              "AUC": 0.8280049000306533,
+              "AP": 0.8267885687055367
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 99,
+            "val": {
+              "AUC": 0.8614213487685475,
+              "AP": 0.8809746138319741
+            },
+            "test": {
+              "AUC": 0.853940521477153,
+              "AP": 0.8761073763564375
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 124,
+            "val": {
+              "AUC": 0.8525017667300681,
+              "AP": 0.8771337287249841
+            },
+            "test": {
+              "AUC": 0.8447969318535982,
+              "AP": 0.8697683778142575
+            },
+            "notes": "Full-batch GCN encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gcn",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8271462844480298,
+          "std": 0.019005529975360595
+        },
+        "test_ap": {
+          "mean": 0.8258286357067115,
+          "std": 0.03596472799166932
+        },
+        "best_epoch": {
+          "mean": 36.9,
+          "std": 55.57778333111172
+        },
+        "val_auc": {
+          "mean": 0.8284425264432358,
+          "std": 0.019510005343956128
+        },
+        "val_ap": {
+          "mean": 0.8254437294076273,
+          "std": 0.03745184213009541
+        },
+        "notes": "Full-batch GCN encoder with dot-product edge decoder."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 158.99633884429932
+}

@@ -1,0 +1,325 @@
+{
+  "args": {
+    "datasets": "Citeseer",
+    "models": "cn",
+    "root": "datasets",
+    "runs": 1,
+    "seed": 2,
+    "epochs": 3,
+    "patience": 2,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "envcheck_cn.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "cn": {
+        "runs": [
+          {
+            "best_epoch": 0,
+            "val": {
+              "AUC": 0.6792035398230089,
+              "AP": 0.679203539823009
+            },
+            "test": {
+              "AUC": 0.6590719705276085,
+              "AP": 0.6586682391363513
+            },
+            "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods.",
+            "dataset": "Citeseer",
+            "model": "cn",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.6590719705276085,
+          "std": 0.0
+        },
+        "test_ap": {
+          "mean": 0.6586682391363513,
+          "std": 0.0
+        },
+        "best_epoch": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "val_auc": {
+          "mean": 0.6792035398230089,
+          "std": 0.0
+        },
+        "val_ap": {
+          "mean": 0.679203539823009,
+          "std": 0.0
+        },
+        "notes": "No trainable parameters; scores are computed directly from the training graph neighborhoods."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 1.9878640174865723
+}

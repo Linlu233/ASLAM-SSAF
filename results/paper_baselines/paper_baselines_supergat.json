@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "supergat",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_supergat.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 74,
+            "val": {
+              "AUC": 0.8576630902968126,
+              "AP": 0.8711830651065222
+            },
+            "test": {
+              "AUC": 0.8452358327363809,
+              "AP": 0.8723115750710557
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 73,
+            "val": {
+              "AUC": 0.8234395802333776,
+              "AP": 0.8509053153542847
+            },
+            "test": {
+              "AUC": 0.8456402984274568,
+              "AP": 0.8616067493565331
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 72,
+            "val": {
+              "AUC": 0.845759260709531,
+              "AP": 0.8712108563599277
+            },
+            "test": {
+              "AUC": 0.8088144282170859,
+              "AP": 0.8038559574045013
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 33,
+            "val": {
+              "AUC": 0.8210509828490876,
+              "AP": 0.8314666024170871
+            },
+            "test": {
+              "AUC": 0.8315814608521068,
+              "AP": 0.8448856196214878
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 45,
+            "val": {
+              "AUC": 0.8265721669668729,
+              "AP": 0.8268615445949843
+            },
+            "test": {
+              "AUC": 0.8304557792299557,
+              "AP": 0.8391669405202999
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 129,
+            "val": {
+              "AUC": 0.8415498472863966,
+              "AP": 0.8546137452808993
+            },
+            "test": {
+              "AUC": 0.8157731873358381,
+              "AP": 0.8191329066372749
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7567937974782677,
+              "AP": 0.7390154052168058
+            },
+            "test": {
+              "AUC": 0.6930154135539864,
+              "AP": 0.6928457349479435
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 34,
+            "val": {
+              "AUC": 0.8647114104471767,
+              "AP": 0.8751814777685003
+            },
+            "test": {
+              "AUC": 0.8203782485173653,
+              "AP": 0.8393636361752767
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 92,
+            "val": {
+              "AUC": 0.863360482418357,
+              "AP": 0.8691140623115865
+            },
+            "test": {
+              "AUC": 0.8420732034170041,
+              "AP": 0.8469000187660736
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 50,
+            "val": {
+              "AUC": 0.8289999216853317,
+              "AP": 0.822243246995721
+            },
+            "test": {
+              "AUC": 0.7898922561875941,
+              "AP": 0.7950858241061904
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8122860108474775,
+          "std": 0.043133030499196624
+        },
+        "test_ap": {
+          "mean": 0.8215154962606637,
+          "std": 0.048559435253398654
+        },
+        "best_epoch": {
+          "mean": 60.3,
+          "std": 33.91769449712052
+        },
+        "val_auc": {
+          "mean": 0.8329900540371211,
+          "std": 0.029783253189101844
+        },
+        "val_ap": {
+          "mean": 0.841179532140632,
+          "std": 0.03887038608676044
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    },
+    "DBLP": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 85,
+            "val": {
+              "AUC": 0.8786802685950414,
+              "AP": 0.8908629068312377
+            },
+            "test": {
+              "AUC": 0.8249774018595042,
+              "AP": 0.859904995631279
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7998127582644627,
+              "AP": 0.8012913037103551
+            },
+            "test": {
+              "AUC": 0.7734213584710745,
+              "AP": 0.773009567226374
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 50,
+            "val": {
+              "AUC": 0.8394886363636364,
+              "AP": 0.8540282754465808
+            },
+            "test": {
+              "AUC": 0.8533784220041322,
+              "AP": 0.8651409677873775
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.856695506198347,
+              "AP": 0.8724518397114522
+            },
+            "test": {
+              "AUC": 0.788376485020661,
+              "AP": 0.7968428606965119
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 85,
+            "val": {
+              "AUC": 0.8686079545454546,
+              "AP": 0.8968216004665867
+            },
+            "test": {
+              "AUC": 0.8236699380165291,
+              "AP": 0.8414179302075745
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8444925103305787,
+              "AP": 0.8542756642631091
+            },
+            "test": {
+              "AUC": 0.8467200413223142,
+              "AP": 0.86038817244173
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 210,
+            "val": {
+              "AUC": 0.8703835227272727,
+              "AP": 0.8718221881787196
+            },
+            "test": {
+              "AUC": 0.8640237603305785,
+              "AP": 0.8789423408591859
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7988119834710743,
+              "AP": 0.8065829448592746
+            },
+            "test": {
+              "AUC": 0.8230646306818181,
+              "AP": 0.8307847971598624
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.7988765495867768,
+              "AP": 0.8095670527025324
+            },
+            "test": {
+              "AUC": 0.7818472365702478,
+              "AP": 0.7906198710169919
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 89,
+            "val": {
+              "AUC": 0.8716748450413223,
+              "AP": 0.8962665308621485
+            },
+            "test": {
+              "AUC": 0.8251065340909092,
+              "AP": 0.8607522316271848
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8204585808367769,
+          "std": 0.0290912868453197
+        },
+        "test_ap": {
+          "mean": 0.8357803734654073,
+          "std": 0.034768732533647505
+        },
+        "best_epoch": {
+          "mean": 53.1,
+          "std": 63.87871319931234
+        },
+        "val_auc": {
+          "mean": 0.8427524535123967,
+          "std": 0.030768590879393813
+        },
+        "val_ap": {
+          "mean": 0.8553970307031996,
+          "std": 0.03552260436489197
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    },
+    "PubMed": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6024755144730154,
+              "AP": 0.6018526080010606
+            },
+            "test": {
+              "AUC": 0.6030125353924201,
+              "AP": 0.6107291116772906
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6535811101408855,
+              "AP": 0.6856272214050784
+            },
+            "test": {
+              "AUC": 0.6470937640510759,
+              "AP": 0.6691420972366278
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6395420489645376,
+              "AP": 0.6666782097549084
+            },
+            "test": {
+              "AUC": 0.6226824634020384,
+              "AP": 0.6497138301383282
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6224253948963234,
+              "AP": 0.6108714841545775
+            },
+            "test": {
+              "AUC": 0.6285258782126054,
+              "AP": 0.6189831590805668
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.570764679912419,
+              "AP": 0.5831897214256652
+            },
+            "test": {
+              "AUC": 0.5861621390298974,
+              "AP": 0.5888665065451157
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6406325346348839,
+              "AP": 0.6488028915823304
+            },
+            "test": {
+              "AUC": 0.6294384344983643,
+              "AP": 0.6349438304996724
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.5645493188690065,
+              "AP": 0.5881860973986532
+            },
+            "test": {
+              "AUC": 0.5718685802874403,
+              "AP": 0.5866421710509949
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 251,
+            "val": {
+              "AUC": 0.9247431504059744,
+              "AP": 0.9211333621118627
+            },
+            "test": {
+              "AUC": 0.920980822114194,
+              "AP": 0.9139918882408622
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 228,
+            "val": {
+              "AUC": 0.9258296651200981,
+              "AP": 0.9194973155282072
+            },
+            "test": {
+              "AUC": 0.9253240809374552,
+              "AP": 0.9240605971029923
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6151746324727287,
+              "AP": 0.6314763175207702
+            },
+            "test": {
+              "AUC": 0.6048484917290072,
+              "AP": 0.618266351997649
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.6739937189654499,
+          "std": 0.12630987754895937
+        },
+        "test_ap": {
+          "mean": 0.68153395435701,
+          "std": 0.12112514404709555
+        },
+        "best_epoch": {
+          "mean": 48.7,
+          "std": 95.53852626035217
+        },
+        "val_auc": {
+          "mean": 0.6759718049889872,
+          "std": 0.12760963735480302
+        },
+        "val_ap": {
+          "mean": 0.6857315228883112,
+          "std": 0.12140860402014247
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    },
+    "amz_Photo": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 191,
+            "val": {
+              "AUC": 0.9470614711581211,
+              "AP": 0.9387005147227906
+            },
+            "test": {
+              "AUC": 0.9518508584310991,
+              "AP": 0.9432115877164581
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 139,
+            "val": {
+              "AUC": 0.9472117619908698,
+              "AP": 0.9375639627541151
+            },
+            "test": {
+              "AUC": 0.9445721747037986,
+              "AP": 0.9340089673806606
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 245,
+            "val": {
+              "AUC": 0.9491339811450932,
+              "AP": 0.9354014100051755
+            },
+            "test": {
+              "AUC": 0.946843478516709,
+              "AP": 0.9347336294823049
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 303,
+            "val": {
+              "AUC": 0.9552472800282755,
+              "AP": 0.9516996519640167
+            },
+            "test": {
+              "AUC": 0.9503788719908335,
+              "AP": 0.9452915110129282
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 266,
+            "val": {
+              "AUC": 0.951140265318508,
+              "AP": 0.9435936946717449
+            },
+            "test": {
+              "AUC": 0.9489096293734953,
+              "AP": 0.94300512519719
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 251,
+            "val": {
+              "AUC": 0.9499700372940825,
+              "AP": 0.9417708394423138
+            },
+            "test": {
+              "AUC": 0.9513654030860045,
+              "AP": 0.9442879703554191
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 296,
+            "val": {
+              "AUC": 0.9527382166378814,
+              "AP": 0.9474229346274134
+            },
+            "test": {
+              "AUC": 0.949845302815978,
+              "AP": 0.9425459664598764
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 236,
+            "val": {
+              "AUC": 0.9473022109398362,
+              "AP": 0.9423530522260272
+            },
+            "test": {
+              "AUC": 0.9476434594769638,
+              "AP": 0.9408692043423221
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 200,
+            "val": {
+              "AUC": 0.9460940969770244,
+              "AP": 0.933714437759694
+            },
+            "test": {
+              "AUC": 0.9471772929088088,
+              "AP": 0.9358223350783488
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 273,
+            "val": {
+              "AUC": 0.9502255734737814,
+              "AP": 0.9399823180676742
+            },
+            "test": {
+              "AUC": 0.9474499454001606,
+              "AP": 0.9398144933502623
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.948603641670385,
+          "std": 0.0021586308698296496
+        },
+        "test_ap": {
+          "mean": 0.940359079037577,
+          "std": 0.00390889194941185
+        },
+        "best_epoch": {
+          "mean": 240.0,
+          "std": 48.20165972246184
+        },
+        "val_auc": {
+          "mean": 0.9496124894963474,
+          "std": 0.002730851078772079
+        },
+        "val_ap": {
+          "mean": 0.9412202816240965,
+          "std": 0.005166787061225811
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    },
+    "CoRA": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6589680384391212,
+              "AP": 0.6660675353963282
+            },
+            "test": {
+              "AUC": 0.6536218211599225,
+              "AP": 0.6508899919534711
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6575228175772438,
+              "AP": 0.6570718410782745
+            },
+            "test": {
+              "AUC": 0.6456281513927884,
+              "AP": 0.6452217468454877
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6477594535729105,
+              "AP": 0.6450203252047517
+            },
+            "test": {
+              "AUC": 0.6568453135368415,
+              "AP": 0.6376999748226724
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 61,
+            "val": {
+              "AUC": 0.8832582031067102,
+              "AP": 0.8706161807107361
+            },
+            "test": {
+              "AUC": 0.8918807891579978,
+              "AP": 0.8852156458507048
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6667529776272303,
+              "AP": 0.6709035682174143
+            },
+            "test": {
+              "AUC": 0.6716732573796881,
+              "AP": 0.6723765653788707
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6630921954440729,
+              "AP": 0.6723176746884585
+            },
+            "test": {
+              "AUC": 0.6636616257836605,
+              "AP": 0.655585599565555
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6638788831859523,
+              "AP": 0.6594218635772694
+            },
+            "test": {
+              "AUC": 0.6460083266195111,
+              "AP": 0.6418989630043468
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6603240556114368,
+              "AP": 0.650465146852413
+            },
+            "test": {
+              "AUC": 0.6648460469445515,
+              "AP": 0.658202370252259
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6533572878203462,
+              "AP": 0.6453340903667091
+            },
+            "test": {
+              "AUC": 0.6523206985657984,
+              "AP": 0.6368773521400615
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6410278041038542,
+              "AP": 0.6355536069608438
+            },
+            "test": {
+              "AUC": 0.6476461830508147,
+              "AP": 0.6368179134029727
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.6794132213591575,
+          "std": 0.07130053575497398
+        },
+        "test_ap": {
+          "mean": 0.6720786123216401,
+          "std": 0.07185920248197115
+        },
+        "best_epoch": {
+          "mean": 7.0,
+          "std": 18.0
+        },
+        "val_auc": {
+          "mean": 0.6795941716488878,
+          "std": 0.0682907950979925
+        },
+        "val_ap": {
+          "mean": 0.6772771833053198,
+          "std": 0.06543586197095425
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    },
+    "Twitch_EN": {
+      "supergat": {
+        "runs": [
+          {
+            "best_epoch": 401,
+            "val": {
+              "AUC": 0.7952478488217738,
+              "AP": 0.7959585038206909
+            },
+            "test": {
+              "AUC": 0.8061605332382527,
+              "AP": 0.805291450226539
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 223,
+            "val": {
+              "AUC": 0.7980698073206112,
+              "AP": 0.795204527546203
+            },
+            "test": {
+              "AUC": 0.8029827437606533,
+              "AP": 0.7970916524922751
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 389,
+            "val": {
+              "AUC": 0.8194119706703569,
+              "AP": 0.8256815554378316
+            },
+            "test": {
+              "AUC": 0.8054254645121324,
+              "AP": 0.8104057993090056
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 221,
+            "val": {
+              "AUC": 0.7968831162168506,
+              "AP": 0.7959942767572724
+            },
+            "test": {
+              "AUC": 0.8046493938608856,
+              "AP": 0.8014763438615231
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 250,
+            "val": {
+              "AUC": 0.8052608155302947,
+              "AP": 0.8028011636683763
+            },
+            "test": {
+              "AUC": 0.8007924473732475,
+              "AP": 0.7957939784155136
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 189,
+            "val": {
+              "AUC": 0.8076390073478015,
+              "AP": 0.8107009201211396
+            },
+            "test": {
+              "AUC": 0.7946363870722812,
+              "AP": 0.7924003063913476
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 388,
+            "val": {
+              "AUC": 0.8086054183142253,
+              "AP": 0.8082028793315013
+            },
+            "test": {
+              "AUC": 0.8050556055042459,
+              "AP": 0.809972448240169
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 399,
+            "val": {
+              "AUC": 0.8007696017258162,
+              "AP": 0.8032998098729847
+            },
+            "test": {
+              "AUC": 0.8116778773331418,
+              "AP": 0.8144723559098932
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 288,
+            "val": {
+              "AUC": 0.797127444404115,
+              "AP": 0.7911120916558145
+            },
+            "test": {
+              "AUC": 0.7995995037765057,
+              "AP": 0.799894675259009
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 178,
+            "val": {
+              "AUC": 0.8046156865109036,
+              "AP": 0.8000146134472219
+            },
+            "test": {
+              "AUC": 0.791547936100163,
+              "AP": 0.7798475111986647
+            },
+            "notes": "Full-batch SuperGAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "supergat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8022527892531508,
+          "std": 0.0055684551562210265
+        },
+        "test_ap": {
+          "mean": 0.8006646521303941,
+          "std": 0.009659084971295431
+        },
+        "best_epoch": {
+          "mean": 292.6,
+          "std": 87.8284691885268
+        },
+        "val_auc": {
+          "mean": 0.803363071686275,
+          "std": 0.006999842175761015
+        },
+        "val_ap": {
+          "mean": 0.8028970341659036,
+          "std": 0.00954210458122659
+        },
+        "notes": "Full-batch SuperGAT encoder with dot-product edge decoder."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 620.066065788269
+}

@@ -1,0 +1,440 @@
+[script-start] 2026-04-18 07:24:31
+[run] 2026-04-18 07:24:31 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[compile] 2026-04-18 08:10:48
+[run] 2026-04-18 08:10:50 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[script-start] 2026-04-18 09:25:01
+[run] 2026-04-18 09:25:01 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[compile] 2026-04-18 09:25:14
+[run] 2026-04-18 09:25:16 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[compile] 2026-04-18 09:44:27
+[run] 2026-04-18 09:44:28 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[compile] 2026-04-18 10:31:05
+[run] 2026-04-18 10:31:07 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[compile] 2026-04-18 11:18:06
+[run] 2026-04-18 11:18:08 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[script-start] 2026-04-18 11:25:29
+[run] 2026-04-18 11:25:29 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[compile] 2026-04-18 11:25:38
+[run] 2026-04-18 11:25:40 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[compile] 2026-04-18 11:25:50
+[run] 2026-04-18 11:25:51 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[compile] 2026-04-18 11:26:01
+[run] 2026-04-18 11:26:02 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[compile] 2026-04-18 11:26:12
+[run] 2026-04-18 11:26:13 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[compile] 2026-04-18 12:53:26
+[run] 2026-04-18 12:53:28 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[script-start] 2026-04-18 13:26:16
+[skip] 2026-04-18 13:26:16 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 13:26:16 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 13:26:16 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 13:26:16 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 13:26:16 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[run] 2026-04-18 13:26:16 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[compile] 2026-04-18 13:54:35
+[run] 2026-04-18 13:54:37 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[compile] 2026-04-18 15:09:13
+[run] 2026-04-18 15:09:15 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[script-start] 2026-04-18 15:26:42
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-18 15:26:42 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[run] 2026-04-18 15:26:42 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[compile] 2026-04-18 16:13:36
+[run] 2026-04-18 16:13:38 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[compile] 2026-04-18 17:21:34
+[run] 2026-04-18 17:21:36 env=seal model=seal dataset=PubMed seed=2 runs=2
+[script-start] 2026-04-18 17:27:04
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-18 17:27:04 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[run] 2026-04-18 17:27:04 env=seal model=seal dataset=PubMed seed=2 runs=2
+[compile] 2026-04-18 18:15:18
+[run] 2026-04-18 18:15:20 env=seal model=seal dataset=PubMed seed=4 runs=2
+[script-start] 2026-04-18 19:27:23
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-18 19:27:23 env=seal model=seal dataset=PubMed seed=2 runs=2
+[run] 2026-04-18 19:27:23 env=seal model=seal dataset=PubMed seed=4 runs=2
+[compile] 2026-04-18 20:00:30
+[run] 2026-04-18 20:00:32 env=seal model=seal dataset=PubMed seed=6 runs=2
+[compile] 2026-04-18 20:52:43
+[run] 2026-04-18 20:52:45 env=seal model=seal dataset=PubMed seed=8 runs=2
+[script-start] 2026-04-18 21:27:47
+[skip] 2026-04-18 21:27:47 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-18 21:27:48 env=seal model=seal dataset=PubMed seed=6 runs=2
+[run] 2026-04-18 21:27:48 env=seal model=seal dataset=PubMed seed=8 runs=2
+[compile] 2026-04-18 22:09:27
+[run] 2026-04-18 22:09:29 env=seal model=seal dataset=PubMed seed=10 runs=2
+[script-start] 2026-04-18 23:28:13
+[skip] 2026-04-18 23:28:13 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-18 23:28:14 env=seal model=seal dataset=PubMed seed=8 runs=2
+[run] 2026-04-18 23:28:14 env=seal model=seal dataset=PubMed seed=10 runs=2
+[compile] 2026-04-19 00:07:03
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 00:07:05 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[run] 2026-04-19 00:07:05 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[compile] 2026-04-19 00:12:29
+[run] 2026-04-19 00:12:31 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[compile] 2026-04-19 00:19:54
+[run] 2026-04-19 00:19:56 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[compile] 2026-04-19 00:25:36
+[run] 2026-04-19 00:25:38 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[compile] 2026-04-19 00:28:03
+[run] 2026-04-19 00:28:05 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[compile] 2026-04-19 00:31:55
+[run] 2026-04-19 00:31:57 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[compile] 2026-04-19 00:35:33
+[run] 2026-04-19 00:35:35 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[compile] 2026-04-19 00:40:06
+[run] 2026-04-19 00:40:08 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[compile] 2026-04-19 00:42:57
+[run] 2026-04-19 00:42:59 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[compile] 2026-04-19 00:51:13
+[run] 2026-04-19 00:51:15 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[compile] 2026-04-19 00:54:40
+[run] 2026-04-19 00:54:42 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[compile] 2026-04-19 01:23:24
+[run] 2026-04-19 01:23:26 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[script-start] 2026-04-19 01:29:05
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 01:29:05 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 01:29:05 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[run] 2026-04-19 01:29:05 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[compile] 2026-04-19 01:58:20
+[run] 2026-04-19 01:58:22 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[compile] 2026-04-19 02:21:00
+[run] 2026-04-19 02:21:02 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[compile] 2026-04-19 02:45:23
+[run] 2026-04-19 02:45:25 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[compile] 2026-04-19 03:28:33
+[run] 2026-04-19 03:28:35 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[script-start] 2026-04-19 03:29:35
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 03:29:35 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[skip] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[run] 2026-04-19 03:29:35 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[compile] 2026-04-19 04:09:49
+[run] 2026-04-19 04:09:51 env=bsal model=bsal dataset=PubMed seed=8 runs=1
+[compile] 2026-04-19 04:46:02
+[run] 2026-04-19 04:46:03 env=bsal model=bsal dataset=PubMed seed=9 runs=1
+[compile] 2026-04-19 05:24:15
+[run] 2026-04-19 05:24:16 env=bsal model=bsal dataset=PubMed seed=10 runs=1
+[script-start] 2026-04-19 05:29:56
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 05:29:56 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=8 runs=1
+[skip] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=9 runs=1
+[run] 2026-04-19 05:29:56 env=bsal model=bsal dataset=PubMed seed=10 runs=1
+[compile] 2026-04-19 06:03:58
+[run] 2026-04-19 06:04:00 env=bsal model=bsal dataset=PubMed seed=11 runs=1
+[compile] 2026-04-19 06:40:24
+[run] 2026-04-19 06:40:25 env=bsal model=bsal dataset=amz_Photo seed=2 runs=1
+[script-start] 2026-04-19 07:30:22
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 07:30:22 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=8 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=9 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=10 runs=1
+[skip] 2026-04-19 07:30:22 env=bsal model=bsal dataset=PubMed seed=11 runs=1
+[run] 2026-04-19 07:30:22 env=bsal model=bsal dataset=amz_Photo seed=2 runs=1
+[compile] 2026-04-19 08:22:38
+[run] 2026-04-19 08:22:40 env=bsal model=bsal dataset=amz_Photo seed=3 runs=1
+[compile] 2026-04-19 09:16:17
+[run] 2026-04-19 09:16:19 env=bsal model=bsal dataset=amz_Photo seed=4 runs=1
+[script-start] 2026-04-19 09:31:00
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 09:31:00 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=8 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=9 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=10 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=PubMed seed=11 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=amz_Photo seed=2 runs=1
+[skip] 2026-04-19 09:31:00 env=bsal model=bsal dataset=amz_Photo seed=3 runs=1
+[run] 2026-04-19 09:31:00 env=bsal model=bsal dataset=amz_Photo seed=4 runs=1
+[compile] 2026-04-19 10:12:51
+[run] 2026-04-19 10:12:53 env=bsal model=bsal dataset=amz_Photo seed=5 runs=1
+[compile] 2026-04-19 11:08:32
+[run] 2026-04-19 11:08:34 env=bsal model=bsal dataset=amz_Photo seed=6 runs=1
+[script-start] 2026-04-19 11:31:22
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=Twitch_EN seed=4 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=Twitch_EN seed=6 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=Twitch_EN seed=8 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=Twitch_EN seed=10 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=amz_Photo seed=2 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=amz_Photo seed=4 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=amz_Photo seed=6 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=amz_Photo seed=8 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=amz_Photo seed=10 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=PubMed seed=2 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=PubMed seed=4 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=PubMed seed=6 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=PubMed seed=8 runs=2
+[skip] 2026-04-19 11:31:22 env=seal model=seal dataset=PubMed seed=10 runs=2
+[skip] 2026-04-19 11:31:22 env=bsal model=bsal dataset=Citeseer seed=2 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=3 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=4 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=5 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=6 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=7 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=8 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=9 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=10 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=Citeseer seed=11 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=2 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=3 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=4 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=5 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=6 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=7 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=8 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=9 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=10 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=DBLP seed=11 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=2 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=3 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=4 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=5 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=6 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=7 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=8 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=9 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=10 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=PubMed seed=11 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=amz_Photo seed=2 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=amz_Photo seed=3 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=amz_Photo seed=4 runs=1
+[skip] 2026-04-19 11:31:23 env=bsal model=bsal dataset=amz_Photo seed=5 runs=1
+[run] 2026-04-19 11:31:23 env=bsal model=bsal dataset=amz_Photo seed=6 runs=1
+[compile] 2026-04-19 12:03:19
+[run] 2026-04-19 12:03:21 env=bsal model=bsal dataset=amz_Photo seed=7 runs=1
+[compile] 2026-04-19 12:53:45
+[run] 2026-04-19 12:53:47 env=bsal model=bsal dataset=amz_Photo seed=8 runs=1

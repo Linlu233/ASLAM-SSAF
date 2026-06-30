@@ -1,0 +1,92 @@
+{
+  "model": "aslam_ssmattn",
+  "device": "cuda:0",
+  "sample_ratio": 0.15,
+  "datasets": {
+    "Citeseer": {
+      "best_epoch": 43,
+      "best_val": {
+        "AUC": 0.8732477092959512,
+        "AP": 0.8644204030438815
+      },
+      "best_test": {
+        "AUC": 0.866511702703098,
+        "AP": 0.8701961808568432
+      },
+      "sample_count": 136,
+      "figure_path": "results\\tsne\\Citeseer_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\Citeseer_aslam_ssmattn_edge_tsne_coords.npz"
+    },
+    "DBLP": {
+      "best_epoch": 37,
+      "best_val": {
+        "AUC": 0.9199702995867768,
+        "AP": 0.9341767066093387
+      },
+      "best_test": {
+        "AUC": 0.9307770532024794,
+        "AP": 0.9297425864946431
+      },
+      "sample_count": 106,
+      "figure_path": "results\\tsne\\DBLP_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\DBLP_aslam_ssmattn_edge_tsne_coords.npz"
+    },
+    "PubMed": {
+      "best_epoch": 29,
+      "best_val": {
+        "AUC": 0.9801309641726074,
+        "AP": 0.9791886438419337
+      },
+      "best_test": {
+        "AUC": 0.9792649393482256,
+        "AP": 0.9772988182120929
+      },
+      "sample_count": 1330,
+      "figure_path": "results\\tsne\\PubMed_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\PubMed_aslam_ssmattn_edge_tsne_coords.npz"
+    },
+    "amz_Photo": {
+      "best_epoch": 5,
+      "best_val": {
+        "AUC": 0.9843284070078604,
+        "AP": 0.9858942056732748
+      },
+      "best_test": {
+        "AUC": 0.9863867164016384,
+        "AP": 0.988053479887922
+      },
+      "sample_count": 2456,
+      "figure_path": "results\\tsne\\amz_Photo_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\amz_Photo_aslam_ssmattn_edge_tsne_coords.npz"
+    },
+    "CoRA": {
+      "best_epoch": 19,
+      "best_val": {
+        "AUC": 0.9444922978063157,
+        "AP": 0.9587236948950164
+      },
+      "best_test": {
+        "AUC": 0.9474900564122518,
+        "AP": 0.9591882675400683
+      },
+      "sample_count": 944,
+      "figure_path": "results\\tsne\\CoRA_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\CoRA_aslam_ssmattn_edge_tsne_coords.npz"
+    },
+    "Twitch_EN": {
+      "best_epoch": 19,
+      "best_val": {
+        "AUC": 0.9307999728096714,
+        "AP": 0.9402995522352924
+      },
+      "best_test": {
+        "AUC": 0.9291382926397576,
+        "AP": 0.9372760100093183
+      },
+      "sample_count": 1060,
+      "figure_path": "results\\tsne\\Twitch_EN_aslam_ssmattn_edge_tsne.png",
+      "coords_path": "results\\tsne\\Twitch_EN_aslam_ssmattn_edge_tsne_coords.npz"
+    }
+  },
+  "grid_path": "results\\tsne\\aslam_ssmattn_edge_tsne_grid.png"
+}

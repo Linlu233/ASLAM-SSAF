@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "vgae",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_vgae.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 78,
+            "val": {
+              "AUC": 0.9033205419375049,
+              "AP": 0.9084752021671252
+            },
+            "test": {
+              "AUC": 0.8781778576963,
+              "AP": 0.8829883438516616
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 67,
+            "val": {
+              "AUC": 0.9079019500352415,
+              "AP": 0.9122028120362932
+            },
+            "test": {
+              "AUC": 0.8911889829393448,
+              "AP": 0.8969821745537132
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7379982770772965,
+              "AP": 0.7474668740768058
+            },
+            "test": {
+              "AUC": 0.7283939788215916,
+              "AP": 0.7389865733164326
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 76,
+            "val": {
+              "AUC": 0.9148719555172684,
+              "AP": 0.9137038757059937
+            },
+            "test": {
+              "AUC": 0.88406453907967,
+              "AP": 0.8849468832436793
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7490993813141201,
+              "AP": 0.769136896777353
+            },
+            "test": {
+              "AUC": 0.7685627823341081,
+              "AP": 0.7790378140382681
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7538178400814473,
+              "AP": 0.7586119168077322
+            },
+            "test": {
+              "AUC": 0.7387931328547968,
+              "AP": 0.745942702976345
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7573028428224607,
+              "AP": 0.7604580380351764
+            },
+            "test": {
+              "AUC": 0.7618817888104323,
+              "AP": 0.76484869131629
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.8070913932179496,
+              "AP": 0.8068415042939556
+            },
+            "test": {
+              "AUC": 0.7868758192866785,
+              "AP": 0.7888272008538644
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 89,
+            "val": {
+              "AUC": 0.9152439501918708,
+              "AP": 0.9248922526964787
+            },
+            "test": {
+              "AUC": 0.8892933545799648,
+              "AP": 0.8885172097962774
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.7690500430730676,
+              "AP": 0.7673284228899517
+            },
+            "test": {
+              "AUC": 0.734295279446808,
+              "AP": 0.7409782894691734
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8061527515849696,
+          "std": 0.06700234949732706
+        },
+        "test_ap": {
+          "mean": 0.8112055883415705,
+          "std": 0.06482011708792693
+        },
+        "best_epoch": {
+          "mean": 32.2,
+          "std": 37.322379345374
+        },
+        "val_auc": {
+          "mean": 0.8215698175268227,
+          "std": 0.07452599720351062
+        },
+        "val_ap": {
+          "mean": 0.8269117795486866,
+          "std": 0.07331001748837476
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "DBLP": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 36,
+            "val": {
+              "AUC": 0.9191632231404958,
+              "AP": 0.9279465019915802
+            },
+            "test": {
+              "AUC": 0.9143691890495868,
+              "AP": 0.922250938138226
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.878228305785124,
+              "AP": 0.8802799924611148
+            },
+            "test": {
+              "AUC": 0.8737893853305785,
+              "AP": 0.8708921100832114
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7961324896694215,
+              "AP": 0.8145083427219688
+            },
+            "test": {
+              "AUC": 0.8432254003099174,
+              "AP": 0.860417627318669
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8904313016528926,
+              "AP": 0.8940429227386131
+            },
+            "test": {
+              "AUC": 0.8380520402892562,
+              "AP": 0.8560313228414691
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8706740702479339,
+              "AP": 0.8784992162592067
+            },
+            "test": {
+              "AUC": 0.8266319085743802,
+              "AP": 0.8307824743660492
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.858697055785124,
+              "AP": 0.8761836671703052
+            },
+            "test": {
+              "AUC": 0.837253034607438,
+              "AP": 0.853481694749797
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8328060433884298,
+              "AP": 0.8360545249873491
+            },
+            "test": {
+              "AUC": 0.8531927944214877,
+              "AP": 0.8692749453923345
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8351627066115702,
+              "AP": 0.8444303047996284
+            },
+            "test": {
+              "AUC": 0.8539353047520661,
+              "AP": 0.8612553319058347
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 4,
+            "val": {
+              "AUC": 0.8508199896694215,
+              "AP": 0.864718861518985
+            },
+            "test": {
+              "AUC": 0.8607954545454546,
+              "AP": 0.8719429039376643
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.8431689049586777,
+              "AP": 0.8283467901371935
+            },
+            "test": {
+              "AUC": 0.8406831095041323,
+              "AP": 0.8468756172329592
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8541927621384298,
+          "std": 0.023790257297229653
+        },
+        "test_ap": {
+          "mean": 0.8643204965966215,
+          "std": 0.022631195768045197
+        },
+        "best_epoch": {
+          "mean": 4.8,
+          "std": 10.43839068055991
+        },
+        "val_auc": {
+          "mean": 0.857528409090909,
+          "std": 0.0325824917591708
+        },
+        "val_ap": {
+          "mean": 0.8645011124785945,
+          "std": 0.03240052959182369
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "PubMed": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 7,
+            "val": {
+              "AUC": 0.9025419414432614,
+              "AP": 0.8969832304894974
+            },
+            "test": {
+              "AUC": 0.8949939427644695,
+              "AP": 0.8842263747639504
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.8929269327763948,
+              "AP": 0.8870894037874597
+            },
+            "test": {
+              "AUC": 0.8972388821371319,
+              "AP": 0.8886936318088441
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 11,
+            "val": {
+              "AUC": 0.8914336495979355,
+              "AP": 0.876132902994063
+            },
+            "test": {
+              "AUC": 0.8970719237918517,
+              "AP": 0.8810666391424853
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.9048377650562369,
+              "AP": 0.8944090496215458
+            },
+            "test": {
+              "AUC": 0.9085937805458171,
+              "AP": 0.9002932007333772
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.9136634698093289,
+              "AP": 0.9113723192270312
+            },
+            "test": {
+              "AUC": 0.9066321790815727,
+              "AP": 0.9065151990947602
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.9047890953876632,
+              "AP": 0.8950022408466538
+            },
+            "test": {
+              "AUC": 0.8925983616038266,
+              "AP": 0.8807045118931478
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 114,
+            "val": {
+              "AUC": 0.8924015447223344,
+              "AP": 0.8833058003524173
+            },
+            "test": {
+              "AUC": 0.8867488376298401,
+              "AP": 0.863712349815213
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.9056767568324884,
+              "AP": 0.8971346248447702
+            },
+            "test": {
+              "AUC": 0.9077454722953512,
+              "AP": 0.8997687346691935
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 7,
+            "val": {
+              "AUC": 0.8965796015847985,
+              "AP": 0.881081844277542
+            },
+            "test": {
+              "AUC": 0.897094731335284,
+              "AP": 0.884440888811671
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 66,
+            "val": {
+              "AUC": 0.8932769878403211,
+              "AP": 0.8758792239063315
+            },
+            "test": {
+              "AUC": 0.8928568046713107,
+              "AP": 0.8723367320026412
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8981574915856456,
+          "std": 0.0068919099221690155
+        },
+        "test_ap": {
+          "mean": 0.8861758262735282,
+          "std": 0.012502298188624287
+        },
+        "best_epoch": {
+          "mean": 22.2,
+          "std": 35.66174420860539
+        },
+        "val_auc": {
+          "mean": 0.8998127745050765,
+          "std": 0.00713730686438367
+        },
+        "val_ap": {
+          "mean": 0.8898390640347312,
+          "std": 0.010607344694479135
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "amz_Photo": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 123,
+            "val": {
+              "AUC": 0.9576508892515861,
+              "AP": 0.9551452216681846
+            },
+            "test": {
+              "AUC": 0.9614272627230287,
+              "AP": 0.961088868206901
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 183,
+            "val": {
+              "AUC": 0.9602606934403511,
+              "AP": 0.9588461175027974
+            },
+            "test": {
+              "AUC": 0.9599280915588659,
+              "AP": 0.9587905562018013
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 127,
+            "val": {
+              "AUC": 0.9575092197071793,
+              "AP": 0.9564241980708277
+            },
+            "test": {
+              "AUC": 0.9579094878727574,
+              "AP": 0.9556084054061146
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 180,
+            "val": {
+              "AUC": 0.9612781247904341,
+              "AP": 0.9595580910439543
+            },
+            "test": {
+              "AUC": 0.9592200957710515,
+              "AP": 0.9597937338790792
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 191,
+            "val": {
+              "AUC": 0.9601783586451178,
+              "AP": 0.9605670243488608
+            },
+            "test": {
+              "AUC": 0.9573944245905823,
+              "AP": 0.9569094911980405
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 203,
+            "val": {
+              "AUC": 0.9591077676555035,
+              "AP": 0.9617086557331418
+            },
+            "test": {
+              "AUC": 0.9616134997042411,
+              "AP": 0.9616472224008432
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 163,
+            "val": {
+              "AUC": 0.962447994837489,
+              "AP": 0.960695218007729
+            },
+            "test": {
+              "AUC": 0.9630714837003274,
+              "AP": 0.9633571234169228
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 171,
+            "val": {
+              "AUC": 0.9557865729370539,
+              "AP": 0.9526550860595908
+            },
+            "test": {
+              "AUC": 0.9591090604149695,
+              "AP": 0.9572318603112836
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 201,
+            "val": {
+              "AUC": 0.9588596296747967,
+              "AP": 0.9602429852976163
+            },
+            "test": {
+              "AUC": 0.9587484341010009,
+              "AP": 0.9575949065824659
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 185,
+            "val": {
+              "AUC": 0.9584665705219,
+              "AP": 0.9588654707448968
+            },
+            "test": {
+              "AUC": 0.9581116807807775,
+              "AP": 0.9581606254152106
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9596533521217603,
+          "std": 0.0017484693419838491
+        },
+        "test_ap": {
+          "mean": 0.9590182793018662,
+          "std": 0.002295746419947221
+        },
+        "best_epoch": {
+          "mean": 172.7,
+          "std": 26.495471311150514
+        },
+        "val_auc": {
+          "mean": 0.9591545821461411,
+          "std": 0.0018574699322964094
+        },
+        "val_ap": {
+          "mean": 0.95847080684776,
+          "std": 0.0027113825227062945
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "CoRA": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.7154650539500687,
+              "AP": 0.735518655935647
+            },
+            "test": {
+              "AUC": 0.7452367853412102,
+              "AP": 0.7572117510279743
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.7342533287910762,
+              "AP": 0.7486037250353604
+            },
+            "test": {
+              "AUC": 0.7401414786661908,
+              "AP": 0.7528486978920305
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.7405460234529013,
+              "AP": 0.7597558710951737
+            },
+            "test": {
+              "AUC": 0.73100274230709,
+              "AP": 0.7437130215826462
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 8,
+            "val": {
+              "AUC": 0.721995288753554,
+              "AP": 0.7468491826072133
+            },
+            "test": {
+              "AUC": 0.7196371932563624,
+              "AP": 0.7374392138407516
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 7,
+            "val": {
+              "AUC": 0.7242384991822323,
+              "AP": 0.7426497709631477
+            },
+            "test": {
+              "AUC": 0.7241580745888153,
+              "AP": 0.7451289930364222
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 8,
+            "val": {
+              "AUC": 0.7386339968580926,
+              "AP": 0.7559389298708152
+            },
+            "test": {
+              "AUC": 0.7386358132228122,
+              "AP": 0.7538658678716782
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.7364067300752863,
+              "AP": 0.7512327287373023
+            },
+            "test": {
+              "AUC": 0.7307494098832844,
+              "AP": 0.7464571904824983
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 4,
+            "val": {
+              "AUC": 0.7420544134433592,
+              "AP": 0.7461025003626456
+            },
+            "test": {
+              "AUC": 0.7327067446869314,
+              "AP": 0.7374879738260552
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.7301729663576964,
+              "AP": 0.7480384013201742
+            },
+            "test": {
+              "AUC": 0.7317237381916112,
+              "AP": 0.7450242217763714
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 4,
+            "val": {
+              "AUC": 0.7396826447561955,
+              "AP": 0.7514292916469313
+            },
+            "test": {
+              "AUC": 0.7472955338417002,
+              "AP": 0.7540151357696749
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7341287513986008,
+          "std": 0.008316470407703041
+        },
+        "test_ap": {
+          "mean": 0.7473192067106103,
+          "std": 0.00658946870543258
+        },
+        "best_epoch": {
+          "mean": 5.9,
+          "std": 1.374772708486752
+        },
+        "val_auc": {
+          "mean": 0.7323448945620462,
+          "std": 0.008588035655443447
+        },
+        "val_ap": {
+          "mean": 0.7486119057574411,
+          "std": 0.006398383756492031
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "Twitch_EN": {
+      "vgae": {
+        "runs": [
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.8717597657527552,
+              "AP": 0.8765660520161724
+            },
+            "test": {
+              "AUC": 0.8832326895723808,
+              "AP": 0.8881057068810385
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 19,
+            "val": {
+              "AUC": 0.8714048165358239,
+              "AP": 0.872067768509509
+            },
+            "test": {
+              "AUC": 0.8689984083397355,
+              "AP": 0.8688754713883524
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.8762144265213438,
+              "AP": 0.8831678441233616
+            },
+            "test": {
+              "AUC": 0.8722671796062277,
+              "AP": 0.8793548966460154
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 21,
+            "val": {
+              "AUC": 0.8700436969099217,
+              "AP": 0.8701497724900344
+            },
+            "test": {
+              "AUC": 0.864279699982942,
+              "AP": 0.8677378172598071
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 26,
+            "val": {
+              "AUC": 0.8616233523879393,
+              "AP": 0.8707061224793955
+            },
+            "test": {
+              "AUC": 0.8734441312497675,
+              "AP": 0.8793771983235333
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.8701725944575336,
+              "AP": 0.8702716034130229
+            },
+            "test": {
+              "AUC": 0.868241415808098,
+              "AP": 0.8712315418121912
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 23,
+            "val": {
+              "AUC": 0.8673214576581174,
+              "AP": 0.8708609225260259
+            },
+            "test": {
+              "AUC": 0.8698145590741949,
+              "AP": 0.87637774050797
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 26,
+            "val": {
+              "AUC": 0.8637225868262858,
+              "AP": 0.8702393187078599
+            },
+            "test": {
+              "AUC": 0.8666400160833356,
+              "AP": 0.8758232077026842
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 22,
+            "val": {
+              "AUC": 0.8629379791173147,
+              "AP": 0.869237603511021
+            },
+            "test": {
+              "AUC": 0.8682808946900622,
+              "AP": 0.8745491603610468
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 26,
+            "val": {
+              "AUC": 0.8778718181223537,
+              "AP": 0.8752962854029932
+            },
+            "test": {
+              "AUC": 0.8738009241505267,
+              "AP": 0.8755520253924226
+            },
+            "notes": "VGAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "vgae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8708999918557272,
+          "std": 0.004995500250913384
+        },
+        "test_ap": {
+          "mean": 0.8756984766275062,
+          "std": 0.005590528606885888
+        },
+        "best_epoch": {
+          "mean": 23.6,
+          "std": 2.244994432064365
+        },
+        "val_auc": {
+          "mean": 0.8693072494289389,
+          "std": 0.005172121776109389
+        },
+        "val_ap": {
+          "mean": 0.8728563293179394,
+          "std": 0.004113633558117409
+        },
+        "notes": "VGAE with the standard inner-product decoder under the shared split protocol."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 187.63049149513245
+}

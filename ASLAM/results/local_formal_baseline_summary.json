@@ -1,0 +1,105 @@
+{
+  "protocol": {
+    "split": {
+      "train": 0.85,
+      "val": 0.05,
+      "test": 0.1
+    },
+    "seed": 2,
+    "batch_size": 32,
+    "patience": 20,
+    "formal_runs": 10,
+    "formal_epochs": 401
+  },
+  "academic_note": "Local dataset versions differ from the paper's Table 1, so this summary is a local formal baseline only and cannot be claimed as a strict reproduction of the paper's reported benchmark table.",
+  "datasets": [
+    {
+      "name": "citeseer",
+      "local_stats": {
+        "nodes": 3312,
+        "edges": 4536,
+        "features": 3703,
+        "classes": 6
+      },
+      "paper_stats": {
+        "nodes": 4230,
+        "edges": 10674,
+        "features": 602
+      },
+      "metrics": {
+        "log_path": "G:\\myProject\\ASLAM-3\\ASLAM\\results\\train=0.9\\Citeseer_1.0_feat_False_20260403_095405.txt",
+        "auc_mean": 0.9676,
+        "ap_mean": 0.9655,
+        "auc_std": 0.0031,
+        "ap_std": 0.0024,
+        "runs": 10
+      }
+    },
+    {
+      "name": "pubmed",
+      "local_stats": {
+        "nodes": 19717,
+        "edges": 44324,
+        "features": 500,
+        "classes": 3
+      },
+      "paper_stats": {
+        "nodes": 19717,
+        "edges": 88648,
+        "features": 500
+      },
+      "metrics": {
+        "log_path": "G:\\myProject\\ASLAM-3\\ASLAM\\results\\train=0.9\\Pubmed_1.0_feat_False_20260403_120258.txt",
+        "auc_mean": 0.9952,
+        "ap_mean": 0.9943,
+        "auc_std": 0.0007,
+        "ap_std": 0.0008,
+        "runs": 10
+      }
+    },
+    {
+      "name": "dblp",
+      "local_stats": {
+        "nodes": 4057,
+        "edges": 3528,
+        "features": 334,
+        "classes": 4
+      },
+      "paper_stats": {
+        "nodes": 17716,
+        "edges": 105734,
+        "features": 1639
+      },
+      "metrics": {
+        "log_path": "G:\\myProject\\ASLAM-3\\ASLAM\\results\\train=0.9\\Dblp_1.0_feat_False_20260405_050147.txt",
+        "auc_mean": 0.9409,
+        "ap_mean": 0.9478,
+        "auc_std": 0.0084,
+        "ap_std": 0.0057,
+        "runs": 10
+      }
+    },
+    {
+      "name": "photo",
+      "local_stats": {
+        "nodes": 18333,
+        "edges": 81894,
+        "features": 6805,
+        "classes": 15
+      },
+      "paper_stats": {
+        "nodes": 7650,
+        "edges": 23862,
+        "features": 745
+      },
+      "metrics": {
+        "log_path": "G:\\myProject\\ASLAM-3\\ASLAM\\results\\train=0.9\\Photo_1.0_feat_False_20260405_095524.txt",
+        "auc_mean": 0.9727,
+        "ap_mean": 0.9796,
+        "auc_std": 0.0154,
+        "ap_std": 0.0106,
+        "runs": 10
+      }
+    }
+  ]
+}

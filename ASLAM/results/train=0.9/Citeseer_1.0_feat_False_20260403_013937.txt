@@ -1,0 +1,46 @@
+Namespace(runs=1, lr=0.001, epochs=10, cuda='cuda:0', root='G:/myProject/ASLAM-3/datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, dataset='citeseer', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+ASLAM(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+  (att_1): Linear(in_features=32, out_features=16, bias=True)
+  (att_2): Linear(in_features=32, out_features=16, bias=True)
+  (query): Linear(in_features=16, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.5640, Val_AUC: 0.8894, Val_AP: 0.9198, Test_AUC: 0.8669, Test_AP: 0.8937
+Epoch: 02, Loss: 0.5105, Val_AUC: 0.8916, Val_AP: 0.9227, Test_AUC: 0.8763, Test_AP: 0.9010
+Epoch: 03, Loss: 0.5046, Val_AUC: 0.8976, Val_AP: 0.9253, Test_AUC: 0.8830, Test_AP: 0.9064
+Epoch: 04, Loss: 0.5029, Val_AUC: 0.8972, Val_AP: 0.9264, Test_AUC: 0.8830, Test_AP: 0.9064
+Epoch: 05, Loss: 0.5010, Val_AUC: 0.9013, Val_AP: 0.9285, Test_AUC: 0.8872, Test_AP: 0.9083
+Epoch: 06, Loss: 0.5011, Val_AUC: 0.9010, Val_AP: 0.9272, Test_AUC: 0.8872, Test_AP: 0.9083
+Epoch: 07, Loss: 0.4997, Val_AUC: 0.9054, Val_AP: 0.9300, Test_AUC: 0.8829, Test_AP: 0.9072
+Epoch: 08, Loss: 0.5002, Val_AUC: 0.9039, Val_AP: 0.9292, Test_AUC: 0.8829, Test_AP: 0.9072
+Epoch: 09, Loss: 0.4992, Val_AUC: 0.9029, Val_AP: 0.9278, Test_AUC: 0.8829, Test_AP: 0.9072
+Run:  1, Test AUC: 0.8829, Test AP: 0.9072
+The average AUC for test data is 0.8829
+The average AP for test data is 0.9072
+The std of AUC for test data is 0.0000
+The std of AP for test data is 0.0000
+84

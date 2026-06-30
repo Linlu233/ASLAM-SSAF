@@ -1,0 +1,1178 @@
+Namespace(model_variant='ssmattn', runs=10, lr=0.001, epochs=401, cuda='cuda:0', root='G:\\myProject\\ASLAM-3\\datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, fusion_dropout=0.1, ssm_hidden=32, dataset='dblp', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3529, Val_AUC: 0.9939, Val_AP: 0.9922, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 06, Loss: 0.3495, Val_AUC: 0.9932, Val_AP: 0.9913, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 07, Loss: 0.3503, Val_AUC: 0.9913, Val_AP: 0.9885, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 08, Loss: 0.3477, Val_AUC: 0.9933, Val_AP: 0.9909, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 09, Loss: 0.3452, Val_AUC: 0.9932, Val_AP: 0.9908, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 10, Loss: 0.3414, Val_AUC: 0.9924, Val_AP: 0.9906, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 11, Loss: 0.3381, Val_AUC: 0.9925, Val_AP: 0.9885, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 12, Loss: 0.3378, Val_AUC: 0.9929, Val_AP: 0.9893, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 13, Loss: 0.3371, Val_AUC: 0.9884, Val_AP: 0.9748, Test_AUC: 0.9900, Test_AP: 0.9878
+Epoch: 14, Loss: 0.3368, Val_AUC: 0.9939, Val_AP: 0.9926, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 15, Loss: 0.3357, Val_AUC: 0.9936, Val_AP: 0.9917, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 16, Loss: 0.3338, Val_AUC: 0.9930, Val_AP: 0.9884, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 17, Loss: 0.3338, Val_AUC: 0.9932, Val_AP: 0.9901, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 18, Loss: 0.3361, Val_AUC: 0.9893, Val_AP: 0.9814, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 19, Loss: 0.3320, Val_AUC: 0.9920, Val_AP: 0.9895, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 20, Loss: 0.3316, Val_AUC: 0.9912, Val_AP: 0.9846, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 21, Loss: 0.3313, Val_AUC: 0.9920, Val_AP: 0.9870, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 22, Loss: 0.3294, Val_AUC: 0.9938, Val_AP: 0.9914, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 23, Loss: 0.3288, Val_AUC: 0.9946, Val_AP: 0.9931, Test_AUC: 0.9938, Test_AP: 0.9923
+Epoch: 24, Loss: 0.3300, Val_AUC: 0.9921, Val_AP: 0.9884, Test_AUC: 0.9938, Test_AP: 0.9923
+Epoch: 25, Loss: 0.3303, Val_AUC: 0.9896, Val_AP: 0.9726, Test_AUC: 0.9938, Test_AP: 0.9923
+Epoch: 26, Loss: 0.3278, Val_AUC: 0.9949, Val_AP: 0.9939, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 27, Loss: 0.3273, Val_AUC: 0.9928, Val_AP: 0.9894, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 28, Loss: 0.3259, Val_AUC: 0.9905, Val_AP: 0.9826, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 29, Loss: 0.3275, Val_AUC: 0.9947, Val_AP: 0.9939, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 30, Loss: 0.3273, Val_AUC: 0.9906, Val_AP: 0.9876, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 31, Loss: 0.3259, Val_AUC: 0.9921, Val_AP: 0.9904, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 32, Loss: 0.3248, Val_AUC: 0.9933, Val_AP: 0.9920, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 33, Loss: 0.3234, Val_AUC: 0.9964, Val_AP: 0.9960, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 34, Loss: 0.3246, Val_AUC: 0.9946, Val_AP: 0.9939, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 35, Loss: 0.3243, Val_AUC: 0.9919, Val_AP: 0.9897, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 36, Loss: 0.3218, Val_AUC: 0.9958, Val_AP: 0.9954, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 37, Loss: 0.3220, Val_AUC: 0.9947, Val_AP: 0.9934, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 38, Loss: 0.3223, Val_AUC: 0.9945, Val_AP: 0.9941, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 39, Loss: 0.3216, Val_AUC: 0.9955, Val_AP: 0.9949, Test_AUC: 0.9938, Test_AP: 0.9870
+Epoch: 40, Loss: 0.3240, Val_AUC: 0.9966, Val_AP: 0.9965, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 41, Loss: 0.3207, Val_AUC: 0.9964, Val_AP: 0.9959, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 42, Loss: 0.3203, Val_AUC: 0.9920, Val_AP: 0.9903, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 43, Loss: 0.3193, Val_AUC: 0.9959, Val_AP: 0.9956, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 44, Loss: 0.3197, Val_AUC: 0.9933, Val_AP: 0.9919, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 45, Loss: 0.3195, Val_AUC: 0.9943, Val_AP: 0.9935, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 46, Loss: 0.3192, Val_AUC: 0.9920, Val_AP: 0.9896, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 47, Loss: 0.3214, Val_AUC: 0.9925, Val_AP: 0.9889, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 48, Loss: 0.3187, Val_AUC: 0.9938, Val_AP: 0.9923, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 49, Loss: 0.3181, Val_AUC: 0.9951, Val_AP: 0.9947, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 50, Loss: 0.3190, Val_AUC: 0.9958, Val_AP: 0.9955, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 51, Loss: 0.3179, Val_AUC: 0.9944, Val_AP: 0.9931, Test_AUC: 0.9938, Test_AP: 0.9897
+Epoch: 52, Loss: 0.3172, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 53, Loss: 0.3169, Val_AUC: 0.9888, Val_AP: 0.9829, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 54, Loss: 0.3172, Val_AUC: 0.9944, Val_AP: 0.9936, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 55, Loss: 0.3188, Val_AUC: 0.9925, Val_AP: 0.9881, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 56, Loss: 0.3172, Val_AUC: 0.9944, Val_AP: 0.9929, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 57, Loss: 0.3165, Val_AUC: 0.9933, Val_AP: 0.9917, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 58, Loss: 0.3166, Val_AUC: 0.9897, Val_AP: 0.9820, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 59, Loss: 0.3170, Val_AUC: 0.9820, Val_AP: 0.9648, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 60, Loss: 0.3184, Val_AUC: 0.9940, Val_AP: 0.9931, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 61, Loss: 0.3156, Val_AUC: 0.9896, Val_AP: 0.9847, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 62, Loss: 0.3160, Val_AUC: 0.9895, Val_AP: 0.9833, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 63, Loss: 0.3149, Val_AUC: 0.9922, Val_AP: 0.9902, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 64, Loss: 0.3155, Val_AUC: 0.9873, Val_AP: 0.9798, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 65, Loss: 0.3153, Val_AUC: 0.9869, Val_AP: 0.9719, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 66, Loss: 0.3146, Val_AUC: 0.9895, Val_AP: 0.9865, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 67, Loss: 0.3150, Val_AUC: 0.9900, Val_AP: 0.9810, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 68, Loss: 0.3159, Val_AUC: 0.9899, Val_AP: 0.9772, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 69, Loss: 0.3140, Val_AUC: 0.9911, Val_AP: 0.9869, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 70, Loss: 0.3138, Val_AUC: 0.9883, Val_AP: 0.9724, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 71, Loss: 0.3137, Val_AUC: 0.9894, Val_AP: 0.9770, Test_AUC: 0.9911, Test_AP: 0.9850
+Epoch: 72, Loss: 0.3139, Val_AUC: 0.9922, Val_AP: 0.9895, Test_AUC: 0.9911, Test_AP: 0.9850
+Early Stop! Best Val AUC: 0.9968, Best Val AP: 0.9966, Test AUC: 0.9911, Test AP: 0.9850
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9887, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3534, Val_AUC: 0.9933, Val_AP: 0.9915, Test_AUC: 0.9909, Test_AP: 0.9891
+Epoch: 06, Loss: 0.3481, Val_AUC: 0.9934, Val_AP: 0.9916, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 07, Loss: 0.3521, Val_AUC: 0.9902, Val_AP: 0.9837, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 08, Loss: 0.3468, Val_AUC: 0.9921, Val_AP: 0.9867, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 09, Loss: 0.3432, Val_AUC: 0.9924, Val_AP: 0.9896, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 10, Loss: 0.3432, Val_AUC: 0.9917, Val_AP: 0.9888, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 11, Loss: 0.3387, Val_AUC: 0.9917, Val_AP: 0.9852, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 12, Loss: 0.3394, Val_AUC: 0.9921, Val_AP: 0.9835, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 13, Loss: 0.3396, Val_AUC: 0.9875, Val_AP: 0.9810, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 14, Loss: 0.3397, Val_AUC: 0.9930, Val_AP: 0.9910, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 15, Loss: 0.3359, Val_AUC: 0.9927, Val_AP: 0.9903, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 16, Loss: 0.3345, Val_AUC: 0.9930, Val_AP: 0.9880, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 17, Loss: 0.3344, Val_AUC: 0.9920, Val_AP: 0.9873, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 18, Loss: 0.3353, Val_AUC: 0.9910, Val_AP: 0.9783, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 19, Loss: 0.3332, Val_AUC: 0.9921, Val_AP: 0.9888, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 20, Loss: 0.3314, Val_AUC: 0.9931, Val_AP: 0.9884, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 21, Loss: 0.3296, Val_AUC: 0.9903, Val_AP: 0.9789, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 22, Loss: 0.3325, Val_AUC: 0.9923, Val_AP: 0.9828, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 23, Loss: 0.3293, Val_AUC: 0.9934, Val_AP: 0.9894, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 24, Loss: 0.3291, Val_AUC: 0.9912, Val_AP: 0.9803, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 25, Loss: 0.3304, Val_AUC: 0.9906, Val_AP: 0.9802, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 26, Loss: 0.3271, Val_AUC: 0.9926, Val_AP: 0.9876, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 27, Loss: 0.3276, Val_AUC: 0.9924, Val_AP: 0.9837, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 28, Loss: 0.3281, Val_AUC: 0.9897, Val_AP: 0.9869, Test_AUC: 0.9950, Test_AP: 0.9941
+Epoch: 29, Loss: 0.3268, Val_AUC: 0.9937, Val_AP: 0.9915, Test_AUC: 0.9955, Test_AP: 0.9949
+Epoch: 30, Loss: 0.3280, Val_AUC: 0.9940, Val_AP: 0.9918, Test_AUC: 0.9948, Test_AP: 0.9941
+Epoch: 31, Loss: 0.3245, Val_AUC: 0.9906, Val_AP: 0.9801, Test_AUC: 0.9948, Test_AP: 0.9941
+Epoch: 32, Loss: 0.3252, Val_AUC: 0.9915, Val_AP: 0.9747, Test_AUC: 0.9948, Test_AP: 0.9941
+Epoch: 33, Loss: 0.3243, Val_AUC: 0.9949, Val_AP: 0.9936, Test_AUC: 0.9947, Test_AP: 0.9938
+Epoch: 34, Loss: 0.3257, Val_AUC: 0.9923, Val_AP: 0.9868, Test_AUC: 0.9947, Test_AP: 0.9938
+Epoch: 35, Loss: 0.3247, Val_AUC: 0.9916, Val_AP: 0.9796, Test_AUC: 0.9947, Test_AP: 0.9938
+Epoch: 36, Loss: 0.3217, Val_AUC: 0.9948, Val_AP: 0.9933, Test_AUC: 0.9947, Test_AP: 0.9938
+Epoch: 37, Loss: 0.3221, Val_AUC: 0.9945, Val_AP: 0.9934, Test_AUC: 0.9947, Test_AP: 0.9938
+Epoch: 38, Loss: 0.3227, Val_AUC: 0.9956, Val_AP: 0.9950, Test_AUC: 0.9941, Test_AP: 0.9911
+Epoch: 39, Loss: 0.3238, Val_AUC: 0.9972, Val_AP: 0.9969, Test_AUC: 0.9940, Test_AP: 0.9903
+Epoch: 40, Loss: 0.3227, Val_AUC: 0.9969, Val_AP: 0.9968, Test_AUC: 0.9940, Test_AP: 0.9903
+Epoch: 41, Loss: 0.3200, Val_AUC: 0.9974, Val_AP: 0.9972, Test_AUC: 0.9935, Test_AP: 0.9897
+Epoch: 42, Loss: 0.3220, Val_AUC: 0.9926, Val_AP: 0.9905, Test_AUC: 0.9935, Test_AP: 0.9897
+Epoch: 43, Loss: 0.3194, Val_AUC: 0.9974, Val_AP: 0.9973, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 44, Loss: 0.3198, Val_AUC: 0.9972, Val_AP: 0.9971, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 45, Loss: 0.3185, Val_AUC: 0.9955, Val_AP: 0.9946, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 46, Loss: 0.3193, Val_AUC: 0.9962, Val_AP: 0.9957, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 47, Loss: 0.3199, Val_AUC: 0.9958, Val_AP: 0.9951, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 48, Loss: 0.3180, Val_AUC: 0.9962, Val_AP: 0.9959, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 49, Loss: 0.3205, Val_AUC: 0.9966, Val_AP: 0.9964, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 50, Loss: 0.3182, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 51, Loss: 0.3188, Val_AUC: 0.9944, Val_AP: 0.9934, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 52, Loss: 0.3169, Val_AUC: 0.9963, Val_AP: 0.9959, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 53, Loss: 0.3165, Val_AUC: 0.9917, Val_AP: 0.9866, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 54, Loss: 0.3167, Val_AUC: 0.9930, Val_AP: 0.9901, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 55, Loss: 0.3170, Val_AUC: 0.9941, Val_AP: 0.9927, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 56, Loss: 0.3176, Val_AUC: 0.9936, Val_AP: 0.9910, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 57, Loss: 0.3174, Val_AUC: 0.9965, Val_AP: 0.9963, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 58, Loss: 0.3177, Val_AUC: 0.9945, Val_AP: 0.9937, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 59, Loss: 0.3165, Val_AUC: 0.9795, Val_AP: 0.9666, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 60, Loss: 0.3189, Val_AUC: 0.9960, Val_AP: 0.9953, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 61, Loss: 0.3155, Val_AUC: 0.9903, Val_AP: 0.9844, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 62, Loss: 0.3158, Val_AUC: 0.9897, Val_AP: 0.9818, Test_AUC: 0.9934, Test_AP: 0.9903
+Epoch: 63, Loss: 0.3151, Val_AUC: 0.9949, Val_AP: 0.9941, Test_AUC: 0.9934, Test_AP: 0.9903
+Early Stop! Best Val AUC: 0.9974, Best Val AP: 0.9973, Test AUC: 0.9934, Test AP: 0.9903
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3532, Val_AUC: 0.9939, Val_AP: 0.9921, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 06, Loss: 0.3510, Val_AUC: 0.9934, Val_AP: 0.9916, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 07, Loss: 0.3486, Val_AUC: 0.9901, Val_AP: 0.9828, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 08, Loss: 0.3502, Val_AUC: 0.9916, Val_AP: 0.9865, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 09, Loss: 0.3435, Val_AUC: 0.9920, Val_AP: 0.9890, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 10, Loss: 0.3426, Val_AUC: 0.9920, Val_AP: 0.9891, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 11, Loss: 0.3404, Val_AUC: 0.9930, Val_AP: 0.9890, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 12, Loss: 0.3385, Val_AUC: 0.9932, Val_AP: 0.9894, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 13, Loss: 0.3375, Val_AUC: 0.9932, Val_AP: 0.9898, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 14, Loss: 0.3364, Val_AUC: 0.9921, Val_AP: 0.9890, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 15, Loss: 0.3362, Val_AUC: 0.9944, Val_AP: 0.9931, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 16, Loss: 0.3344, Val_AUC: 0.9934, Val_AP: 0.9897, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 17, Loss: 0.3336, Val_AUC: 0.9927, Val_AP: 0.9895, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 18, Loss: 0.3358, Val_AUC: 0.9900, Val_AP: 0.9816, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 19, Loss: 0.3329, Val_AUC: 0.9918, Val_AP: 0.9877, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 20, Loss: 0.3320, Val_AUC: 0.9933, Val_AP: 0.9900, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 21, Loss: 0.3306, Val_AUC: 0.9926, Val_AP: 0.9884, Test_AUC: 0.9951, Test_AP: 0.9946
+Epoch: 22, Loss: 0.3279, Val_AUC: 0.9949, Val_AP: 0.9935, Test_AUC: 0.9933, Test_AP: 0.9901
+Epoch: 23, Loss: 0.3288, Val_AUC: 0.9957, Val_AP: 0.9949, Test_AUC: 0.9940, Test_AP: 0.9925
+Epoch: 24, Loss: 0.3296, Val_AUC: 0.9943, Val_AP: 0.9929, Test_AUC: 0.9940, Test_AP: 0.9925
+Epoch: 25, Loss: 0.3299, Val_AUC: 0.9910, Val_AP: 0.9865, Test_AUC: 0.9940, Test_AP: 0.9925
+Epoch: 26, Loss: 0.3279, Val_AUC: 0.9946, Val_AP: 0.9937, Test_AUC: 0.9940, Test_AP: 0.9925
+Epoch: 27, Loss: 0.3271, Val_AUC: 0.9953, Val_AP: 0.9945, Test_AUC: 0.9940, Test_AP: 0.9925
+Epoch: 28, Loss: 0.3282, Val_AUC: 0.9965, Val_AP: 0.9963, Test_AUC: 0.9929, Test_AP: 0.9896
+Epoch: 29, Loss: 0.3280, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9949, Test_AP: 0.9941
+Epoch: 30, Loss: 0.3254, Val_AUC: 0.9978, Val_AP: 0.9978, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 31, Loss: 0.3242, Val_AUC: 0.9933, Val_AP: 0.9923, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 32, Loss: 0.3249, Val_AUC: 0.9955, Val_AP: 0.9950, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 33, Loss: 0.3228, Val_AUC: 0.9975, Val_AP: 0.9973, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 34, Loss: 0.3266, Val_AUC: 0.9971, Val_AP: 0.9969, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 35, Loss: 0.3231, Val_AUC: 0.9969, Val_AP: 0.9967, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 36, Loss: 0.3212, Val_AUC: 0.9978, Val_AP: 0.9977, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 37, Loss: 0.3218, Val_AUC: 0.9970, Val_AP: 0.9968, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 38, Loss: 0.3227, Val_AUC: 0.9977, Val_AP: 0.9976, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 39, Loss: 0.3210, Val_AUC: 0.9963, Val_AP: 0.9960, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 40, Loss: 0.3250, Val_AUC: 0.9946, Val_AP: 0.9937, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 41, Loss: 0.3204, Val_AUC: 0.9976, Val_AP: 0.9975, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 42, Loss: 0.3205, Val_AUC: 0.9962, Val_AP: 0.9960, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 43, Loss: 0.3199, Val_AUC: 0.9976, Val_AP: 0.9976, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 44, Loss: 0.3195, Val_AUC: 0.9960, Val_AP: 0.9958, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 45, Loss: 0.3198, Val_AUC: 0.9963, Val_AP: 0.9961, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 46, Loss: 0.3189, Val_AUC: 0.9963, Val_AP: 0.9961, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 47, Loss: 0.3196, Val_AUC: 0.9967, Val_AP: 0.9967, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 48, Loss: 0.3178, Val_AUC: 0.9932, Val_AP: 0.9919, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 49, Loss: 0.3211, Val_AUC: 0.9936, Val_AP: 0.9923, Test_AUC: 0.9941, Test_AP: 0.9926
+Epoch: 50, Loss: 0.3187, Val_AUC: 0.9970, Val_AP: 0.9969, Test_AUC: 0.9941, Test_AP: 0.9926
+Early Stop! Best Val AUC: 0.9978, Best Val AP: 0.9978, Test AUC: 0.9941, Test AP: 0.9926
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9887, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3534, Val_AUC: 0.9933, Val_AP: 0.9915, Test_AUC: 0.9909, Test_AP: 0.9891
+Epoch: 06, Loss: 0.3483, Val_AUC: 0.9934, Val_AP: 0.9917, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 07, Loss: 0.3511, Val_AUC: 0.9920, Val_AP: 0.9890, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 08, Loss: 0.3444, Val_AUC: 0.9927, Val_AP: 0.9874, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 09, Loss: 0.3446, Val_AUC: 0.9923, Val_AP: 0.9899, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 10, Loss: 0.3432, Val_AUC: 0.9915, Val_AP: 0.9888, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 11, Loss: 0.3417, Val_AUC: 0.9924, Val_AP: 0.9887, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 12, Loss: 0.3382, Val_AUC: 0.9915, Val_AP: 0.9854, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 13, Loss: 0.3382, Val_AUC: 0.9924, Val_AP: 0.9860, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 14, Loss: 0.3388, Val_AUC: 0.9929, Val_AP: 0.9899, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 15, Loss: 0.3358, Val_AUC: 0.9933, Val_AP: 0.9907, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 16, Loss: 0.3350, Val_AUC: 0.9934, Val_AP: 0.9897, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 17, Loss: 0.3327, Val_AUC: 0.9929, Val_AP: 0.9884, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 18, Loss: 0.3370, Val_AUC: 0.9921, Val_AP: 0.9879, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 19, Loss: 0.3324, Val_AUC: 0.9925, Val_AP: 0.9901, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 20, Loss: 0.3325, Val_AUC: 0.9928, Val_AP: 0.9878, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 21, Loss: 0.3314, Val_AUC: 0.9919, Val_AP: 0.9870, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 22, Loss: 0.3294, Val_AUC: 0.9924, Val_AP: 0.9871, Test_AUC: 0.9915, Test_AP: 0.9900
+Epoch: 23, Loss: 0.3288, Val_AUC: 0.9942, Val_AP: 0.9924, Test_AUC: 0.9935, Test_AP: 0.9920
+Epoch: 24, Loss: 0.3300, Val_AUC: 0.9911, Val_AP: 0.9833, Test_AUC: 0.9935, Test_AP: 0.9920
+Epoch: 25, Loss: 0.3304, Val_AUC: 0.9905, Val_AP: 0.9831, Test_AUC: 0.9935, Test_AP: 0.9920
+Epoch: 26, Loss: 0.3286, Val_AUC: 0.9931, Val_AP: 0.9912, Test_AUC: 0.9935, Test_AP: 0.9920
+Epoch: 27, Loss: 0.3270, Val_AUC: 0.9934, Val_AP: 0.9909, Test_AUC: 0.9935, Test_AP: 0.9920
+Epoch: 28, Loss: 0.3277, Val_AUC: 0.9953, Val_AP: 0.9947, Test_AUC: 0.9934, Test_AP: 0.9924
+Epoch: 29, Loss: 0.3270, Val_AUC: 0.9944, Val_AP: 0.9933, Test_AUC: 0.9934, Test_AP: 0.9924
+Epoch: 30, Loss: 0.3254, Val_AUC: 0.9950, Val_AP: 0.9943, Test_AUC: 0.9934, Test_AP: 0.9924
+Epoch: 31, Loss: 0.3248, Val_AUC: 0.9914, Val_AP: 0.9892, Test_AUC: 0.9934, Test_AP: 0.9924
+Epoch: 32, Loss: 0.3252, Val_AUC: 0.9920, Val_AP: 0.9895, Test_AUC: 0.9934, Test_AP: 0.9924
+Epoch: 33, Loss: 0.3240, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9934, Test_AP: 0.9913
+Epoch: 34, Loss: 0.3255, Val_AUC: 0.9961, Val_AP: 0.9958, Test_AUC: 0.9934, Test_AP: 0.9913
+Epoch: 35, Loss: 0.3232, Val_AUC: 0.9947, Val_AP: 0.9938, Test_AUC: 0.9934, Test_AP: 0.9913
+Epoch: 36, Loss: 0.3217, Val_AUC: 0.9976, Val_AP: 0.9975, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 37, Loss: 0.3219, Val_AUC: 0.9962, Val_AP: 0.9960, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 38, Loss: 0.3230, Val_AUC: 0.9936, Val_AP: 0.9928, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 39, Loss: 0.3223, Val_AUC: 0.9940, Val_AP: 0.9927, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 40, Loss: 0.3231, Val_AUC: 0.9966, Val_AP: 0.9964, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 41, Loss: 0.3203, Val_AUC: 0.9972, Val_AP: 0.9970, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 42, Loss: 0.3202, Val_AUC: 0.9966, Val_AP: 0.9963, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 43, Loss: 0.3194, Val_AUC: 0.9967, Val_AP: 0.9965, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 44, Loss: 0.3192, Val_AUC: 0.9948, Val_AP: 0.9941, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 45, Loss: 0.3188, Val_AUC: 0.9932, Val_AP: 0.9913, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 46, Loss: 0.3186, Val_AUC: 0.9955, Val_AP: 0.9950, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 47, Loss: 0.3197, Val_AUC: 0.9947, Val_AP: 0.9944, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 48, Loss: 0.3188, Val_AUC: 0.9948, Val_AP: 0.9939, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 49, Loss: 0.3181, Val_AUC: 0.9968, Val_AP: 0.9965, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 50, Loss: 0.3194, Val_AUC: 0.9967, Val_AP: 0.9964, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 51, Loss: 0.3178, Val_AUC: 0.9942, Val_AP: 0.9924, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 52, Loss: 0.3168, Val_AUC: 0.9972, Val_AP: 0.9971, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 53, Loss: 0.3164, Val_AUC: 0.9912, Val_AP: 0.9875, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 54, Loss: 0.3170, Val_AUC: 0.9943, Val_AP: 0.9928, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 55, Loss: 0.3176, Val_AUC: 0.9954, Val_AP: 0.9952, Test_AUC: 0.9923, Test_AP: 0.9832
+Epoch: 56, Loss: 0.3173, Val_AUC: 0.9957, Val_AP: 0.9954, Test_AUC: 0.9923, Test_AP: 0.9832
+Early Stop! Best Val AUC: 0.9976, Best Val AP: 0.9975, Test AUC: 0.9923, Test AP: 0.9832
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3528, Val_AUC: 0.9924, Val_AP: 0.9905, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 06, Loss: 0.3488, Val_AUC: 0.9924, Val_AP: 0.9903, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 07, Loss: 0.3493, Val_AUC: 0.9893, Val_AP: 0.9800, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 08, Loss: 0.3445, Val_AUC: 0.9912, Val_AP: 0.9852, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 09, Loss: 0.3449, Val_AUC: 0.9922, Val_AP: 0.9895, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 10, Loss: 0.3444, Val_AUC: 0.9925, Val_AP: 0.9906, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 11, Loss: 0.3386, Val_AUC: 0.9923, Val_AP: 0.9884, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 12, Loss: 0.3381, Val_AUC: 0.9922, Val_AP: 0.9871, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 13, Loss: 0.3380, Val_AUC: 0.9901, Val_AP: 0.9835, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 14, Loss: 0.3389, Val_AUC: 0.9923, Val_AP: 0.9904, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 15, Loss: 0.3369, Val_AUC: 0.9934, Val_AP: 0.9915, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 16, Loss: 0.3345, Val_AUC: 0.9928, Val_AP: 0.9891, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 17, Loss: 0.3340, Val_AUC: 0.9920, Val_AP: 0.9862, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 18, Loss: 0.3357, Val_AUC: 0.9897, Val_AP: 0.9833, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 19, Loss: 0.3331, Val_AUC: 0.9925, Val_AP: 0.9903, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 20, Loss: 0.3318, Val_AUC: 0.9913, Val_AP: 0.9853, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 21, Loss: 0.3314, Val_AUC: 0.9915, Val_AP: 0.9865, Test_AUC: 0.9949, Test_AP: 0.9944
+Epoch: 22, Loss: 0.3290, Val_AUC: 0.9942, Val_AP: 0.9922, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 23, Loss: 0.3302, Val_AUC: 0.9942, Val_AP: 0.9923, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 24, Loss: 0.3297, Val_AUC: 0.9929, Val_AP: 0.9902, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 25, Loss: 0.3291, Val_AUC: 0.9907, Val_AP: 0.9808, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 26, Loss: 0.3280, Val_AUC: 0.9931, Val_AP: 0.9912, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 27, Loss: 0.3272, Val_AUC: 0.9923, Val_AP: 0.9881, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 28, Loss: 0.3268, Val_AUC: 0.9934, Val_AP: 0.9921, Test_AUC: 0.9940, Test_AP: 0.9922
+Epoch: 29, Loss: 0.3269, Val_AUC: 0.9958, Val_AP: 0.9953, Test_AUC: 0.9946, Test_AP: 0.9932
+Epoch: 30, Loss: 0.3265, Val_AUC: 0.9961, Val_AP: 0.9957, Test_AUC: 0.9941, Test_AP: 0.9922
+Epoch: 31, Loss: 0.3245, Val_AUC: 0.9927, Val_AP: 0.9908, Test_AUC: 0.9941, Test_AP: 0.9922
+Epoch: 32, Loss: 0.3247, Val_AUC: 0.9931, Val_AP: 0.9914, Test_AUC: 0.9941, Test_AP: 0.9922
+Epoch: 33, Loss: 0.3229, Val_AUC: 0.9974, Val_AP: 0.9972, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 34, Loss: 0.3256, Val_AUC: 0.9961, Val_AP: 0.9959, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 35, Loss: 0.3239, Val_AUC: 0.9955, Val_AP: 0.9951, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 36, Loss: 0.3216, Val_AUC: 0.9973, Val_AP: 0.9971, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 37, Loss: 0.3226, Val_AUC: 0.9964, Val_AP: 0.9963, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 38, Loss: 0.3221, Val_AUC: 0.9957, Val_AP: 0.9956, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 39, Loss: 0.3212, Val_AUC: 0.9963, Val_AP: 0.9962, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 40, Loss: 0.3234, Val_AUC: 0.9894, Val_AP: 0.9848, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 41, Loss: 0.3213, Val_AUC: 0.9961, Val_AP: 0.9958, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 42, Loss: 0.3199, Val_AUC: 0.9942, Val_AP: 0.9932, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 43, Loss: 0.3193, Val_AUC: 0.9955, Val_AP: 0.9952, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 44, Loss: 0.3198, Val_AUC: 0.9947, Val_AP: 0.9941, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 45, Loss: 0.3195, Val_AUC: 0.9957, Val_AP: 0.9954, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 46, Loss: 0.3198, Val_AUC: 0.9948, Val_AP: 0.9942, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 47, Loss: 0.3196, Val_AUC: 0.9944, Val_AP: 0.9940, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 48, Loss: 0.3184, Val_AUC: 0.9949, Val_AP: 0.9938, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 49, Loss: 0.3186, Val_AUC: 0.9962, Val_AP: 0.9961, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 50, Loss: 0.3187, Val_AUC: 0.9971, Val_AP: 0.9970, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 51, Loss: 0.3179, Val_AUC: 0.9965, Val_AP: 0.9962, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 52, Loss: 0.3173, Val_AUC: 0.9974, Val_AP: 0.9973, Test_AUC: 0.9927, Test_AP: 0.9884
+Epoch: 53, Loss: 0.3171, Val_AUC: 0.9939, Val_AP: 0.9930, Test_AUC: 0.9927, Test_AP: 0.9884
+Early Stop! Best Val AUC: 0.9974, Best Val AP: 0.9972, Test AUC: 0.9927, Test AP: 0.9884
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3533, Val_AUC: 0.9938, Val_AP: 0.9920, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 06, Loss: 0.3505, Val_AUC: 0.9903, Val_AP: 0.9885, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 07, Loss: 0.3516, Val_AUC: 0.9911, Val_AP: 0.9873, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 08, Loss: 0.3481, Val_AUC: 0.9928, Val_AP: 0.9892, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 09, Loss: 0.3448, Val_AUC: 0.9917, Val_AP: 0.9890, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 10, Loss: 0.3417, Val_AUC: 0.9919, Val_AP: 0.9895, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 11, Loss: 0.3389, Val_AUC: 0.9924, Val_AP: 0.9889, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 12, Loss: 0.3397, Val_AUC: 0.9933, Val_AP: 0.9900, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 13, Loss: 0.3368, Val_AUC: 0.9920, Val_AP: 0.9849, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 14, Loss: 0.3360, Val_AUC: 0.9935, Val_AP: 0.9918, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 15, Loss: 0.3358, Val_AUC: 0.9927, Val_AP: 0.9899, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 16, Loss: 0.3349, Val_AUC: 0.9935, Val_AP: 0.9894, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 17, Loss: 0.3331, Val_AUC: 0.9933, Val_AP: 0.9898, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 18, Loss: 0.3361, Val_AUC: 0.9904, Val_AP: 0.9684, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 19, Loss: 0.3332, Val_AUC: 0.9932, Val_AP: 0.9909, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 20, Loss: 0.3313, Val_AUC: 0.9923, Val_AP: 0.9862, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 21, Loss: 0.3305, Val_AUC: 0.9913, Val_AP: 0.9824, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 22, Loss: 0.3288, Val_AUC: 0.9930, Val_AP: 0.9887, Test_AUC: 0.9900, Test_AP: 0.9877
+Epoch: 23, Loss: 0.3290, Val_AUC: 0.9947, Val_AP: 0.9933, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 24, Loss: 0.3302, Val_AUC: 0.9924, Val_AP: 0.9884, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 25, Loss: 0.3311, Val_AUC: 0.9916, Val_AP: 0.9829, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 26, Loss: 0.3286, Val_AUC: 0.9934, Val_AP: 0.9909, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 27, Loss: 0.3285, Val_AUC: 0.9931, Val_AP: 0.9897, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 28, Loss: 0.3275, Val_AUC: 0.9930, Val_AP: 0.9922, Test_AUC: 0.9936, Test_AP: 0.9922
+Epoch: 29, Loss: 0.3272, Val_AUC: 0.9954, Val_AP: 0.9946, Test_AUC: 0.9946, Test_AP: 0.9937
+Epoch: 30, Loss: 0.3249, Val_AUC: 0.9959, Val_AP: 0.9956, Test_AUC: 0.9942, Test_AP: 0.9924
+Epoch: 31, Loss: 0.3241, Val_AUC: 0.9933, Val_AP: 0.9924, Test_AUC: 0.9942, Test_AP: 0.9924
+Epoch: 32, Loss: 0.3299, Val_AUC: 0.9939, Val_AP: 0.9916, Test_AUC: 0.9942, Test_AP: 0.9924
+Epoch: 33, Loss: 0.3235, Val_AUC: 0.9959, Val_AP: 0.9955, Test_AUC: 0.9942, Test_AP: 0.9924
+Epoch: 34, Loss: 0.3246, Val_AUC: 0.9967, Val_AP: 0.9964, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 35, Loss: 0.3232, Val_AUC: 0.9908, Val_AP: 0.9887, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 36, Loss: 0.3223, Val_AUC: 0.9928, Val_AP: 0.9914, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 37, Loss: 0.3220, Val_AUC: 0.9953, Val_AP: 0.9951, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 38, Loss: 0.3224, Val_AUC: 0.9945, Val_AP: 0.9941, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 39, Loss: 0.3212, Val_AUC: 0.9943, Val_AP: 0.9933, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 40, Loss: 0.3220, Val_AUC: 0.9965, Val_AP: 0.9964, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 41, Loss: 0.3199, Val_AUC: 0.9954, Val_AP: 0.9948, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 42, Loss: 0.3197, Val_AUC: 0.9898, Val_AP: 0.9851, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 43, Loss: 0.3192, Val_AUC: 0.9961, Val_AP: 0.9959, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 44, Loss: 0.3205, Val_AUC: 0.9946, Val_AP: 0.9933, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 45, Loss: 0.3198, Val_AUC: 0.9813, Val_AP: 0.9598, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 46, Loss: 0.3205, Val_AUC: 0.9935, Val_AP: 0.9918, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 47, Loss: 0.3209, Val_AUC: 0.9893, Val_AP: 0.9841, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 48, Loss: 0.3191, Val_AUC: 0.9931, Val_AP: 0.9915, Test_AUC: 0.9944, Test_AP: 0.9921
+Epoch: 49, Loss: 0.3188, Val_AUC: 0.9968, Val_AP: 0.9967, Test_AUC: 0.9956, Test_AP: 0.9950
+Epoch: 50, Loss: 0.3184, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9956, Test_AP: 0.9950
+Epoch: 51, Loss: 0.3180, Val_AUC: 0.9951, Val_AP: 0.9943, Test_AUC: 0.9956, Test_AP: 0.9950
+Epoch: 52, Loss: 0.3171, Val_AUC: 0.9969, Val_AP: 0.9968, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 53, Loss: 0.3167, Val_AUC: 0.9902, Val_AP: 0.9843, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 54, Loss: 0.3166, Val_AUC: 0.9925, Val_AP: 0.9894, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 55, Loss: 0.3173, Val_AUC: 0.9927, Val_AP: 0.9913, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 56, Loss: 0.3173, Val_AUC: 0.9938, Val_AP: 0.9929, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 57, Loss: 0.3166, Val_AUC: 0.9946, Val_AP: 0.9935, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 58, Loss: 0.3168, Val_AUC: 0.9949, Val_AP: 0.9944, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 59, Loss: 0.3165, Val_AUC: 0.9901, Val_AP: 0.9837, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 60, Loss: 0.3164, Val_AUC: 0.9942, Val_AP: 0.9927, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 61, Loss: 0.3154, Val_AUC: 0.9918, Val_AP: 0.9895, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 62, Loss: 0.3154, Val_AUC: 0.9919, Val_AP: 0.9895, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 63, Loss: 0.3147, Val_AUC: 0.9932, Val_AP: 0.9918, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 64, Loss: 0.3158, Val_AUC: 0.9876, Val_AP: 0.9808, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 65, Loss: 0.3154, Val_AUC: 0.9872, Val_AP: 0.9709, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 66, Loss: 0.3162, Val_AUC: 0.9930, Val_AP: 0.9915, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 67, Loss: 0.3151, Val_AUC: 0.9951, Val_AP: 0.9945, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 68, Loss: 0.3147, Val_AUC: 0.9951, Val_AP: 0.9945, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 69, Loss: 0.3139, Val_AUC: 0.9918, Val_AP: 0.9892, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 70, Loss: 0.3136, Val_AUC: 0.9875, Val_AP: 0.9803, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 71, Loss: 0.3140, Val_AUC: 0.9865, Val_AP: 0.9756, Test_AUC: 0.9920, Test_AP: 0.9832
+Epoch: 72, Loss: 0.3142, Val_AUC: 0.9915, Val_AP: 0.9891, Test_AUC: 0.9920, Test_AP: 0.9832
+Early Stop! Best Val AUC: 0.9969, Best Val AP: 0.9968, Test AUC: 0.9920, Test AP: 0.9832
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3525, Val_AUC: 0.9943, Val_AP: 0.9927, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 06, Loss: 0.3475, Val_AUC: 0.9929, Val_AP: 0.9910, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 07, Loss: 0.3488, Val_AUC: 0.9913, Val_AP: 0.9866, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 08, Loss: 0.3472, Val_AUC: 0.9926, Val_AP: 0.9896, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 09, Loss: 0.3440, Val_AUC: 0.9919, Val_AP: 0.9889, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 10, Loss: 0.3420, Val_AUC: 0.9923, Val_AP: 0.9899, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 11, Loss: 0.3402, Val_AUC: 0.9926, Val_AP: 0.9894, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 12, Loss: 0.3396, Val_AUC: 0.9935, Val_AP: 0.9904, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 13, Loss: 0.3400, Val_AUC: 0.9928, Val_AP: 0.9877, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 14, Loss: 0.3395, Val_AUC: 0.9915, Val_AP: 0.9884, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 15, Loss: 0.3361, Val_AUC: 0.9937, Val_AP: 0.9920, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 16, Loss: 0.3342, Val_AUC: 0.9934, Val_AP: 0.9905, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 17, Loss: 0.3339, Val_AUC: 0.9928, Val_AP: 0.9883, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 18, Loss: 0.3354, Val_AUC: 0.9878, Val_AP: 0.9701, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 19, Loss: 0.3330, Val_AUC: 0.9921, Val_AP: 0.9897, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 20, Loss: 0.3322, Val_AUC: 0.9915, Val_AP: 0.9800, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 21, Loss: 0.3304, Val_AUC: 0.9930, Val_AP: 0.9880, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 22, Loss: 0.3285, Val_AUC: 0.9926, Val_AP: 0.9849, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 23, Loss: 0.3294, Val_AUC: 0.9931, Val_AP: 0.9892, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 24, Loss: 0.3300, Val_AUC: 0.9911, Val_AP: 0.9812, Test_AUC: 0.9901, Test_AP: 0.9879
+Epoch: 25, Loss: 0.3276, Val_AUC: 0.9892, Val_AP: 0.9745, Test_AUC: 0.9901, Test_AP: 0.9879
+Early Stop! Best Val AUC: 0.9943, Best Val AP: 0.9927, Test AUC: 0.9901, Test AP: 0.9879
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9888, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3525, Val_AUC: 0.9931, Val_AP: 0.9912, Test_AUC: 0.9909, Test_AP: 0.9890
+Epoch: 06, Loss: 0.3501, Val_AUC: 0.9907, Val_AP: 0.9884, Test_AUC: 0.9909, Test_AP: 0.9890
+Epoch: 07, Loss: 0.3527, Val_AUC: 0.9928, Val_AP: 0.9905, Test_AUC: 0.9909, Test_AP: 0.9890
+Epoch: 08, Loss: 0.3453, Val_AUC: 0.9935, Val_AP: 0.9910, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 09, Loss: 0.3461, Val_AUC: 0.9914, Val_AP: 0.9888, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 10, Loss: 0.3442, Val_AUC: 0.9930, Val_AP: 0.9908, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 11, Loss: 0.3389, Val_AUC: 0.9926, Val_AP: 0.9885, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 12, Loss: 0.3381, Val_AUC: 0.9927, Val_AP: 0.9874, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 13, Loss: 0.3378, Val_AUC: 0.9919, Val_AP: 0.9865, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 14, Loss: 0.3353, Val_AUC: 0.9931, Val_AP: 0.9906, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 15, Loss: 0.3365, Val_AUC: 0.9934, Val_AP: 0.9914, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 16, Loss: 0.3351, Val_AUC: 0.9934, Val_AP: 0.9898, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 17, Loss: 0.3330, Val_AUC: 0.9928, Val_AP: 0.9875, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 18, Loss: 0.3349, Val_AUC: 0.9793, Val_AP: 0.9614, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 19, Loss: 0.3332, Val_AUC: 0.9920, Val_AP: 0.9895, Test_AUC: 0.9946, Test_AP: 0.9940
+Epoch: 20, Loss: 0.3324, Val_AUC: 0.9951, Val_AP: 0.9941, Test_AUC: 0.9934, Test_AP: 0.9907
+Epoch: 21, Loss: 0.3307, Val_AUC: 0.9945, Val_AP: 0.9935, Test_AUC: 0.9934, Test_AP: 0.9907
+Epoch: 22, Loss: 0.3284, Val_AUC: 0.9959, Val_AP: 0.9953, Test_AUC: 0.9939, Test_AP: 0.9918
+Epoch: 23, Loss: 0.3294, Val_AUC: 0.9967, Val_AP: 0.9964, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 24, Loss: 0.3285, Val_AUC: 0.9948, Val_AP: 0.9942, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 25, Loss: 0.3285, Val_AUC: 0.9931, Val_AP: 0.9912, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 26, Loss: 0.3272, Val_AUC: 0.9961, Val_AP: 0.9957, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 27, Loss: 0.3275, Val_AUC: 0.9948, Val_AP: 0.9940, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 28, Loss: 0.3276, Val_AUC: 0.9962, Val_AP: 0.9959, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 29, Loss: 0.3270, Val_AUC: 0.9961, Val_AP: 0.9957, Test_AUC: 0.9945, Test_AP: 0.9935
+Epoch: 30, Loss: 0.3263, Val_AUC: 0.9974, Val_AP: 0.9971, Test_AUC: 0.9943, Test_AP: 0.9931
+Epoch: 31, Loss: 0.3243, Val_AUC: 0.9935, Val_AP: 0.9929, Test_AUC: 0.9943, Test_AP: 0.9931
+Epoch: 32, Loss: 0.3244, Val_AUC: 0.9946, Val_AP: 0.9937, Test_AUC: 0.9943, Test_AP: 0.9931
+Epoch: 33, Loss: 0.3232, Val_AUC: 0.9973, Val_AP: 0.9970, Test_AUC: 0.9943, Test_AP: 0.9931
+Epoch: 34, Loss: 0.3259, Val_AUC: 0.9957, Val_AP: 0.9953, Test_AUC: 0.9943, Test_AP: 0.9931
+Epoch: 35, Loss: 0.3244, Val_AUC: 0.9980, Val_AP: 0.9980, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 36, Loss: 0.3212, Val_AUC: 0.9972, Val_AP: 0.9971, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 37, Loss: 0.3221, Val_AUC: 0.9977, Val_AP: 0.9976, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 38, Loss: 0.3233, Val_AUC: 0.9971, Val_AP: 0.9970, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 39, Loss: 0.3221, Val_AUC: 0.9959, Val_AP: 0.9955, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 40, Loss: 0.3221, Val_AUC: 0.9974, Val_AP: 0.9974, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 41, Loss: 0.3211, Val_AUC: 0.9974, Val_AP: 0.9973, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 42, Loss: 0.3206, Val_AUC: 0.9930, Val_AP: 0.9913, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 43, Loss: 0.3207, Val_AUC: 0.9967, Val_AP: 0.9964, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 44, Loss: 0.3206, Val_AUC: 0.9951, Val_AP: 0.9949, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 45, Loss: 0.3213, Val_AUC: 0.9966, Val_AP: 0.9964, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 46, Loss: 0.3193, Val_AUC: 0.9964, Val_AP: 0.9962, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 47, Loss: 0.3191, Val_AUC: 0.9962, Val_AP: 0.9959, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 48, Loss: 0.3181, Val_AUC: 0.9979, Val_AP: 0.9979, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 49, Loss: 0.3180, Val_AUC: 0.9971, Val_AP: 0.9970, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 50, Loss: 0.3193, Val_AUC: 0.9973, Val_AP: 0.9970, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 51, Loss: 0.3184, Val_AUC: 0.9977, Val_AP: 0.9977, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 52, Loss: 0.3178, Val_AUC: 0.9980, Val_AP: 0.9979, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 53, Loss: 0.3171, Val_AUC: 0.9937, Val_AP: 0.9923, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 54, Loss: 0.3172, Val_AUC: 0.9975, Val_AP: 0.9975, Test_AUC: 0.9922, Test_AP: 0.9871
+Epoch: 55, Loss: 0.3173, Val_AUC: 0.9966, Val_AP: 0.9962, Test_AUC: 0.9922, Test_AP: 0.9871
+Early Stop! Best Val AUC: 0.9980, Best Val AP: 0.9980, Test AUC: 0.9922, Test AP: 0.9871
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9887, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3534, Val_AUC: 0.9933, Val_AP: 0.9915, Test_AUC: 0.9910, Test_AP: 0.9891
+Epoch: 06, Loss: 0.3484, Val_AUC: 0.9933, Val_AP: 0.9915, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 07, Loss: 0.3487, Val_AUC: 0.9904, Val_AP: 0.9813, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 08, Loss: 0.3449, Val_AUC: 0.9929, Val_AP: 0.9898, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 09, Loss: 0.3437, Val_AUC: 0.9930, Val_AP: 0.9909, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 10, Loss: 0.3432, Val_AUC: 0.9917, Val_AP: 0.9892, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 11, Loss: 0.3413, Val_AUC: 0.9925, Val_AP: 0.9896, Test_AUC: 0.9916, Test_AP: 0.9901
+Epoch: 12, Loss: 0.3407, Val_AUC: 0.9934, Val_AP: 0.9909, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 13, Loss: 0.3384, Val_AUC: 0.9895, Val_AP: 0.9769, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 14, Loss: 0.3389, Val_AUC: 0.9932, Val_AP: 0.9912, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 15, Loss: 0.3360, Val_AUC: 0.9916, Val_AP: 0.9878, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 16, Loss: 0.3351, Val_AUC: 0.9933, Val_AP: 0.9888, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 17, Loss: 0.3327, Val_AUC: 0.9924, Val_AP: 0.9861, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 18, Loss: 0.3349, Val_AUC: 0.9893, Val_AP: 0.9783, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 19, Loss: 0.3324, Val_AUC: 0.9891, Val_AP: 0.9753, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 20, Loss: 0.3319, Val_AUC: 0.9925, Val_AP: 0.9866, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 21, Loss: 0.3306, Val_AUC: 0.9920, Val_AP: 0.9844, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 22, Loss: 0.3284, Val_AUC: 0.9926, Val_AP: 0.9875, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 23, Loss: 0.3287, Val_AUC: 0.9950, Val_AP: 0.9939, Test_AUC: 0.9942, Test_AP: 0.9930
+Epoch: 24, Loss: 0.3294, Val_AUC: 0.9936, Val_AP: 0.9920, Test_AUC: 0.9942, Test_AP: 0.9930
+Epoch: 25, Loss: 0.3288, Val_AUC: 0.9926, Val_AP: 0.9902, Test_AUC: 0.9942, Test_AP: 0.9930
+Epoch: 26, Loss: 0.3277, Val_AUC: 0.9959, Val_AP: 0.9956, Test_AUC: 0.9941, Test_AP: 0.9919
+Epoch: 27, Loss: 0.3265, Val_AUC: 0.9932, Val_AP: 0.9904, Test_AUC: 0.9941, Test_AP: 0.9919
+Epoch: 28, Loss: 0.3273, Val_AUC: 0.9952, Val_AP: 0.9946, Test_AUC: 0.9941, Test_AP: 0.9919
+Epoch: 29, Loss: 0.3264, Val_AUC: 0.9966, Val_AP: 0.9963, Test_AUC: 0.9935, Test_AP: 0.9911
+Epoch: 30, Loss: 0.3255, Val_AUC: 0.9960, Val_AP: 0.9957, Test_AUC: 0.9935, Test_AP: 0.9911
+Epoch: 31, Loss: 0.3242, Val_AUC: 0.9919, Val_AP: 0.9902, Test_AUC: 0.9935, Test_AP: 0.9911
+Epoch: 32, Loss: 0.3267, Val_AUC: 0.9953, Val_AP: 0.9947, Test_AUC: 0.9935, Test_AP: 0.9911
+Epoch: 33, Loss: 0.3231, Val_AUC: 0.9968, Val_AP: 0.9966, Test_AUC: 0.9934, Test_AP: 0.9880
+Epoch: 34, Loss: 0.3245, Val_AUC: 0.9971, Val_AP: 0.9969, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 35, Loss: 0.3222, Val_AUC: 0.9948, Val_AP: 0.9941, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 36, Loss: 0.3216, Val_AUC: 0.9944, Val_AP: 0.9935, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 37, Loss: 0.3216, Val_AUC: 0.9948, Val_AP: 0.9940, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 38, Loss: 0.3222, Val_AUC: 0.9964, Val_AP: 0.9963, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 39, Loss: 0.3214, Val_AUC: 0.9957, Val_AP: 0.9951, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 40, Loss: 0.3227, Val_AUC: 0.9966, Val_AP: 0.9964, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 41, Loss: 0.3197, Val_AUC: 0.9971, Val_AP: 0.9968, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 42, Loss: 0.3197, Val_AUC: 0.9913, Val_AP: 0.9878, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 43, Loss: 0.3189, Val_AUC: 0.9965, Val_AP: 0.9963, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 44, Loss: 0.3199, Val_AUC: 0.9963, Val_AP: 0.9961, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 45, Loss: 0.3192, Val_AUC: 0.9857, Val_AP: 0.9734, Test_AUC: 0.9938, Test_AP: 0.9895
+Epoch: 46, Loss: 0.3201, Val_AUC: 0.9978, Val_AP: 0.9977, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 47, Loss: 0.3196, Val_AUC: 0.9909, Val_AP: 0.9863, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 48, Loss: 0.3188, Val_AUC: 0.9955, Val_AP: 0.9944, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 49, Loss: 0.3180, Val_AUC: 0.9963, Val_AP: 0.9961, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 50, Loss: 0.3182, Val_AUC: 0.9961, Val_AP: 0.9960, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 51, Loss: 0.3180, Val_AUC: 0.9964, Val_AP: 0.9959, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 52, Loss: 0.3168, Val_AUC: 0.9970, Val_AP: 0.9968, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 53, Loss: 0.3168, Val_AUC: 0.9910, Val_AP: 0.9869, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 54, Loss: 0.3165, Val_AUC: 0.9954, Val_AP: 0.9945, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 55, Loss: 0.3169, Val_AUC: 0.9973, Val_AP: 0.9972, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 56, Loss: 0.3164, Val_AUC: 0.9957, Val_AP: 0.9948, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 57, Loss: 0.3162, Val_AUC: 0.9951, Val_AP: 0.9948, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 58, Loss: 0.3180, Val_AUC: 0.9954, Val_AP: 0.9952, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 59, Loss: 0.3166, Val_AUC: 0.9776, Val_AP: 0.9658, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 60, Loss: 0.3189, Val_AUC: 0.9963, Val_AP: 0.9960, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 61, Loss: 0.3152, Val_AUC: 0.9913, Val_AP: 0.9866, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 62, Loss: 0.3155, Val_AUC: 0.9897, Val_AP: 0.9821, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 63, Loss: 0.3147, Val_AUC: 0.9929, Val_AP: 0.9909, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 64, Loss: 0.3155, Val_AUC: 0.9918, Val_AP: 0.9886, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 65, Loss: 0.3152, Val_AUC: 0.9938, Val_AP: 0.9930, Test_AUC: 0.9920, Test_AP: 0.9858
+Epoch: 66, Loss: 0.3140, Val_AUC: 0.9935, Val_AP: 0.9919, Test_AUC: 0.9920, Test_AP: 0.9858
+Early Stop! Best Val AUC: 0.9978, Best Val AP: 0.9977, Test AUC: 0.9920, Test AP: 0.9858
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.4992, Val_AUC: 0.9894, Val_AP: 0.9876, Test_AUC: 0.9800, Test_AP: 0.9753
+Epoch: 02, Loss: 0.3866, Val_AUC: 0.9925, Val_AP: 0.9909, Test_AUC: 0.9851, Test_AP: 0.9785
+Epoch: 03, Loss: 0.3643, Val_AUC: 0.9926, Val_AP: 0.9903, Test_AUC: 0.9879, Test_AP: 0.9842
+Epoch: 04, Loss: 0.3585, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9887, Test_AP: 0.9863
+Epoch: 05, Loss: 0.3530, Val_AUC: 0.9938, Val_AP: 0.9920, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 06, Loss: 0.3473, Val_AUC: 0.9933, Val_AP: 0.9914, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 07, Loss: 0.3495, Val_AUC: 0.9904, Val_AP: 0.9846, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 08, Loss: 0.3487, Val_AUC: 0.9929, Val_AP: 0.9891, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 09, Loss: 0.3449, Val_AUC: 0.9925, Val_AP: 0.9900, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 10, Loss: 0.3432, Val_AUC: 0.9934, Val_AP: 0.9917, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 11, Loss: 0.3396, Val_AUC: 0.9931, Val_AP: 0.9906, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 12, Loss: 0.3398, Val_AUC: 0.9934, Val_AP: 0.9907, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 13, Loss: 0.3368, Val_AUC: 0.9928, Val_AP: 0.9881, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 14, Loss: 0.3374, Val_AUC: 0.9930, Val_AP: 0.9912, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 15, Loss: 0.3362, Val_AUC: 0.9937, Val_AP: 0.9918, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 16, Loss: 0.3341, Val_AUC: 0.9932, Val_AP: 0.9899, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 17, Loss: 0.3344, Val_AUC: 0.9925, Val_AP: 0.9874, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 18, Loss: 0.3359, Val_AUC: 0.9906, Val_AP: 0.9795, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 19, Loss: 0.3320, Val_AUC: 0.9923, Val_AP: 0.9894, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 20, Loss: 0.3316, Val_AUC: 0.9919, Val_AP: 0.9834, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 21, Loss: 0.3312, Val_AUC: 0.9914, Val_AP: 0.9852, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 22, Loss: 0.3304, Val_AUC: 0.9930, Val_AP: 0.9878, Test_AUC: 0.9901, Test_AP: 0.9878
+Epoch: 23, Loss: 0.3292, Val_AUC: 0.9940, Val_AP: 0.9921, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 24, Loss: 0.3299, Val_AUC: 0.9928, Val_AP: 0.9899, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 25, Loss: 0.3317, Val_AUC: 0.9909, Val_AP: 0.9838, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 26, Loss: 0.3281, Val_AUC: 0.9939, Val_AP: 0.9922, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 27, Loss: 0.3265, Val_AUC: 0.9920, Val_AP: 0.9832, Test_AUC: 0.9943, Test_AP: 0.9932
+Epoch: 28, Loss: 0.3269, Val_AUC: 0.9950, Val_AP: 0.9942, Test_AUC: 0.9934, Test_AP: 0.9922
+Epoch: 29, Loss: 0.3268, Val_AUC: 0.9934, Val_AP: 0.9911, Test_AUC: 0.9934, Test_AP: 0.9922
+Epoch: 30, Loss: 0.3251, Val_AUC: 0.9948, Val_AP: 0.9938, Test_AUC: 0.9934, Test_AP: 0.9922
+Epoch: 31, Loss: 0.3246, Val_AUC: 0.9920, Val_AP: 0.9904, Test_AUC: 0.9934, Test_AP: 0.9922
+Epoch: 32, Loss: 0.3263, Val_AUC: 0.9936, Val_AP: 0.9922, Test_AUC: 0.9934, Test_AP: 0.9922
+Epoch: 33, Loss: 0.3227, Val_AUC: 0.9959, Val_AP: 0.9956, Test_AUC: 0.9937, Test_AP: 0.9871
+Epoch: 34, Loss: 0.3252, Val_AUC: 0.9953, Val_AP: 0.9950, Test_AUC: 0.9937, Test_AP: 0.9871
+Epoch: 35, Loss: 0.3230, Val_AUC: 0.9962, Val_AP: 0.9960, Test_AUC: 0.9922, Test_AP: 0.9857
+Epoch: 36, Loss: 0.3213, Val_AUC: 0.9966, Val_AP: 0.9963, Test_AUC: 0.9919, Test_AP: 0.9838
+Epoch: 37, Loss: 0.3214, Val_AUC: 0.9928, Val_AP: 0.9913, Test_AUC: 0.9919, Test_AP: 0.9838
+Epoch: 38, Loss: 0.3223, Val_AUC: 0.9964, Val_AP: 0.9963, Test_AUC: 0.9919, Test_AP: 0.9838
+Epoch: 39, Loss: 0.3224, Val_AUC: 0.9965, Val_AP: 0.9963, Test_AUC: 0.9919, Test_AP: 0.9838
+Epoch: 40, Loss: 0.3212, Val_AUC: 0.9969, Val_AP: 0.9966, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 41, Loss: 0.3201, Val_AUC: 0.9966, Val_AP: 0.9962, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 42, Loss: 0.3206, Val_AUC: 0.9962, Val_AP: 0.9954, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 43, Loss: 0.3196, Val_AUC: 0.9963, Val_AP: 0.9961, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 44, Loss: 0.3202, Val_AUC: 0.9938, Val_AP: 0.9930, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 45, Loss: 0.3183, Val_AUC: 0.9954, Val_AP: 0.9948, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 46, Loss: 0.3201, Val_AUC: 0.9952, Val_AP: 0.9947, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 47, Loss: 0.3192, Val_AUC: 0.9964, Val_AP: 0.9962, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 48, Loss: 0.3181, Val_AUC: 0.9953, Val_AP: 0.9940, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 49, Loss: 0.3183, Val_AUC: 0.9950, Val_AP: 0.9945, Test_AUC: 0.9939, Test_AP: 0.9888
+Epoch: 50, Loss: 0.3218, Val_AUC: 0.9971, Val_AP: 0.9969, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 51, Loss: 0.3177, Val_AUC: 0.9956, Val_AP: 0.9947, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 52, Loss: 0.3168, Val_AUC: 0.9968, Val_AP: 0.9965, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 53, Loss: 0.3165, Val_AUC: 0.9913, Val_AP: 0.9874, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 54, Loss: 0.3171, Val_AUC: 0.9922, Val_AP: 0.9892, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 55, Loss: 0.3179, Val_AUC: 0.9949, Val_AP: 0.9944, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 56, Loss: 0.3168, Val_AUC: 0.9930, Val_AP: 0.9910, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 57, Loss: 0.3163, Val_AUC: 0.9953, Val_AP: 0.9944, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 58, Loss: 0.3208, Val_AUC: 0.9915, Val_AP: 0.9894, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 59, Loss: 0.3176, Val_AUC: 0.9908, Val_AP: 0.9882, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 60, Loss: 0.3162, Val_AUC: 0.9957, Val_AP: 0.9954, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 61, Loss: 0.3156, Val_AUC: 0.9890, Val_AP: 0.9825, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 62, Loss: 0.3156, Val_AUC: 0.9925, Val_AP: 0.9894, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 63, Loss: 0.3152, Val_AUC: 0.9937, Val_AP: 0.9925, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 64, Loss: 0.3151, Val_AUC: 0.9907, Val_AP: 0.9865, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 65, Loss: 0.3152, Val_AUC: 0.9888, Val_AP: 0.9835, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 66, Loss: 0.3161, Val_AUC: 0.9914, Val_AP: 0.9871, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 67, Loss: 0.3154, Val_AUC: 0.9937, Val_AP: 0.9925, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 68, Loss: 0.3146, Val_AUC: 0.9913, Val_AP: 0.9886, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 69, Loss: 0.3143, Val_AUC: 0.9907, Val_AP: 0.9863, Test_AUC: 0.9952, Test_AP: 0.9946
+Epoch: 70, Loss: 0.3139, Val_AUC: 0.9859, Val_AP: 0.9748, Test_AUC: 0.9952, Test_AP: 0.9946
+Early Stop! Best Val AUC: 0.9971, Best Val AP: 0.9969, Test AUC: 0.9952, Test AP: 0.9946
+Run:  1, Test AUC: 0.9911, Test AP: 0.9850
+Run:  2, Test AUC: 0.9934, Test AP: 0.9903
+Run:  3, Test AUC: 0.9941, Test AP: 0.9926
+Run:  4, Test AUC: 0.9923, Test AP: 0.9832
+Run:  5, Test AUC: 0.9927, Test AP: 0.9884
+Run:  6, Test AUC: 0.9920, Test AP: 0.9832
+Run:  7, Test AUC: 0.9901, Test AP: 0.9879
+Run:  8, Test AUC: 0.9922, Test AP: 0.9871
+Run:  9, Test AUC: 0.9920, Test AP: 0.9858
+Run: 10, Test AUC: 0.9952, Test AP: 0.9946
+The average AUC for test data is 0.9925
+The average AP for test data is 0.9878
+The std of AUC for test data is 0.0014
+The std of AP for test data is 0.0036
+6043

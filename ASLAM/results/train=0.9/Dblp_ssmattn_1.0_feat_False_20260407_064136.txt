@@ -1,0 +1,71 @@
+Namespace(model_variant='ssmattn', runs=1, lr=0.001, epochs=8, cuda='cuda:0', root='G:/myProject/ASLAM-3/datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, fusion_dropout=0.1, ssm_hidden=32, dataset='dblp', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+ASLAMSSMAttn(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (token_embedding): Embedding(5, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.5170, Val_AUC: 0.9866, Val_AP: 0.9862, Test_AUC: 0.9893, Test_AP: 0.9893
+Epoch: 02, Loss: 0.3997, Val_AUC: 0.9895, Val_AP: 0.9888, Test_AUC: 0.9939, Test_AP: 0.9936
+Epoch: 03, Loss: 0.3764, Val_AUC: 0.9985, Val_AP: 0.9985, Test_AUC: 0.9974, Test_AP: 0.9972
+Epoch: 04, Loss: 0.3622, Val_AUC: 0.9984, Val_AP: 0.9983, Test_AUC: 0.9974, Test_AP: 0.9972
+Epoch: 05, Loss: 0.3580, Val_AUC: 0.9999, Val_AP: 0.9999, Test_AUC: 0.9980, Test_AP: 0.9979
+Epoch: 06, Loss: 0.3516, Val_AUC: 0.9993, Val_AP: 0.9993, Test_AUC: 0.9980, Test_AP: 0.9979
+Epoch: 07, Loss: 0.3506, Val_AUC: 0.9998, Val_AP: 0.9998, Test_AUC: 0.9980, Test_AP: 0.9979
+Run:  1, Test AUC: 0.9980, Test AP: 0.9979
+The average AUC for test data is 0.9980
+The average AP for test data is 0.9979
+The std of AUC for test data is 0.0000
+The std of AP for test data is 0.0000
+104

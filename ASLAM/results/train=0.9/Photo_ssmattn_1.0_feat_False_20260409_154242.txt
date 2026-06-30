@@ -1,0 +1,7 @@
+Namespace(model_variant='ssmattn', runs=10, lr=0.001, epochs=401, cuda='cuda:0', root='G:\\myProject\\ASLAM-3\\datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, fusion_dropout=0.1, ssm_hidden=32, dataset='photo', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+prepare_experiment: load_data
+prepare_experiment: construct_knn_graph
+prepare_experiment: train_node2vec_emb
+prepare_experiment: shxgb
+prepare_experiment: make_split_bundle
+prepare_experiment: build train_dataset drnl

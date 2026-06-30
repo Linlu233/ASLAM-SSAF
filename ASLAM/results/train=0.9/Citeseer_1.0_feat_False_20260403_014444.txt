@@ -1,0 +1,87 @@
+Namespace(runs=1, lr=0.001, epochs=51, cuda='cuda:0', root='G:/myProject/ASLAM-3/datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, dataset='citeseer', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+ASLAM(
+  (dgcnn): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(51, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (dgcnn_2): DGCNN(
+    (convs): ModuleList(
+      (0): GCNConv(33, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (lin1): Linear(in_features=32, out_features=16, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+  (att_1): Linear(in_features=32, out_features=16, bias=True)
+  (att_2): Linear(in_features=32, out_features=16, bias=True)
+  (query): Linear(in_features=16, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.5556, Val_AUC: 0.8824, Val_AP: 0.9147, Test_AUC: 0.8739, Test_AP: 0.8961
+Epoch: 02, Loss: 0.4977, Val_AUC: 0.8930, Val_AP: 0.9233, Test_AUC: 0.8814, Test_AP: 0.9066
+Epoch: 03, Loss: 0.4893, Val_AUC: 0.8958, Val_AP: 0.9268, Test_AUC: 0.8877, Test_AP: 0.9142
+Epoch: 04, Loss: 0.4831, Val_AUC: 0.9087, Val_AP: 0.9347, Test_AUC: 0.8921, Test_AP: 0.9192
+Epoch: 05, Loss: 0.4806, Val_AUC: 0.9235, Val_AP: 0.9409, Test_AUC: 0.9104, Test_AP: 0.9279
+Epoch: 06, Loss: 0.4771, Val_AUC: 0.9159, Val_AP: 0.9375, Test_AUC: 0.9104, Test_AP: 0.9279
+Epoch: 07, Loss: 0.4717, Val_AUC: 0.9156, Val_AP: 0.9367, Test_AUC: 0.9104, Test_AP: 0.9279
+Epoch: 08, Loss: 0.4703, Val_AUC: 0.9233, Val_AP: 0.9424, Test_AUC: 0.9104, Test_AP: 0.9279
+Epoch: 09, Loss: 0.4669, Val_AUC: 0.9289, Val_AP: 0.9449, Test_AUC: 0.9201, Test_AP: 0.9345
+Epoch: 10, Loss: 0.4680, Val_AUC: 0.9335, Val_AP: 0.9468, Test_AUC: 0.9237, Test_AP: 0.9364
+Epoch: 11, Loss: 0.4643, Val_AUC: 0.9233, Val_AP: 0.9429, Test_AUC: 0.9237, Test_AP: 0.9364
+Epoch: 12, Loss: 0.4637, Val_AUC: 0.9321, Val_AP: 0.9465, Test_AUC: 0.9237, Test_AP: 0.9364
+Epoch: 13, Loss: 0.4615, Val_AUC: 0.9354, Val_AP: 0.9486, Test_AUC: 0.9240, Test_AP: 0.9366
+Epoch: 14, Loss: 0.4611, Val_AUC: 0.9354, Val_AP: 0.9489, Test_AUC: 0.9253, Test_AP: 0.9377
+Epoch: 15, Loss: 0.4603, Val_AUC: 0.9377, Val_AP: 0.9493, Test_AUC: 0.9291, Test_AP: 0.9398
+Epoch: 16, Loss: 0.4617, Val_AUC: 0.9381, Val_AP: 0.9508, Test_AUC: 0.9250, Test_AP: 0.9372
+Epoch: 17, Loss: 0.4591, Val_AUC: 0.9411, Val_AP: 0.9529, Test_AUC: 0.9296, Test_AP: 0.9396
+Epoch: 18, Loss: 0.4590, Val_AUC: 0.9372, Val_AP: 0.9506, Test_AUC: 0.9296, Test_AP: 0.9396
+Epoch: 19, Loss: 0.4580, Val_AUC: 0.9373, Val_AP: 0.9498, Test_AUC: 0.9296, Test_AP: 0.9396
+Epoch: 20, Loss: 0.4579, Val_AUC: 0.9371, Val_AP: 0.9503, Test_AUC: 0.9296, Test_AP: 0.9396
+Epoch: 21, Loss: 0.4558, Val_AUC: 0.9472, Val_AP: 0.9571, Test_AUC: 0.9358, Test_AP: 0.9433
+Epoch: 22, Loss: 0.4557, Val_AUC: 0.9440, Val_AP: 0.9548, Test_AUC: 0.9358, Test_AP: 0.9433
+Epoch: 23, Loss: 0.4549, Val_AUC: 0.9440, Val_AP: 0.9548, Test_AUC: 0.9358, Test_AP: 0.9433
+Epoch: 24, Loss: 0.4533, Val_AUC: 0.9378, Val_AP: 0.9505, Test_AUC: 0.9358, Test_AP: 0.9433
+Epoch: 25, Loss: 0.4536, Val_AUC: 0.9473, Val_AP: 0.9562, Test_AUC: 0.9432, Test_AP: 0.9484
+Epoch: 26, Loss: 0.4525, Val_AUC: 0.9514, Val_AP: 0.9591, Test_AUC: 0.9485, Test_AP: 0.9516
+Epoch: 27, Loss: 0.4513, Val_AUC: 0.9596, Val_AP: 0.9642, Test_AUC: 0.9538, Test_AP: 0.9546
+Epoch: 28, Loss: 0.4510, Val_AUC: 0.9589, Val_AP: 0.9636, Test_AUC: 0.9538, Test_AP: 0.9546
+Epoch: 29, Loss: 0.4482, Val_AUC: 0.9606, Val_AP: 0.9646, Test_AUC: 0.9543, Test_AP: 0.9550
+Epoch: 30, Loss: 0.4456, Val_AUC: 0.9628, Val_AP: 0.9655, Test_AUC: 0.9557, Test_AP: 0.9563
+Epoch: 31, Loss: 0.4437, Val_AUC: 0.9633, Val_AP: 0.9659, Test_AUC: 0.9560, Test_AP: 0.9558
+Epoch: 32, Loss: 0.4405, Val_AUC: 0.9629, Val_AP: 0.9660, Test_AUC: 0.9560, Test_AP: 0.9558
+Epoch: 33, Loss: 0.4397, Val_AUC: 0.9629, Val_AP: 0.9660, Test_AUC: 0.9560, Test_AP: 0.9558
+Epoch: 34, Loss: 0.4377, Val_AUC: 0.9652, Val_AP: 0.9673, Test_AUC: 0.9563, Test_AP: 0.9558
+Epoch: 35, Loss: 0.4358, Val_AUC: 0.9647, Val_AP: 0.9667, Test_AUC: 0.9563, Test_AP: 0.9558
+Epoch: 36, Loss: 0.4353, Val_AUC: 0.9674, Val_AP: 0.9688, Test_AUC: 0.9579, Test_AP: 0.9568
+Epoch: 37, Loss: 0.4336, Val_AUC: 0.9690, Val_AP: 0.9697, Test_AUC: 0.9588, Test_AP: 0.9576
+Epoch: 38, Loss: 0.4335, Val_AUC: 0.9693, Val_AP: 0.9700, Test_AUC: 0.9614, Test_AP: 0.9602
+Epoch: 39, Loss: 0.4310, Val_AUC: 0.9678, Val_AP: 0.9685, Test_AUC: 0.9614, Test_AP: 0.9602
+Epoch: 40, Loss: 0.4311, Val_AUC: 0.9696, Val_AP: 0.9702, Test_AUC: 0.9616, Test_AP: 0.9605
+Epoch: 41, Loss: 0.4300, Val_AUC: 0.9714, Val_AP: 0.9717, Test_AUC: 0.9623, Test_AP: 0.9609
+Epoch: 42, Loss: 0.4291, Val_AUC: 0.9728, Val_AP: 0.9728, Test_AUC: 0.9627, Test_AP: 0.9615
+Epoch: 43, Loss: 0.4279, Val_AUC: 0.9717, Val_AP: 0.9717, Test_AUC: 0.9627, Test_AP: 0.9615
+Epoch: 44, Loss: 0.4277, Val_AUC: 0.9718, Val_AP: 0.9719, Test_AUC: 0.9627, Test_AP: 0.9615
+Epoch: 45, Loss: 0.4273, Val_AUC: 0.9715, Val_AP: 0.9714, Test_AUC: 0.9627, Test_AP: 0.9615
+Epoch: 46, Loss: 0.4273, Val_AUC: 0.9738, Val_AP: 0.9736, Test_AUC: 0.9644, Test_AP: 0.9628
+Epoch: 47, Loss: 0.4266, Val_AUC: 0.9718, Val_AP: 0.9716, Test_AUC: 0.9644, Test_AP: 0.9628
+Epoch: 48, Loss: 0.4269, Val_AUC: 0.9751, Val_AP: 0.9745, Test_AUC: 0.9637, Test_AP: 0.9623
+Epoch: 49, Loss: 0.4260, Val_AUC: 0.9739, Val_AP: 0.9735, Test_AUC: 0.9637, Test_AP: 0.9623
+Epoch: 50, Loss: 0.4264, Val_AUC: 0.9729, Val_AP: 0.9727, Test_AUC: 0.9637, Test_AP: 0.9623
+Run:  1, Test AUC: 0.9637, Test AP: 0.9623
+The average AUC for test data is 0.9637
+The average AP for test data is 0.9623
+The std of AUC for test data is 0.0000
+The std of AP for test data is 0.0000
+379

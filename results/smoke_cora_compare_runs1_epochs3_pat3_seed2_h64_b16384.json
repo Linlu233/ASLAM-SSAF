@@ -1,0 +1,155 @@
+{
+  "args": {
+    "datasets": "CoRA",
+    "model": "compare",
+    "root": "datasets",
+    "runs": 1,
+    "epochs": 3,
+    "patience": 3,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "dropout": 0.25,
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "batch_size": 16384,
+    "train_ratio": 0.85,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "seed": 2,
+    "device": "cuda:0",
+    "normalize_features": false,
+    "results_dir": "results",
+    "summary_name": "smoke_cora_compare_runs1_epochs3_pat3_seed2_h64_b16384.json"
+  },
+  "device": "cuda:0",
+  "datasets": {
+    "CoRA": {
+      "aslam": {
+        "runs": [
+          {
+            "dataset": "CoRA",
+            "model": "aslam",
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.7575742408806382,
+              "AP": 0.7795174736532218
+            },
+            "test": {
+              "AUC": 0.7674362940347355,
+              "AP": 0.7841102666720445
+            },
+            "history": [
+              {
+                "epoch": 1,
+                "loss": 0.6824033814695384,
+                "val": {
+                  "AUC": 0.6919796599442336,
+                  "AP": 0.7150610699512777
+                }
+              },
+              {
+                "epoch": 2,
+                "loss": 0.6026681826788214,
+                "val": {
+                  "AUC": 0.713621040123093,
+                  "AP": 0.7427450671220733
+                }
+              },
+              {
+                "epoch": 3,
+                "loss": 0.5291084585346627,
+                "val": {
+                  "AUC": 0.7575742408806382,
+                  "AP": 0.7795174736532218
+                }
+              }
+            ],
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7674362940347355,
+          "std": 0.0
+        },
+        "test_ap": {
+          "mean": 0.7841102666720445,
+          "std": 0.0
+        },
+        "best_epoch": {
+          "mean": 3.0,
+          "std": 0.0
+        }
+      },
+      "aslam_ssmattn": {
+        "runs": [
+          {
+            "dataset": "CoRA",
+            "model": "aslam_ssmattn",
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.876547340922778,
+              "AP": 0.9062962179884076
+            },
+            "test": {
+              "AUC": 0.8843191619212456,
+              "AP": 0.9064884925335723
+            },
+            "history": [
+              {
+                "epoch": 1,
+                "loss": 0.6737470682248228,
+                "val": {
+                  "AUC": 0.8436126121907941,
+                  "AP": 0.8876111403225719
+                }
+              },
+              {
+                "epoch": 2,
+                "loss": 0.5833143746549951,
+                "val": {
+                  "AUC": 0.8540591311479909,
+                  "AP": 0.8983037090481681
+                }
+              },
+              {
+                "epoch": 3,
+                "loss": 0.47120215021441336,
+                "val": {
+                  "AUC": 0.876547340922778,
+                  "AP": 0.9062962179884076
+                }
+              }
+            ],
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8843191619212456,
+          "std": 0.0
+        },
+        "test_ap": {
+          "mean": 0.9064884925335723,
+          "std": 0.0
+        },
+        "best_epoch": {
+          "mean": 3.0,
+          "std": 0.0
+        }
+      },
+      "delta_aslam_ssmattn": {
+        "auc_mean_gain": 0.11688286788651014,
+        "ap_mean_gain": 0.1223782258615278
+      }
+    }
+  },
+  "elapsed_seconds": 192.49744987487793
+}

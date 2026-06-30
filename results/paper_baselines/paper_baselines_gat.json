@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "gat",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_gat.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7414049651499727,
+              "AP": 0.7321440108963111
+            },
+            "test": {
+              "AUC": 0.7276678898099012,
+              "AP": 0.7272532376141991
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.6856449212937583,
+              "AP": 0.6821235142246553
+            },
+            "test": {
+              "AUC": 0.716001734816699,
+              "AP": 0.7242358027873752
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7445962878847208,
+              "AP": 0.7303149814069018
+            },
+            "test": {
+              "AUC": 0.6946137839958285,
+              "AP": 0.6678397374953018
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7482574986294933,
+              "AP": 0.734589534263563
+            },
+            "test": {
+              "AUC": 0.7252508418246763,
+              "AP": 0.7306326781344059
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 52,
+            "val": {
+              "AUC": 0.8229892708904377,
+              "AP": 0.8171338242547886
+            },
+            "test": {
+              "AUC": 0.819486474764752,
+              "AP": 0.8278838415066051
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7300493382410524,
+              "AP": 0.7295671326890669
+            },
+            "test": {
+              "AUC": 0.6830158521312419,
+              "AP": 0.6872068087716611
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.7435390398621662,
+              "AP": 0.7312096013680986
+            },
+            "test": {
+              "AUC": 0.6834446832253945,
+              "AP": 0.6857503251514625
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 36,
+            "val": {
+              "AUC": 0.8527292661915576,
+              "AP": 0.8770848359285794
+            },
+            "test": {
+              "AUC": 0.7894244404485183,
+              "AP": 0.8240974150133286
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 51,
+            "val": {
+              "AUC": 0.8418239486255775,
+              "AP": 0.8493009014570093
+            },
+            "test": {
+              "AUC": 0.8241110282687407,
+              "AP": 0.8347463394825969
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7174015193045657,
+              "AP": 0.7006526240898577
+            },
+            "test": {
+              "AUC": 0.6993504183539709,
+              "AP": 0.6838332900615088
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Citeseer",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7362367147639723,
+          "std": 0.05176624991085698
+        },
+        "test_ap": {
+          "mean": 0.7393479476018444,
+          "std": 0.06193484444741263
+        },
+        "best_epoch": {
+          "mean": 15.0,
+          "std": 20.904544960366874
+        },
+        "val_auc": {
+          "mean": 0.7628436056073303,
+          "std": 0.053303763786231695
+        },
+        "val_ap": {
+          "mean": 0.7584120960578832,
+          "std": 0.06210259418670522
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    },
+    "DBLP": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 126,
+            "val": {
+              "AUC": 0.8805849690082644,
+              "AP": 0.9024486226424425
+            },
+            "test": {
+              "AUC": 0.8184965779958677,
+              "AP": 0.855522733759718
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7997481921487603,
+              "AP": 0.8020941209021062
+            },
+            "test": {
+              "AUC": 0.7745593362603307,
+              "AP": 0.7710061961221846
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 68,
+            "val": {
+              "AUC": 0.8213778409090909,
+              "AP": 0.8344500270195803
+            },
+            "test": {
+              "AUC": 0.844855694731405,
+              "AP": 0.868453617487011
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.8581805268595042,
+              "AP": 0.8724533924327069
+            },
+            "test": {
+              "AUC": 0.7856727789256199,
+              "AP": 0.7947477903203728
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 4,
+            "val": {
+              "AUC": 0.8233471074380164,
+              "AP": 0.8293782291587584
+            },
+            "test": {
+              "AUC": 0.7706934400826446,
+              "AP": 0.7789989730367806
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.8445247933884298,
+              "AP": 0.8540699739612843
+            },
+            "test": {
+              "AUC": 0.8468249612603306,
+              "AP": 0.858816952690161
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 52,
+            "val": {
+              "AUC": 0.8420067148760331,
+              "AP": 0.8610715987961303
+            },
+            "test": {
+              "AUC": 0.8385443569214875,
+              "AP": 0.8380473626011744
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 2,
+            "val": {
+              "AUC": 0.7950025826446281,
+              "AP": 0.805143207309976
+            },
+            "test": {
+              "AUC": 0.818068827479339,
+              "AP": 0.8258643663044283
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 3,
+            "val": {
+              "AUC": 0.7991025309917356,
+              "AP": 0.8080647135163077
+            },
+            "test": {
+              "AUC": 0.7798456869834711,
+              "AP": 0.7868677047011609
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 16,
+            "val": {
+              "AUC": 0.8303525309917354,
+              "AP": 0.846764447573784
+            },
+            "test": {
+              "AUC": 0.8004099948347108,
+              "AP": 0.8274468452360162
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "DBLP",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8077971655475207,
+          "std": 0.02805113426225705
+        },
+        "test_ap": {
+          "mean": 0.8205772542259007,
+          "std": 0.033683074328196595
+        },
+        "best_epoch": {
+          "mean": 27.8,
+          "std": 39.72102717705069
+        },
+        "val_auc": {
+          "mean": 0.8294227789256198,
+          "std": 0.026302379631720794
+        },
+        "val_ap": {
+          "mean": 0.8415938333313078,
+          "std": 0.030709481765452427
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    },
+    "PubMed": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 238,
+            "val": {
+              "AUC": 0.9138013332638246,
+              "AP": 0.9195092710647912
+            },
+            "test": {
+              "AUC": 0.9130750555526594,
+              "AP": 0.9159342544338034
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.655347269285407,
+              "AP": 0.6920195320613376
+            },
+            "test": {
+              "AUC": 0.649735315403889,
+              "AP": 0.6766749061661658
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6395473435728343,
+              "AP": 0.6637404501379889
+            },
+            "test": {
+              "AUC": 0.6234927675650666,
+              "AP": 0.6496576020195812
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6188796364477577,
+              "AP": 0.6083404829260756
+            },
+            "test": {
+              "AUC": 0.6247882411229784,
+              "AP": 0.616010541772551
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.5668009528665824,
+              "AP": 0.5783050472167666
+            },
+            "test": {
+              "AUC": 0.5821304475410211,
+              "AP": 0.5848881493740716
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6423151000599513,
+              "AP": 0.648536949739655
+            },
+            "test": {
+              "AUC": 0.6309985875614175,
+              "AP": 0.6350395978081522
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.5686523348408034,
+              "AP": 0.5907817170251531
+            },
+            "test": {
+              "AUC": 0.5758072852181053,
+              "AP": 0.5894498727465625
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 294,
+            "val": {
+              "AUC": 0.9157528036987319,
+              "AP": 0.9168706246059225
+            },
+            "test": {
+              "AUC": 0.9129647342432456,
+              "AP": 0.9110967718755735
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 354,
+            "val": {
+              "AUC": 0.9174220307836671,
+              "AP": 0.9183857381766134
+            },
+            "test": {
+              "AUC": 0.9152353575571167,
+              "AP": 0.9207947401801209
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6173578438400082,
+              "AP": 0.6378620127678449
+            },
+            "test": {
+              "AUC": 0.6049981916876279,
+              "AP": 0.6226163185206662
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "PubMed",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7033225983453126,
+          "std": 0.1393237682464317
+        },
+        "test_ap": {
+          "mean": 0.7122162754897248,
+          "std": 0.13574247518355642
+        },
+        "best_epoch": {
+          "mean": 89.3,
+          "std": 137.35286673382538
+        },
+        "val_auc": {
+          "mean": 0.7055876648659568,
+          "std": 0.14021439806985284
+        },
+        "val_ap": {
+          "mean": 0.717435182572215,
+          "std": 0.13523958088859517
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    },
+    "amz_Photo": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 176,
+            "val": {
+              "AUC": 0.941211762945476,
+              "AP": 0.9289240072387006
+            },
+            "test": {
+              "AUC": 0.9481489790272166,
+              "AP": 0.9412519261595649
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 189,
+            "val": {
+              "AUC": 0.9454686210162787,
+              "AP": 0.93814764037494
+            },
+            "test": {
+              "AUC": 0.9414666368802816,
+              "AP": 0.9330248995722792
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 229,
+            "val": {
+              "AUC": 0.9421997804882764,
+              "AP": 0.9312052440291085
+            },
+            "test": {
+              "AUC": 0.9410502393828928,
+              "AP": 0.9316441789359164
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 193,
+            "val": {
+              "AUC": 0.9508969003694088,
+              "AP": 0.9460122446644534
+            },
+            "test": {
+              "AUC": 0.9453592418017963,
+              "AP": 0.9404675581280232
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 209,
+            "val": {
+              "AUC": 0.9430828509986018,
+              "AP": 0.9361683283072362
+            },
+            "test": {
+              "AUC": 0.9401759515223751,
+              "AP": 0.9355151921238289
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 109,
+            "val": {
+              "AUC": 0.9355747529538503,
+              "AP": 0.9253953589992883
+            },
+            "test": {
+              "AUC": 0.933099900609488,
+              "AP": 0.9225250081244479
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 207,
+            "val": {
+              "AUC": 0.9463048859854009,
+              "AP": 0.9370521845608845
+            },
+            "test": {
+              "AUC": 0.9435392073879938,
+              "AP": 0.9335420179431039
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 231,
+            "val": {
+              "AUC": 0.9435720867383941,
+              "AP": 0.938342231102583
+            },
+            "test": {
+              "AUC": 0.943379066548756,
+              "AP": 0.9379755702946346
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 175,
+            "val": {
+              "AUC": 0.9398546110707127,
+              "AP": 0.9302448795267322
+            },
+            "test": {
+              "AUC": 0.9448136833137138,
+              "AP": 0.9385355762280463
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 153,
+            "val": {
+              "AUC": 0.9428773719878888,
+              "AP": 0.9315981079024052
+            },
+            "test": {
+              "AUC": 0.9402704792046479,
+              "AP": 0.9297808572655042
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "amz_Photo",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9421303385679162,
+          "std": 0.0038448543599829913
+        },
+        "test_ap": {
+          "mean": 0.9344262784775349,
+          "std": 0.005361549133149418
+        },
+        "best_epoch": {
+          "mean": 187.1,
+          "std": 34.826570316354726
+        },
+        "val_auc": {
+          "mean": 0.9431043624554288,
+          "std": 0.003853356649966016
+        },
+        "val_ap": {
+          "mean": 0.9343090226706332,
+          "std": 0.005664809504800162
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    },
+    "CoRA": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6597500843600503,
+              "AP": 0.6669946932849871
+            },
+            "test": {
+              "AUC": 0.6532916968721392,
+              "AP": 0.6498608676837588
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 84,
+            "val": {
+              "AUC": 0.8803064086190946,
+              "AP": 0.8736632545116316
+            },
+            "test": {
+              "AUC": 0.8787736995232245,
+              "AP": 0.869613167779008
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 86,
+            "val": {
+              "AUC": 0.8699583769933593,
+              "AP": 0.8607394552179828
+            },
+            "test": {
+              "AUC": 0.8732551798685436,
+              "AP": 0.8618036304189305
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 80,
+            "val": {
+              "AUC": 0.878178032804354,
+              "AP": 0.8744259876077926
+            },
+            "test": {
+              "AUC": 0.8862013194073324,
+              "AP": 0.8846643704157624
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 82,
+            "val": {
+              "AUC": 0.8787871204403191,
+              "AP": 0.8717243506819118
+            },
+            "test": {
+              "AUC": 0.8852300688281138,
+              "AP": 0.8802179759968409
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 1,
+            "val": {
+              "AUC": 0.6657360152025691,
+              "AP": 0.6759410719110546
+            },
+            "test": {
+              "AUC": 0.6663394014714976,
+              "AP": 0.6599583222567289
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 12,
+            "val": {
+              "AUC": 0.6794146542691029,
+              "AP": 0.6844045296057659
+            },
+            "test": {
+              "AUC": 0.6635251461568145,
+              "AP": 0.6702179223702671
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 14,
+            "val": {
+              "AUC": 0.6611008542565094,
+              "AP": 0.6455083915074116
+            },
+            "test": {
+              "AUC": 0.6735428516764642,
+              "AP": 0.6665561421547666
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 15,
+            "val": {
+              "AUC": 0.6652187548940939,
+              "AP": 0.66095102851258
+            },
+            "test": {
+              "AUC": 0.6655109373410681,
+              "AP": 0.6570085703804707
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 81,
+            "val": {
+              "AUC": 0.8877212130410141,
+              "AP": 0.8840435053359618
+            },
+            "test": {
+              "AUC": 0.888151590570403,
+              "AP": 0.8849422293991454
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "CoRA",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7733821891715601,
+          "std": 0.10910758886321116
+        },
+        "test_ap": {
+          "mean": 0.768484319885568,
+          "std": 0.10807501696952437
+        },
+        "best_epoch": {
+          "mean": 45.6,
+          "std": 37.296648643008126
+        },
+        "val_auc": {
+          "mean": 0.7726171514880467,
+          "std": 0.1065626365123755
+        },
+        "val_ap": {
+          "mean": 0.7698396268177079,
+          "std": 0.10363957346337263
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    },
+    "Twitch_EN": {
+      "gat": {
+        "runs": [
+          {
+            "best_epoch": 378,
+            "val": {
+              "AUC": 0.8162635999738357,
+              "AP": 0.8303845073367018
+            },
+            "test": {
+              "AUC": 0.824131320308482,
+              "AP": 0.8354513336944693
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 390,
+            "val": {
+              "AUC": 0.8221204223735361,
+              "AP": 0.8301560639337779
+            },
+            "test": {
+              "AUC": 0.8233468729198437,
+              "AP": 0.8347653812495701
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 401,
+            "val": {
+              "AUC": 0.8297827723618006,
+              "AP": 0.8437636791005811
+            },
+            "test": {
+              "AUC": 0.8215020668497311,
+              "AP": 0.8346736641557887
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 156,
+            "val": {
+              "AUC": 0.7938078515921092,
+              "AP": 0.8067903146496727
+            },
+            "test": {
+              "AUC": 0.8069173253694742,
+              "AP": 0.819959415067128
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 281,
+            "val": {
+              "AUC": 0.8242988550563108,
+              "AP": 0.8333543962674086
+            },
+            "test": {
+              "AUC": 0.8182036363216616,
+              "AP": 0.8288923642074467
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 391,
+            "val": {
+              "AUC": 0.8305596846947949,
+              "AP": 0.8477654210531707
+            },
+            "test": {
+              "AUC": 0.8200412279767959,
+              "AP": 0.833566223283665
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 323,
+            "val": {
+              "AUC": 0.8169718952043699,
+              "AP": 0.8310662685236582
+            },
+            "test": {
+              "AUC": 0.8119885781382064,
+              "AP": 0.8261717135098161
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 389,
+            "val": {
+              "AUC": 0.8110195218862905,
+              "AP": 0.8201494708189547
+            },
+            "test": {
+              "AUC": 0.8277221751236712,
+              "AP": 0.8419251893805408
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 396,
+            "val": {
+              "AUC": 0.8263089513895925,
+              "AP": 0.840254921584471
+            },
+            "test": {
+              "AUC": 0.8206867577970192,
+              "AP": 0.8351686732248991
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 400,
+            "val": {
+              "AUC": 0.8252386528474815,
+              "AP": 0.8447655879181704
+            },
+            "test": {
+              "AUC": 0.817631172493135,
+              "AP": 0.8317167332968698
+            },
+            "notes": "Full-batch GAT encoder with dot-product edge decoder.",
+            "dataset": "Twitch_EN",
+            "model": "gat",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.819217113329802,
+          "std": 0.005733055920594424
+        },
+        "test_ap": {
+          "mean": 0.8322290691070193,
+          "std": 0.005708484649955787
+        },
+        "best_epoch": {
+          "mean": 350.5,
+          "std": 74.78402235772023
+        },
+        "val_auc": {
+          "mean": 0.8196372207380123,
+          "std": 0.010420767314922988
+        },
+        "val_ap": {
+          "mean": 0.8328450631186566,
+          "std": 0.011813444600522966
+        },
+        "notes": "Full-batch GAT encoder with dot-product edge decoder."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 345.40881514549255
+}

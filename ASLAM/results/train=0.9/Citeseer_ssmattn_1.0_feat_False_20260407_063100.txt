@@ -1,0 +1,108 @@
+Namespace(model_variant='ssmattn', runs=1, lr=0.001, epochs=21, cuda='cuda:0', root='G:/myProject/ASLAM-3/datasets', device=0, wd=0.0005, bs=32, patience=20, K=20, metric='auc_ap', dynamic_train=False, dynamic_val=False, dynamic_test=False, update_steps=5, fusion_dropout=0.1, ssm_hidden=32, dataset='citeseer', val_ratio=0.05, test_ratio=0.1, train_percent=1.0, val_percent=1.0, test_percent=1.0, use_new_split=False, use_feat=False)
+ASLAMSSMAttn(
+  (drnl_encoder): HybridDGCNN(
+    (attr_proj): Sequential(
+      (0): LayerNorm((3703,), eps=1e-05, elementwise_affine=True)
+      (1): Linear(in_features=3703, out_features=16, bias=True)
+      (2): GELU(approximate='none')
+    )
+    (semantic_proj): Sequential(
+      (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (1): Linear(in_features=32, out_features=8, bias=True)
+      (2): GELU(approximate='none')
+    )
+    (convs): ModuleList(
+      (0): GCNConv(75, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (out_proj): Linear(in_features=32, out_features=32, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (de_encoder): HybridDGCNN(
+    (attr_proj): Sequential(
+      (0): LayerNorm((3703,), eps=1e-05, elementwise_affine=True)
+      (1): Linear(in_features=3703, out_features=16, bias=True)
+      (2): GELU(approximate='none')
+    )
+    (semantic_proj): Sequential(
+      (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (1): Linear(in_features=32, out_features=8, bias=True)
+      (2): GELU(approximate='none')
+    )
+    (convs): ModuleList(
+      (0): GCNConv(57, 32)
+      (1-2): 2 x GCNConv(32, 32)
+      (3): GCNConv(32, 1)
+    )
+    (conv1): Conv1d(1, 16, kernel_size=(97,), stride=(97,))
+    (maxpool1d): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (conv2): Conv1d(16, 32, kernel_size=(5,), stride=(1,))
+    (out_proj): Linear(in_features=32, out_features=32, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (semantic_proj): Sequential(
+    (0): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+    (1): Linear(in_features=32, out_features=32, bias=True)
+    (2): GELU(approximate='none')
+  )
+  (degree_proj): Sequential(
+    (0): Linear(in_features=4, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=32, bias=True)
+  )
+  (structure_merge): Linear(in_features=64, out_features=32, bias=True)
+  (semantic_merge): Linear(in_features=96, out_features=32, bias=True)
+  (token_embedding): Embedding(6, 32)
+  (ssm_blocks): ModuleList(
+    (0-1): 2 x SelectiveStateSpaceBlock(
+      (norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+      (in_proj): Linear(in_features=32, out_features=128, bias=True)
+      (out_proj): Linear(in_features=32, out_features=32, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (score): Linear(in_features=32, out_features=1, bias=True)
+  (reliability): Sequential(
+    (0): Linear(in_features=64, out_features=32, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=32, out_features=1, bias=True)
+  )
+  (lin1): Linear(in_features=32, out_features=1, bias=True)
+  (lin2): Linear(in_features=32, out_features=1, bias=True)
+  (lin3): Linear(in_features=32, out_features=1, bias=True)
+)
+Epoch: 01, Loss: 0.5521, Val_AUC: 0.9678, Val_AP: 0.9698, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 02, Loss: 0.4295, Val_AUC: 0.9611, Val_AP: 0.9642, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 03, Loss: 0.3714, Val_AUC: 0.9350, Val_AP: 0.9439, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 04, Loss: 0.3424, Val_AUC: 0.9420, Val_AP: 0.9498, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 05, Loss: 0.3229, Val_AUC: 0.9441, Val_AP: 0.9501, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 06, Loss: 0.3095, Val_AUC: 0.9450, Val_AP: 0.9507, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 07, Loss: 0.3000, Val_AUC: 0.9417, Val_AP: 0.9459, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 08, Loss: 0.2876, Val_AUC: 0.9372, Val_AP: 0.9442, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 09, Loss: 0.2841, Val_AUC: 0.9279, Val_AP: 0.9396, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 10, Loss: 0.2761, Val_AUC: 0.8945, Val_AP: 0.9179, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 11, Loss: 0.2663, Val_AUC: 0.9050, Val_AP: 0.9281, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 12, Loss: 0.2646, Val_AUC: 0.9043, Val_AP: 0.9216, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 13, Loss: 0.2907, Val_AUC: 0.9548, Val_AP: 0.9612, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 14, Loss: 0.3016, Val_AUC: 0.9282, Val_AP: 0.9398, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 15, Loss: 0.2726, Val_AUC: 0.9159, Val_AP: 0.9334, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 16, Loss: 0.2647, Val_AUC: 0.9083, Val_AP: 0.9292, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 17, Loss: 0.2638, Val_AUC: 0.8869, Val_AP: 0.9091, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 18, Loss: 0.2588, Val_AUC: 0.9020, Val_AP: 0.9194, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 19, Loss: 0.2541, Val_AUC: 0.8856, Val_AP: 0.9068, Test_AUC: 0.9474, Test_AP: 0.9383
+Epoch: 20, Loss: 0.2582, Val_AUC: 0.8973, Val_AP: 0.9189, Test_AUC: 0.9474, Test_AP: 0.9383
+Run:  1, Test AUC: 0.9474, Test AP: 0.9383
+The average AUC for test data is 0.9474
+The average AP for test data is 0.9383
+The std of AUC for test data is 0.0000
+The std of AP for test data is 0.0000
+402

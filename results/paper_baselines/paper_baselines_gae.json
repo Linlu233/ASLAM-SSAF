@@ -1,0 +1,1640 @@
+{
+  "args": {
+    "datasets": "Citeseer,DBLP,PubMed,amz_Photo,CoRA,Twitch_EN",
+    "models": "gae",
+    "root": "datasets",
+    "runs": 10,
+    "seed": 2,
+    "epochs": 401,
+    "patience": 20,
+    "device": "cuda:0",
+    "hidden_channels": 64,
+    "num_layers": 3,
+    "dropout": 0.25,
+    "lr": 0.001,
+    "wd": 0.0005,
+    "val_ratio": 0.05,
+    "test_ratio": 0.1,
+    "neg_sampling_ratio": 1.0,
+    "normalize_features": false,
+    "node2vec_dim": 64,
+    "node2vec_epochs": 30,
+    "node2vec_batch_size": 256,
+    "supergat_lambda": 1.0,
+    "seal_batch_size": 32,
+    "seal_hidden_channels": 32,
+    "seal_num_layers": 3,
+    "bsal_batch_size": 32,
+    "bsal_semantic_dim": 32,
+    "knn_k": 10,
+    "cache_dir": "results/paper_baseline_cache",
+    "results_dir": "results/paper_baselines",
+    "summary_name": "paper_baselines_gae.json"
+  },
+  "device": "cuda:0",
+  "sources": {
+    "cn": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical common-neighbor heuristic; no external code dependency required."
+    },
+    "aa": {
+      "implementation": "Closed-form heuristic implemented locally under the shared local protocol.",
+      "source": "Classical Adamic-Adar heuristic; no external code dependency required."
+    },
+    "node2vec": {
+      "implementation": "PyTorch Geometric 2.7.0 official Node2Vec implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gcn": {
+      "implementation": "PyTorch Geometric 2.7.0 official message-passing components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gae": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "vgae": {
+      "implementation": "PyTorch Geometric 2.7.0 official VGAE implementation.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "graphsage": {
+      "implementation": "PyTorch Geometric 2.7.0 official GraphSAGE components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "gat": {
+      "implementation": "PyTorch Geometric 2.7.0 official GAT components.",
+      "source": "https://github.com/pyg-team/pytorch_geometric"
+    },
+    "supergat": {
+      "implementation": "PyTorch Geometric 2.7.0 SuperGATConv plus the official project release.",
+      "source": "https://github.com/dongkwan-kim/SuperGAT"
+    },
+    "seal": {
+      "implementation": "Local root reproduction adapted from the public SEAL architecture and DGCNN-based subgraph classification pipeline.",
+      "source": "https://github.com/muhanzhang/SEAL"
+    },
+    "bsal": {
+      "implementation": "Local root reproduction using the recovered bi-component fusion code fragment in the ASLAM author package plus the BSAL paper description. A standalone public BSAL repository was not robustly verified in this workspace.",
+      "source": "https://doi.org/10.1145/3477495.3531804"
+    }
+  },
+  "datasets": {
+    "Citeseer": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.953853081682199,
+              "AP": 0.9602125105331798
+            },
+            "test": {
+              "AUC": 0.917138137216204,
+              "AP": 0.9247194403076493
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 22,
+            "val": {
+              "AUC": 0.929438483828021,
+              "AP": 0.9412031155641328
+            },
+            "test": {
+              "AUC": 0.9240481655288022,
+              "AP": 0.9234244221432473
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.9299475291722139,
+              "AP": 0.9338540715102115
+            },
+            "test": {
+              "AUC": 0.9126743953725227,
+              "AP": 0.9209036741912224
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.9144608035084971,
+              "AP": 0.9205961688158741
+            },
+            "test": {
+              "AUC": 0.9143507351042108,
+              "AP": 0.9236355426634837
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.9122092567937975,
+              "AP": 0.9096339296990945
+            },
+            "test": {
+              "AUC": 0.9230150724383435,
+              "AP": 0.9259087890565115
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 21,
+            "val": {
+              "AUC": 0.9193750489466678,
+              "AP": 0.9240190426670035
+            },
+            "test": {
+              "AUC": 0.8939032888421073,
+              "AP": 0.8969304473318765
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 26,
+            "val": {
+              "AUC": 0.9270303077766465,
+              "AP": 0.9285249427715812
+            },
+            "test": {
+              "AUC": 0.9309971784863237,
+              "AP": 0.9319528542529331
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 23,
+            "val": {
+              "AUC": 0.9274218811183335,
+              "AP": 0.9312908423524662
+            },
+            "test": {
+              "AUC": 0.9290869308850976,
+              "AP": 0.9332583506330949
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.9362910173075417,
+              "AP": 0.939999052139676
+            },
+            "test": {
+              "AUC": 0.9167726561700511,
+              "AP": 0.9144270523134704
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.9168494008927872,
+              "AP": 0.9278878143776528
+            },
+            "test": {
+              "AUC": 0.9145700237319027,
+              "AP": 0.9182284899272821
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Citeseer",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 3312,
+              "num_edges": 4536,
+              "num_features": 3703
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9176556583775566,
+          "std": 0.009943524709286507
+        },
+        "test_ap": {
+          "mean": 0.9213389062820772,
+          "std": 0.009747181693139918
+        },
+        "best_epoch": {
+          "mean": 23.8,
+          "std": 1.4000000000000001
+        },
+        "val_auc": {
+          "mean": 0.9266876811026703,
+          "std": 0.01165513052431806
+        },
+        "val_ap": {
+          "mean": 0.9317221490430873,
+          "std": 0.012925813845409908
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "DBLP": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 56,
+            "val": {
+              "AUC": 0.9317213326446281,
+              "AP": 0.9382310040770786
+            },
+            "test": {
+              "AUC": 0.9222381844008264,
+              "AP": 0.9294652953369364
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 25,
+            "val": {
+              "AUC": 0.8976304235537191,
+              "AP": 0.9139544976434655
+            },
+            "test": {
+              "AUC": 0.8984859245867769,
+              "AP": 0.918175693849086
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 40,
+            "val": {
+              "AUC": 0.9033768078512395,
+              "AP": 0.9102751142864356
+            },
+            "test": {
+              "AUC": 0.9173473011363635,
+              "AP": 0.9302779256508378
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 14,
+            "val": {
+              "AUC": 0.9570312499999999,
+              "AP": 0.9590458300683933
+            },
+            "test": {
+              "AUC": 0.8921423037190083,
+              "AP": 0.9082995078379831
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 53,
+            "val": {
+              "AUC": 0.9190340909090909,
+              "AP": 0.9260336204667686
+            },
+            "test": {
+              "AUC": 0.9005036157024794,
+              "AP": 0.9035413919268698
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 22,
+            "val": {
+              "AUC": 0.9217781508264463,
+              "AP": 0.9275137627772484
+            },
+            "test": {
+              "AUC": 0.8967910640495868,
+              "AP": 0.9146812144052292
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 12,
+            "val": {
+              "AUC": 0.9258135330578512,
+              "AP": 0.9309134914149721
+            },
+            "test": {
+              "AUC": 0.9075816761363636,
+              "AP": 0.91220339860137
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 14,
+            "val": {
+              "AUC": 0.9068956611570247,
+              "AP": 0.9069672877546834
+            },
+            "test": {
+              "AUC": 0.9181785898760331,
+              "AP": 0.9294732790143894
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 38,
+            "val": {
+              "AUC": 0.9040870351239669,
+              "AP": 0.9139003767642081
+            },
+            "test": {
+              "AUC": 0.886210291838843,
+              "AP": 0.900368041837552
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          },
+          {
+            "best_epoch": 47,
+            "val": {
+              "AUC": 0.9291709710743802,
+              "AP": 0.9354442167697994
+            },
+            "test": {
+              "AUC": 0.9057576833677685,
+              "AP": 0.9210761614018853
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "DBLP",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 4057,
+              "num_edges": 3528,
+              "num_features": 334
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9045236634814049,
+          "std": 0.011298969045859105
+        },
+        "test_ap": {
+          "mean": 0.9167561909862139,
+          "std": 0.010327203809854416
+        },
+        "best_epoch": {
+          "mean": 32.1,
+          "std": 15.9339260698674
+        },
+        "val_auc": {
+          "mean": 0.9196539256198347,
+          "std": 0.016826106899148645
+        },
+        "val_ap": {
+          "mean": 0.9262279202023052,
+          "std": 0.015025792096941392
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "PubMed": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 12,
+            "val": {
+              "AUC": 0.898730841663517,
+              "AP": 0.8882885448629056
+            },
+            "test": {
+              "AUC": 0.8962918345329016,
+              "AP": 0.8798937336474237
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 19,
+            "val": {
+              "AUC": 0.8875255159392147,
+              "AP": 0.8765281496916946
+            },
+            "test": {
+              "AUC": 0.8921389779695421,
+              "AP": 0.8757293882388735
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 11,
+            "val": {
+              "AUC": 0.8925172115497402,
+              "AP": 0.8741842055668153
+            },
+            "test": {
+              "AUC": 0.8968491429658279,
+              "AP": 0.8788159606227449
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 17,
+            "val": {
+              "AUC": 0.8911098639367124,
+              "AP": 0.8752905562726325
+            },
+            "test": {
+              "AUC": 0.8977906414132858,
+              "AP": 0.8792078361487228
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 4,
+            "val": {
+              "AUC": 0.8955261781725292,
+              "AP": 0.8874627645098359
+            },
+            "test": {
+              "AUC": 0.8897060800023459,
+              "AP": 0.8813603269171206
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 19,
+            "val": {
+              "AUC": 0.9011729797403849,
+              "AP": 0.8840470956840731
+            },
+            "test": {
+              "AUC": 0.890474714579885,
+              "AP": 0.8712582997642844
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 19,
+            "val": {
+              "AUC": 0.8914666390803998,
+              "AP": 0.880281358764077
+            },
+            "test": {
+              "AUC": 0.8873742123251964,
+              "AP": 0.863537940570932
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 7,
+            "val": {
+              "AUC": 0.8862673337330084,
+              "AP": 0.8711703251417277
+            },
+            "test": {
+              "AUC": 0.894779460218757,
+              "AP": 0.8774773583317907
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 23,
+            "val": {
+              "AUC": 0.8940516297618893,
+              "AP": 0.8749729198009351
+            },
+            "test": {
+              "AUC": 0.8928775249172411,
+              "AP": 0.8741264070502403
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          },
+          {
+            "best_epoch": 18,
+            "val": {
+              "AUC": 0.892208393338894,
+              "AP": 0.8749900572360055
+            },
+            "test": {
+              "AUC": 0.8934408661490439,
+              "AP": 0.8730275068804574
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "PubMed",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 19717,
+              "num_edges": 44324,
+              "num_features": 500
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8931723455074027,
+          "std": 0.0031827496705704138
+        },
+        "test_ap": {
+          "mean": 0.8754434758172589,
+          "std": 0.00501403482530319
+        },
+        "best_epoch": {
+          "mean": 14.9,
+          "std": 5.7870545184921145
+        },
+        "val_auc": {
+          "mean": 0.893057658691629,
+          "std": 0.004349444869323946
+        },
+        "val_ap": {
+          "mean": 0.8787215977530701,
+          "std": 0.005664787223338598
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "amz_Photo": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 100,
+            "val": {
+              "AUC": 0.9595313145477947,
+              "AP": 0.9603914222831138
+            },
+            "test": {
+              "AUC": 0.9620670506517617,
+              "AP": 0.9643920255310487
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 80,
+            "val": {
+              "AUC": 0.9603543641856529,
+              "AP": 0.9598376677457653
+            },
+            "test": {
+              "AUC": 0.9620753715930314,
+              "AP": 0.9610375958861908
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 74,
+            "val": {
+              "AUC": 0.9600652377960144,
+              "AP": 0.9605851541568468
+            },
+            "test": {
+              "AUC": 0.9593913610228112,
+              "AP": 0.959700239944685
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 77,
+            "val": {
+              "AUC": 0.9595063754576443,
+              "AP": 0.9592325187322016
+            },
+            "test": {
+              "AUC": 0.9596696651929107,
+              "AP": 0.9614596444857058
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 101,
+            "val": {
+              "AUC": 0.9631683049699907,
+              "AP": 0.9640620669522001
+            },
+            "test": {
+              "AUC": 0.9599406177070138,
+              "AP": 0.9603311972099939
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 76,
+            "val": {
+              "AUC": 0.9604901569348928,
+              "AP": 0.9627698563679753
+            },
+            "test": {
+              "AUC": 0.9608243523709261,
+              "AP": 0.9614865038065901
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 91,
+            "val": {
+              "AUC": 0.9614381406750834,
+              "AP": 0.9614725505009457
+            },
+            "test": {
+              "AUC": 0.9632526356618751,
+              "AP": 0.9647959178421655
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 66,
+            "val": {
+              "AUC": 0.9557477025608985,
+              "AP": 0.952862335490249
+            },
+            "test": {
+              "AUC": 0.9578968573400418,
+              "AP": 0.956383725824747
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 83,
+            "val": {
+              "AUC": 0.9602119488550571,
+              "AP": 0.9611268716965781
+            },
+            "test": {
+              "AUC": 0.9612778138459598,
+              "AP": 0.9601379248479283
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          },
+          {
+            "best_epoch": 130,
+            "val": {
+              "AUC": 0.9588970383100223,
+              "AP": 0.9616309777803353
+            },
+            "test": {
+              "AUC": 0.9577918986570195,
+              "AP": 0.9597449856346522
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "amz_Photo",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 18333,
+              "num_edges": 81894,
+              "num_features": 6805
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.9604187624043352,
+          "std": 0.0017175639514615218
+        },
+        "test_ap": {
+          "mean": 0.9609469761013706,
+          "std": 0.002282563949743628
+        },
+        "best_epoch": {
+          "mean": 87.8,
+          "std": 17.662389419328292
+        },
+        "val_auc": {
+          "mean": 0.959941058429305,
+          "std": 0.0017957883846042642
+        },
+        "val_ap": {
+          "mean": 0.9603971421706209,
+          "std": 0.002841669530518689
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "CoRA": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.7225268781614836,
+              "AP": 0.7483584081121952
+            },
+            "test": {
+              "AUC": 0.7494627596796094,
+              "AP": 0.7677169970688236
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.7448084259948431,
+              "AP": 0.7629739838969987
+            },
+            "test": {
+              "AUC": 0.7505932953538198,
+              "AP": 0.766789900605789
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 55,
+            "val": {
+              "AUC": 0.7909541807872206,
+              "AP": 0.7950059345576935
+            },
+            "test": {
+              "AUC": 0.7855492848366643,
+              "AP": 0.7910457836190159
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 5,
+            "val": {
+              "AUC": 0.7473973511751476,
+              "AP": 0.7693111499334673
+            },
+            "test": {
+              "AUC": 0.73821068296928,
+              "AP": 0.7564988214246695
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 60,
+            "val": {
+              "AUC": 0.8027335078119828,
+              "AP": 0.8097961545762484
+            },
+            "test": {
+              "AUC": 0.7961004465835391,
+              "AP": 0.8017976996161627
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.7463999651257974,
+              "AP": 0.7629421835679959
+            },
+            "test": {
+              "AUC": 0.7476897354404239,
+              "AP": 0.76827354472284
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 141,
+            "val": {
+              "AUC": 0.865262468738345,
+              "AP": 0.8621784758309771
+            },
+            "test": {
+              "AUC": 0.8691927792640575,
+              "AP": 0.8658972936430038
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 16,
+            "val": {
+              "AUC": 0.7368725267167068,
+              "AP": 0.7615668724402367
+            },
+            "test": {
+              "AUC": 0.7351253856747755,
+              "AP": 0.7596712293600918
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 6,
+            "val": {
+              "AUC": 0.7428487702807212,
+              "AP": 0.7629542632031587
+            },
+            "test": {
+              "AUC": 0.7423583518064354,
+              "AP": 0.7615731878459957
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          },
+          {
+            "best_epoch": 16,
+            "val": {
+              "AUC": 0.7280542778214603,
+              "AP": 0.7543420412353641
+            },
+            "test": {
+              "AUC": 0.7373685961034536,
+              "AP": 0.764069938962314
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "CoRA",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 11881,
+              "num_edges": 31482,
+              "num_features": 9568
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.7651651317712059,
+          "std": 0.0398500646017931
+        },
+        "test_ap": {
+          "mean": 0.7803334396868706,
+          "std": 0.03161668780979687
+        },
+        "best_epoch": {
+          "mean": 31.5,
+          "std": 41.52408939398912
+        },
+        "val_auc": {
+          "mean": 0.7627858352613709,
+          "std": 0.04197055264813976
+        },
+        "val_ap": {
+          "mean": 0.7789429467354335,
+          "std": 0.032924279087929796
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    },
+    "Twitch_EN": {
+      "gae": {
+        "runs": [
+          {
+            "best_epoch": 32,
+            "val": {
+              "AUC": 0.8578192715300588,
+              "AP": 0.87190955006355
+            },
+            "test": {
+              "AUC": 0.8628376987491166,
+              "AP": 0.8767393313697271
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 2,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 30,
+            "val": {
+              "AUC": 0.8564401960268774,
+              "AP": 0.8695479095767559
+            },
+            "test": {
+              "AUC": 0.8543135468116133,
+              "AP": 0.8640265928490167
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 3,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.8610878824762183,
+              "AP": 0.8769867886658496
+            },
+            "test": {
+              "AUC": 0.8634214250810259,
+              "AP": 0.8748297081540028
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 4,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 22,
+            "val": {
+              "AUC": 0.8547754296905562,
+              "AP": 0.8615796910401016
+            },
+            "test": {
+              "AUC": 0.8520719479176954,
+              "AP": 0.8571416571230797
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 5,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 26,
+            "val": {
+              "AUC": 0.8499818517383212,
+              "AP": 0.8565784207336876
+            },
+            "test": {
+              "AUC": 0.8543776749447537,
+              "AP": 0.8610441015507223
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 6,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 43,
+            "val": {
+              "AUC": 0.8630370570830164,
+              "AP": 0.8789858028934732
+            },
+            "test": {
+              "AUC": 0.8568746641289027,
+              "AP": 0.8752428049468982
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 7,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 23,
+            "val": {
+              "AUC": 0.8553551480141441,
+              "AP": 0.8616112477503466
+            },
+            "test": {
+              "AUC": 0.8555745463896501,
+              "AP": 0.864950038278385
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 8,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.8402952972274843,
+              "AP": 0.8446693492640643
+            },
+            "test": {
+              "AUC": 0.8547007604955308,
+              "AP": 0.862034483131249
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 9,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 156,
+            "val": {
+              "AUC": 0.8621527301270121,
+              "AP": 0.8842983281886168
+            },
+            "test": {
+              "AUC": 0.8612483230493184,
+              "AP": 0.8850805018328739
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 10,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          },
+          {
+            "best_epoch": 24,
+            "val": {
+              "AUC": 0.856710175467398,
+              "AP": 0.8669069898749302
+            },
+            "test": {
+              "AUC": 0.850634836454022,
+              "AP": 0.8629485023405116
+            },
+            "notes": "GAE with the standard inner-product decoder under the shared split protocol.",
+            "dataset": "Twitch_EN",
+            "model": "gae",
+            "seed": 11,
+            "graph": {
+              "num_nodes": 7126,
+              "num_edges": 35324,
+              "num_features": 128
+            }
+          }
+        ],
+        "test_auc": {
+          "mean": 0.8566055424021629,
+          "std": 0.0042194129996908
+        },
+        "test_ap": {
+          "mean": 0.8684037721576466,
+          "std": 0.00847393448961501
+        },
+        "best_epoch": {
+          "mean": 40.4,
+          "std": 38.992819851865036
+        },
+        "val_auc": {
+          "mean": 0.8557655039381087,
+          "std": 0.006336339631858088
+        },
+        "val_ap": {
+          "mean": 0.8673074078051377,
+          "std": 0.011126420961101995
+        },
+        "notes": "GAE with the standard inner-product decoder under the shared split protocol."
+      }
+    }
+  },
+  "root_formal_models": {
+    "Citeseer": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.846912172468069,
+          "std": 0.01204184405958747
+        },
+        "test_ap": {
+          "mean": 0.8539653690153115,
+          "std": 0.017667215020410996
+        },
+        "best_epoch": {
+          "mean": 43.9,
+          "std": 15.430165261590687
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.859001798166747,
+          "std": 0.016099004525514483
+        },
+        "test_ap": {
+          "mean": 0.8631125181263546,
+          "std": 0.019119774694722504
+        },
+        "best_epoch": {
+          "mean": 42.2,
+          "std": 21.39532659250613
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "DBLP": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9013453964359505,
+          "std": 0.01097593348052404
+        },
+        "test_ap": {
+          "mean": 0.9085492587515525,
+          "std": 0.011852806147380882
+        },
+        "best_epoch": {
+          "mean": 57.6,
+          "std": 29.340074982862603
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9156960227272728,
+          "std": 0.013543356575281468
+        },
+        "test_ap": {
+          "mean": 0.9262067206593374,
+          "std": 0.009216394757197793
+        },
+        "best_epoch": {
+          "mean": 57.2,
+          "std": 33.757369565770375
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "PubMed": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9767319045561328,
+          "std": 0.0012614669382945431
+        },
+        "test_ap": {
+          "mean": 0.9759036510676399,
+          "std": 0.0014445764327214456
+        },
+        "best_epoch": {
+          "mean": 38.1,
+          "std": 6.624952830020754
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9787153080973298,
+          "std": 0.001095141374816572
+        },
+        "test_ap": {
+          "mean": 0.9774811461754028,
+          "std": 0.0014727872155068811
+        },
+        "best_epoch": {
+          "mean": 35.7,
+          "std": 10.296115772464878
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "amz_Photo": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.981020524227949,
+          "std": 0.0011465383712633943
+        },
+        "test_ap": {
+          "mean": 0.9805604643873427,
+          "std": 0.0016626760142891353
+        },
+        "best_epoch": {
+          "mean": 11.2,
+          "std": 1.661324772583615
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9857267643568038,
+          "std": 0.0009789544248693608
+        },
+        "test_ap": {
+          "mean": 0.9863081398685427,
+          "std": 0.001419207160960051
+        },
+        "best_epoch": {
+          "mean": 7.2,
+          "std": 0.8717797887081347
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "CoRA": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9473811300291104,
+          "std": 0.0023681456897372602
+        },
+        "test_ap": {
+          "mean": 0.9544180879445134,
+          "std": 0.0027353109737672807
+        },
+        "best_epoch": {
+          "mean": 33.8,
+          "std": 15.923567439490435
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.9535100239114322,
+          "std": 0.003153509717393705
+        },
+        "test_ap": {
+          "mean": 0.9622041135011775,
+          "std": 0.002177887344798445
+        },
+        "best_epoch": {
+          "mean": 30.3,
+          "std": 23.349732332512936
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    },
+    "Twitch_EN": {
+      "aslam": {
+        "test_auc": {
+          "mean": 0.9281077375081603,
+          "std": 0.002964745163368147
+        },
+        "test_ap": {
+          "mean": 0.9331891841501744,
+          "std": 0.0036233908608642373
+        },
+        "best_epoch": {
+          "mean": 41.1,
+          "std": 6.28410693734599
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      },
+      "aslam_ssmattn": {
+        "test_auc": {
+          "mean": 0.928965110608204,
+          "std": 0.0032294758711625135
+        },
+        "test_ap": {
+          "mean": 0.9341344348725984,
+          "std": 0.002988369659149658
+        },
+        "best_epoch": {
+          "mean": 31.0,
+          "std": 12.409673645990857
+        },
+        "notes": "Loaded from existing root formal comparison JSON."
+      }
+    }
+  },
+  "elapsed_seconds": 152.87766885757446
+}
