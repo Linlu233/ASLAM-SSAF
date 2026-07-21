@@ -19,7 +19,7 @@ If you find this project useful in your research, please cite our paper:
 ```bibtex
 @misc{aslam_ssaf_2026,
   title={ASLAM-SSAF: Selective State-Space Attention Fusion for Attribute-Structure Collaborative Link Prediction},
-  author={Wei Yu, Xinyu Lu, Jingyao Zhang, Chaoyang Pan, Yaqi Gao, Yuhan Zhao},
+  author={Xinyu Lu, Wei Yu, Guangquan Xu, Lei Wang, Jinyao Zhang, Chaoyang Pan, Yaqi Gao, Yuhan Zhao},
   year={2026},
   note={Manuscript under review}
 }
