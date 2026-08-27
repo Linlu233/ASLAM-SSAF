@@ -6,7 +6,7 @@ This project focuses on link prediction, a fundamental task in graph representat
 
 EPIC-Fuse enhances the structural branch through residual graph convolution, a dual GATv2–GCN structural encoder, and a lightweight bidirectional selective-scan-style mixer. For each candidate edge, the model constructs pair-token sequences using attribute endpoints, structural endpoints, branch summaries, cross-branch discrepancy statistics, endpoint-mean statistics, and heuristic priors. These tokens are then processed through attention-based and state-space-inspired fusion modules. In addition, an edge-wise adaptive gate is introduced to dynamically balance the stable base path and the enhanced expert path, improving both prediction performance and model robustness.
 
-Under the retained five-dataset local evaluation protocol, EPIC-Fuse improves the average AUC from 0.9469 to 0.9525 and the average AP from 0.9505 to 0.9573 compared with the local ASLAM baseline. It also ranks first in the corresponding 13-model local comparison. Ablation studies, training dynamics and t-SNE visualizations further demonstrate the effectiveness of multi-scale structural enhancement and selective state-space attention fusion within the bounded evaluation setting.
+Under the retained six-dataset local evaluation protocol, EPIC-Fuse improves the average AUC from 0.9469 to 0.9525 and the average AP from 0.9505 to 0.9573 compared with the ASLAM baseline. It also ranks first in the corresponding 13-model local comparison. Ablation studies, training dynamics and t-SNE visualizations further demonstrate the effectiveness of multi-scale structural enhancement and selective state-space attention fusion within the bounded evaluation setting.
 
 ## Model Architecture
 
